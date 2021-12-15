@@ -9,4 +9,8 @@ Aplicacion Android sobre cocina
 - JaviShyruk
 - lmonterogarcia
 
+## Links
+*  Proyeto https://github.com/users/lmonterogarcia/projects/2
+*  App Escritorio https://github.com/lmonterogarcia/ProyectoConjunto2DAM-Escritorio
+*  App Android https://github.com/lmonterogarcia/ProyectoConjunto2DAM-Android
 
