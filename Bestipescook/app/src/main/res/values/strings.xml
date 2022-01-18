@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Bestipes Cook</string>
+
+
+    <string name="title_noticias">Noticias</string>
+    <string name="title_challenges">Chanllenges</string>
+    <string name="title_recetas">Recetas</string>
+    <string name="title_ranking">Ranking</string>
+    <string name="title_cuenta">Cuenta</string>
 </resources>
