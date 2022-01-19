@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <dimen name="dm_elevation">8dp</dimen>
+
+    <dimen name="dm_txt_normal">15sp</dimen>
+    <dimen name="dm_subtitulo">18sp</dimen>
+    <dimen name="dm_titulo">20sp</dimen>
 </resources>
