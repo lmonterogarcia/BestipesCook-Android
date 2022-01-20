@@ -6,4 +6,9 @@
     <dimen name="dm_txt_normal">15sp</dimen>
     <dimen name="dm_subtitulo">18sp</dimen>
     <dimen name="dm_titulo">20sp</dimen>
+    <dimen name="cardCornerRadius">5dp</dimen>
+    <dimen name="cardElevation">5dp</dimen>
+    <dimen name="cardMargin">16dp</dimen>
+    <dimen name="cardImageMargin">5dp</dimen>
+    <dimen name="margenSubtitulo">16dp</dimen>
 </resources>

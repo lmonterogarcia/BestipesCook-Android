@@ -1,40 +1,36 @@
 package com.medac.bestipescook;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-import com.medac.bestipescook.view.ChallengesFragment;
-import com.medac.bestipescook.view.CuentaFragment;
-import com.medac.bestipescook.view.NoticiasFragment;
-import com.medac.bestipescook.view.RankingFragment;
-import com.medac.bestipescook.view.RecetasFragment;
+import com.google.android.material.navigation.NavigationBarView;
+import com.medac.bestipescook.view.frChallenges;
+import com.medac.bestipescook.view.frCuenta;
+import com.medac.bestipescook.view.noticias.frNoticias;
+import com.medac.bestipescook.view.frRanking;
+import com.medac.bestipescook.view.frRecetas;
 
 public class MainActivity extends AppCompatActivity{
 
-    NoticiasFragment frNoticias = new NoticiasFragment();
-    ChallengesFragment frChallenges = new ChallengesFragment();
-    RecetasFragment frRecetas = new RecetasFragment();
-    RankingFragment frRanking = new RankingFragment();
-    CuentaFragment frCuenta = new CuentaFragment();
+    com.medac.bestipescook.view.noticias.frNoticias frNoticias = new frNoticias();
+    com.medac.bestipescook.view.frChallenges frChallenges = new frChallenges();
+    com.medac.bestipescook.view.frRecetas frRecetas = new frRecetas();
+    com.medac.bestipescook.view.frRanking frRanking = new frRanking();
+    com.medac.bestipescook.view.frCuenta frCuenta = new frCuenta();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView navigationView = findViewById(R.id.botton_navigation);
-        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        NavigationBarView navigationView = findViewById(R.id.botton_navigation);
+        navigationView.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
         loadFragment(frNoticias);
     }
 

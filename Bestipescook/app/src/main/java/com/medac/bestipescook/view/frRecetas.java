@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import com.medac.bestipescook.R;
 
-public class RecetasFragment extends Fragment {
+public class frRecetas extends Fragment {
 
-    public RecetasFragment() {
+    public frRecetas() {
 
     }
 
