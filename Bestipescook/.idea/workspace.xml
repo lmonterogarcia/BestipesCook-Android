@@ -10,16 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9def5deb-ba6e-4bee-ad04-3a45ec1ae3c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/model/Noticia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/model/Imagen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/model/noticia/Noticia.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_noticias.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_noticias.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/model/Noticia.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[ce12160c9b6720880c]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/luis/.android/avd/Pixel_2_API_26.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
