@@ -7,12 +7,15 @@
         <entry key="app/src/main/res/drawable/ic_corazon.xml" value="0.275" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.275" />
         <entry key="app/src/main/res/drawable/ic_noticia.xml" value="0.362962962962963" />
+        <entry key="app/src/main/res/layout/activity_init_screen.xml" value="0.21458333333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_challenges.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_cuenta.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_noticia_detalle.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_noticias.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_ranking.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_recetas.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/noticia_item.xml" value="0.335" />
         <entry key="app/src/main/res/menu/bottom_navigation.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.275" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo.xml" value="0.275" />

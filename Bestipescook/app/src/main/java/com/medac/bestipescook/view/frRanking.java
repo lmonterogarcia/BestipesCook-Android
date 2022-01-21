@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import com.medac.bestipescook.R;
 
-public class RankingFragment extends Fragment {
+public class frRanking extends Fragment {
 
-    public RankingFragment() {
+    public frRanking() {
 
     }
 
