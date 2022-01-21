@@ -1,6 +1,5 @@
 package com.medac.bestipescook.view.noticias;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -38,7 +37,7 @@ public class frNoticias extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_noticias, container, false);
 
-        NoticiaStore.lstNoticias.clear();
+        //NoticiaStore.lstNoticias.clear();
         cargarNoticias();
         mostarNoticias();
 
@@ -48,26 +47,28 @@ public class frNoticias extends Fragment {
 
     private void cargarNoticias() {
         NoticiaStore.lstNoticias.add(new Noticia());
-    }
+    } // NO ESTA COMPLETO. CONECTAR con DB.
 
     private void mostarNoticias() {
 
         RecyclerView rvNoticias = v.findViewById(R.id.rvNoticias);
-        rvNoticias.setLayoutManager(new LinearLayoutManager(this));
 
-        NoticiaAdapter adaptador = new NoticiaAdapter(this);
+        rvNoticias.setLayoutManager(new LinearLayoutManager(getContext())); // ESTO ES UNA PRUEBA
+
+        NoticiaAdapter adaptador = new NoticiaAdapter(getContext()); // ESTO ES UNA PRUEBA
         rvNoticias.setAdapter(adaptador);
 
-        adaptador.setOnClickListener(v -> {
+        /*adaptador.setOnClickListener(v -> {
             NoticiaStore.noticiaSeleccionada = rvNoticias.getChildAdapterPosition(v);
-            newInstance i = new newInstance(this, Noticia_detalle.class);
-            loadFragment(i);
-        });
+            //Intent i = new Intent(this, Noticia_detalle.class);
+            //startActivity(i);
+
+        });*/
     }
 
-    private void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+    /*private void loadFragment(Fragment fragment) {
+        FragmentTransaction transaction =getActivity().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.commit();
-    }
+    }*/
 }

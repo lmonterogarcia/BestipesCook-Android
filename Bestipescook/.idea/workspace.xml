@@ -10,29 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9def5deb-ba6e-4bee-ad04-3a45ec1ae3c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/controller/noticias/NoticiaAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/controller/noticias/NoticiaStore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/noticias/Noticia_detalle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_noticia_detalle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/noticia_item.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/ChallengesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/frChallenges.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/CuentaFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/frCuenta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/NoticiasFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/noticias/frNoticias.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/RankingFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/frRanking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/RecetasFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/frRecetas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_challenges.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_challenges.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cuenta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cuenta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_noticias.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_noticias.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ranking.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ranking.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_recetas.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_recetas.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/controller/noticias/NoticiaAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/controller/noticias/NoticiaAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/model/Imagen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/model/Imagen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/noticias/frNoticias.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/noticias/frNoticias.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/noticia_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/noticia_item.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +65,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -165,6 +153,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

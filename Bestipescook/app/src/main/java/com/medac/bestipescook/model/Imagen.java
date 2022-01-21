@@ -7,7 +7,7 @@ public class Imagen {
 
     private int iIdIamgen;
     private LocalDateTime fechaCreacionImagen;
-    private String sRutaRelativaImagen;
+    private String sRutaUrlImagen;
 
     public Imagen(){
     }
@@ -19,7 +19,7 @@ public class Imagen {
     public Imagen(int iIdIamgen, LocalDateTime fechaCreacionImagen, String sRutaRelativaImagen) {
         this.iIdIamgen = iIdIamgen;
         this.fechaCreacionImagen = fechaCreacionImagen;
-        this.sRutaRelativaImagen = sRutaRelativaImagen;
+        this.sRutaUrlImagen = sRutaRelativaImagen;
     }
 
     public int getiIdIamgen() {
@@ -38,12 +38,12 @@ public class Imagen {
         this.fechaCreacionImagen = fechaCreacionImagen;
     }
 
-    public String getsRutaRelativaImagen() {
-        return sRutaRelativaImagen;
+    public String getsRutaUrlImagen() {
+        return sRutaUrlImagen;
     }
 
-    public void setsRutaRelativaImagen(String sRutaRelativaImagen) {
-        this.sRutaRelativaImagen = sRutaRelativaImagen;
+    public void setsRutaUrlImagen(String sRutaUrlImagen) {
+        this.sRutaUrlImagen = sRutaUrlImagen;
     }
 
     @Override
@@ -51,11 +51,11 @@ public class Imagen {
         if (this == o) return true;
         if (!(o instanceof Imagen)) return false;
         Imagen imagen = (Imagen) o;
-        return getiIdIamgen() == imagen.getiIdIamgen() && getsRutaRelativaImagen().equals(imagen.getsRutaRelativaImagen());
+        return getiIdIamgen() == imagen.getiIdIamgen() && getsRutaUrlImagen().equals(imagen.getsRutaUrlImagen());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getiIdIamgen(), getsRutaRelativaImagen());
+        return Objects.hash(getiIdIamgen(), getsRutaUrlImagen());
     }
 }
