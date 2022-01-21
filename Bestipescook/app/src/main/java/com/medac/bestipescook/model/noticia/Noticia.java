@@ -9,7 +9,7 @@ public class Noticia {
 
     private int idNoticia;
     private LocalDateTime fechaCreacionNoticia;
-    private String sTituloNoticia, sSubtituloNoticia, sTextoNoticia;
+    private String tituloNoticia, subtituloNoticia, textoNoticia;
     private Imagen imagen;
 
     public Noticia() {
@@ -22,9 +22,9 @@ public class Noticia {
     public Noticia(int idNoticia, LocalDateTime fechaCreacionNoticia, String sTituloNoticia, String sSubtituloNoticia, String sTextoNoticia, Imagen imagen) {
         this.idNoticia = idNoticia;
         this.fechaCreacionNoticia = fechaCreacionNoticia;
-        this.sTituloNoticia = sTituloNoticia;
-        this.sSubtituloNoticia = sSubtituloNoticia;
-        this.sTextoNoticia = sTextoNoticia;
+        this.tituloNoticia = sTituloNoticia;
+        this.subtituloNoticia = sSubtituloNoticia;
+        this.textoNoticia = sTextoNoticia;
         this.imagen = imagen;
     }
 
@@ -44,28 +44,28 @@ public class Noticia {
         this.fechaCreacionNoticia = fechaCreacionNoticia;
     }
 
-    public String getsTituloNoticia() {
-        return sTituloNoticia;
+    public String getTituloNoticia() {
+        return tituloNoticia;
     }
 
-    public void setsTituloNoticia(String sTituloNoticia) {
-        this.sTituloNoticia = sTituloNoticia;
+    public void setTituloNoticia(String tituloNoticia) {
+        this.tituloNoticia = tituloNoticia;
     }
 
-    public String getsSubtituloNoticia() {
-        return sSubtituloNoticia;
+    public String getSubtituloNoticia() {
+        return subtituloNoticia;
     }
 
-    public void setsSubtituloNoticia(String sSubtituloNoticia) {
-        this.sSubtituloNoticia = sSubtituloNoticia;
+    public void setSubtituloNoticia(String subtituloNoticia) {
+        this.subtituloNoticia = subtituloNoticia;
     }
 
-    public String getsTextoNoticia() {
-        return sTextoNoticia;
+    public String getTextoNoticia() {
+        return textoNoticia;
     }
 
-    public void setsTextoNoticia(String sTextoNoticia) {
-        this.sTextoNoticia = sTextoNoticia;
+    public void setTextoNoticia(String textoNoticia) {
+        this.textoNoticia = textoNoticia;
     }
 
     public Imagen getImagen() {
@@ -81,11 +81,11 @@ public class Noticia {
         if (this == o) return true;
         if (!(o instanceof Noticia)) return false;
         Noticia noticia = (Noticia) o;
-        return getIdNoticia() == noticia.getIdNoticia() && getsTituloNoticia().equals(noticia.getsTituloNoticia());
+        return getIdNoticia() == noticia.getIdNoticia() && getTituloNoticia().equals(noticia.getTituloNoticia());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdNoticia(), getsTituloNoticia());
+        return Objects.hash(getIdNoticia(), getTituloNoticia());
     }
 }

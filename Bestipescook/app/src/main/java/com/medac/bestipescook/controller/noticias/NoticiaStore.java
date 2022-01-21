@@ -7,7 +7,7 @@ import java.util.List;
 
 public class NoticiaStore {
 
-    public static List<Noticia> lstNoticias = new ArrayList<Noticia>();
-    public static int noticiaSeleccionada;
+    public static List<Noticia> lstNoticias = new ArrayList<>();
+    public static int iNoticiaSeleccionada;
 
 }

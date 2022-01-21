@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.noticias.NoticiaAdapter;
 import com.medac.bestipescook.controller.noticias.NoticiaStore;
+import com.medac.bestipescook.logic.NoticiasCrud;
 import com.medac.bestipescook.model.noticia.Noticia;
 
 
@@ -37,33 +38,31 @@ public class frNoticias extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_noticias, container, false);
 
-        //NoticiaStore.lstNoticias.clear();
+        NoticiaStore.lstNoticias.clear();
         cargarNoticias();
         mostarNoticias();
-
 
         return v;
     }
 
     private void cargarNoticias() {
-        NoticiaStore.lstNoticias.add(new Noticia());
-    } // NO ESTA COMPLETO. CONECTAR con DB.
+        NoticiasCrud.getAllCoche(getContext()); // ESTO ES UNA PRUEBA.
+    }
 
     private void mostarNoticias() {
 
         RecyclerView rvNoticias = v.findViewById(R.id.rvNoticias);
 
         rvNoticias.setLayoutManager(new LinearLayoutManager(getContext())); // ESTO ES UNA PRUEBA
-
         NoticiaAdapter adaptador = new NoticiaAdapter(getContext()); // ESTO ES UNA PRUEBA
         rvNoticias.setAdapter(adaptador);
 
-        /*adaptador.setOnClickListener(v -> {
-            NoticiaStore.noticiaSeleccionada = rvNoticias.getChildAdapterPosition(v);
+        adaptador.setOnClickListener(v -> {
+            NoticiaStore.iNoticiaSeleccionada = rvNoticias.getChildAdapterPosition(v);
             //Intent i = new Intent(this, Noticia_detalle.class);
             //startActivity(i);
 
-        });*/
+        });
     }
 
     /*private void loadFragment(Fragment fragment) {

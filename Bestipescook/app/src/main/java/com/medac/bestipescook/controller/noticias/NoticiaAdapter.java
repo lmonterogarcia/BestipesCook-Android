@@ -39,8 +39,8 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        String sTituloNoticia = NoticiaStore.lstNoticias.get(position).getsTituloNoticia();
-        String sSubtituloNoticia = NoticiaStore.lstNoticias.get(position).getsSubtituloNoticia();
+        String sTituloNoticia = NoticiaStore.lstNoticias.get(position).getTituloNoticia();
+        String sSubtituloNoticia = NoticiaStore.lstNoticias.get(position).getSubtituloNoticia();
         String sRutaUrl = NoticiaStore.lstNoticias.get(position).getImagen().getsRutaUrlImagen();
 
         holder.lblNoticiaTitulo.setText(sTituloNoticia);
