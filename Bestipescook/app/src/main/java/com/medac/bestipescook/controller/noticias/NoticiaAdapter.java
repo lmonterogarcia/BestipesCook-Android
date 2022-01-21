@@ -2,6 +2,7 @@ package com.medac.bestipescook.controller.noticias;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 
 import android.content.Context;
@@ -14,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.medac.bestipescook.R;
+import com.medac.bestipescook.logic.IHostingData;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,16 +44,18 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHold
 
         String sTituloNoticia = NoticiaStore.lstNoticias.get(position).getTituloNoticia();
         String sSubtituloNoticia = NoticiaStore.lstNoticias.get(position).getSubtituloNoticia();
-        String sRutaUrl = NoticiaStore.lstNoticias.get(position).getImagen().getsRutaUrlImagen();
+        String sRutaUrl = IHostingData.sHosting + IHostingData.sRutaImagenes + NoticiaStore.lstNoticias.get(position).getImagen().getsRutaUrlImagen();
+        Log.d("Foto", sRutaUrl);
 
         holder.lblNoticiaTitulo.setText(sTituloNoticia);
         holder.lblNoticiaSubtitulo.setText(sSubtituloNoticia);
-        try {
+        Picasso.get().load(sRutaUrl).into(holder.ivNoticia);
+        /*try {
             Bitmap bmImagenNoticia = BitmapFactory.decodeStream(new URL(sRutaUrl).openStream());
             holder.ivNoticia.setImageBitmap(bmImagenNoticia);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 

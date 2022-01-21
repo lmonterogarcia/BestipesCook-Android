@@ -29,8 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginVertical="@dimen/cardImageMargin"
-            android:scaleType="centerCrop"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/lblNoticiaSubtitulo"

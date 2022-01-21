@@ -1,9 +1,11 @@
 package com.medac.bestipescook.logic;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
@@ -11,26 +13,35 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class NoticiasCrud implements IHostingData {
 
-    public static void getAllCoche(Context context) {
+    public static void getAllNoticias(Context context) {
         String url = IHostingData.sHosting + "noticia/lst-noticias.php";
-        Toast.makeText(context, url,Toast.LENGTH_LONG).show();
 
-        Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET,url,
+        Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET, url, s -> {
+            Toast.makeText(context, s,Toast.LENGTH_LONG).show();
+        }, VolleyError ->{
+            Toast.makeText(context, VolleyError.toString(),Toast.LENGTH_LONG).show();
+            Log.d("Pruebas",VolleyError.toString() );
+        }));
+
+        /*Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET,url,
                 s -> {
                     if(s.equals("null")) {
                         Toast.makeText(context, "No hay noticias disponibles",Toast.LENGTH_LONG).show();
                     } else {
-                        ArrayList<NoticiaDB> prueba = new ArrayList<NoticiaDB>();
-                        prueba = new Gson().fromJson(s,new TypeToken<List<NoticiaDB>>() {}.getType());
-                        Toast.makeText(context, prueba.get(0).getImagenidImagen(),Toast.LENGTH_LONG).show();
+                        ArrayList<Object> prueba = new ArrayList<>();
+                        prueba = new Gson().fromJson(s,new TypeToken<List<Object>>() {}.getType());
+                        Toast.makeText(context, prueba.get(0).toString(),Toast.LENGTH_LONG).show();
+
                     }
                 }
                 , VolleyError -> {
-                    Toast.makeText(context, "Hubo un problema al recuperar las noticias.",Toast.LENGTH_LONG).show();
-        }));
+                    Toast.makeText(context, VolleyError.toString(),Toast.LENGTH_LONG).show();
+                    Log.d("Pruebas",VolleyError.toString() );
+        }));*/
     }
     public class NoticiaDB {
 

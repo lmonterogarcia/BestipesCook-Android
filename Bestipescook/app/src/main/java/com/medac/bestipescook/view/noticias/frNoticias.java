@@ -1,10 +1,8 @@
 package com.medac.bestipescook.view.noticias;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +14,11 @@ import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.noticias.NoticiaAdapter;
 import com.medac.bestipescook.controller.noticias.NoticiaStore;
 import com.medac.bestipescook.logic.NoticiasCrud;
+import com.medac.bestipescook.model.Imagen;
 import com.medac.bestipescook.model.noticia.Noticia;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class frNoticias extends Fragment {
@@ -46,7 +48,20 @@ public class frNoticias extends Fragment {
     }
 
     private void cargarNoticias() {
-        NoticiasCrud.getAllCoche(getContext()); // ESTO ES UNA PRUEBA.
+        //NoticiasCrud.getAllNoticias(getContext()); // ESTO ES UNA PRUEBA.
+        String str = "2016-03-04 11:30"; DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+
+        NoticiaStore.lstNoticias.add(new Noticia(1,dateTime, "a","a","a", new Imagen(1,dateTime,"fotovacia.png")));
+        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
+        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
+        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
+        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
+        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
+        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
+        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
+        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
+        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
     }
 
     private void mostarNoticias() {
