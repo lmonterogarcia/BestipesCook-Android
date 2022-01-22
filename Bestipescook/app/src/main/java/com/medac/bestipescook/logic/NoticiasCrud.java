@@ -33,33 +33,32 @@ import java.util.Objects;
 public class NoticiasCrud implements IHostingData, INoticia {
 
     public static void getAllNoticias(Context context) {
-        Log.d("Pruebas","ENTRA 1");
+
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstNoticias;
 
         Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET, url,
                 s -> {
                     if(s.equals("null")) {
-                        Log.d("Pruebas","ENTRA 4");
-                        Toast.makeText(context, "ENTRA 4", Toast.LENGTH_LONG).show();
+
                         Toast.makeText(context, "No hay noticias disponibles en este momento",Toast.LENGTH_LONG).show();
                     } else {
-                        Log.d("Pruebas","ENTRA 2");
+                        Log.d("Pruebas","ENTRA 1");
                         Toast.makeText(context, "ENTRA 2", Toast.LENGTH_LONG).show();
                         ArrayList<JSONObject> lstObjetos =  new Gson().fromJson(s,new TypeToken<List<JSONObject>>() {}.getType());
-                        rellenarLstNoticias(lstObjetos, NoticiaStore.lstNoticias);
+                        rellenarLstNoticias(lstObjetos);
                     }
 
                 }, VolleyError -> {
             Toast.makeText(context, VolleyError.toString(), Toast.LENGTH_LONG).show();
             Log.d("Pruebas", VolleyError.getStackTrace().toString());
         }));
-        Log.d("Pruebas","ENTRA 3");
+        Log.d("Pruebas","ENTRA 2");
     }
 
-    private static void rellenarLstNoticias(ArrayList<JSONObject> lstObjetos, ArrayList lstNoticias) {
+    private static void rellenarLstNoticias(ArrayList<JSONObject> lstObjetos) {
         lstObjetos.forEach(noticia ->{
             try {
-                lstNoticias.add(new Noticia(
+                NoticiaStore.lstNoticias.add(new Noticia(
                         noticia.getInt("idNoticia"),
                         LocalDateTime.parse(noticia.getString("fechaCreacionNoticia"), INoticia.dateTimeformatter),
                         noticia.getString("tituloNoticia"),
@@ -72,24 +71,5 @@ public class NoticiasCrud implements IHostingData, INoticia {
             }
         });
     }
-
-    /*private static void rellenarLstNoticias(ArrayList<JSONObject> lstObjetos) {
-        lstObjetos.forEach(noticia ->{
-            NoticiaStore.lstNoticias.add(new Noticia(
-                    Integer.parseInt(quitarComillas(noticia.get("idNoticia").toString())),
-                    LocalDateTime.parse(quitarComillas(noticia.get("fechaCreacionNoticia").toString()), INoticia.dateTimeformatter),
-                    quitarComillas(noticia.get("tituloNoticia").toString()),
-                    quitarComillas(noticia.get("subtituloNoticia").toString()),
-                    quitarComillas(noticia.get("textoNoticia").toString()),
-                    new Imagen(1,LocalDateTime.parse(quitarComillas(noticia.get("fechaCreacionNoticia").toString()), INoticia.dateTimeformatter),"fotovacia.png") // ESTO   ES UNA PRUEBA
-            ));
-        });
-    }*/
-
-    /*private static String quitarComillas(String sCampo){
-
-        return sCampo.substring(1,sCampo.length() - 1);
-    }*/
-
 
 }
