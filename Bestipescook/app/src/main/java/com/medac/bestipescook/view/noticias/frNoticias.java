@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.noticias.NoticiaAdapter;
@@ -49,6 +50,7 @@ public class frNoticias extends Fragment {
     }
 
     private void cargarNoticias() {
+        NoticiaStore.lstNoticias.clear();
         NoticiasCrud.getAllNoticias(getContext()); // ESTO ES UNA PRUEBA.
 
 
@@ -69,7 +71,7 @@ public class frNoticias extends Fragment {
         NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
         NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
         NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
-        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
+        NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "z","z","z", new Imagen(2,dateTime,"fotovacia.png")));
 
     }
 
@@ -77,12 +79,13 @@ public class frNoticias extends Fragment {
 
         RecyclerView rvNoticias = v.findViewById(R.id.rvNoticias);
 
-        rvNoticias.setLayoutManager(new LinearLayoutManager(getContext())); // ESTO ES UNA PRUEBA
-        NoticiaAdapter adaptador = new NoticiaAdapter(getContext()); // ESTO ES UNA PRUEBA
+        rvNoticias.setLayoutManager(new LinearLayoutManager(getContext()));
+        NoticiaAdapter adaptador = new NoticiaAdapter(getContext());
         rvNoticias.setAdapter(adaptador);
 
         adaptador.setOnClickListener(v -> {
             NoticiaStore.iNoticiaSeleccionada = rvNoticias.getChildAdapterPosition(v);
+            Toast.makeText(getContext(), "" + NoticiaStore.iNoticiaSeleccionada, Toast.LENGTH_LONG).show();
             //Intent i = new Intent(this, Noticia_detalle.class);
             //startActivity(i);
 
