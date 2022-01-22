@@ -19,6 +19,8 @@ import com.medac.bestipescook.model.noticia.Noticia;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 
 
 public class frNoticias extends Fragment {
@@ -40,7 +42,6 @@ public class frNoticias extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_noticias, container, false);
 
-        NoticiaStore.lstNoticias.clear();
         cargarNoticias();
         mostarNoticias();
 
@@ -48,9 +49,16 @@ public class frNoticias extends Fragment {
     }
 
     private void cargarNoticias() {
-        //NoticiasCrud.getAllNoticias(getContext()); // ESTO ES UNA PRUEBA.
-        String str = "2016-03-04 11:30"; DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+        NoticiasCrud.getAllNoticias(getContext()); // ESTO ES UNA PRUEBA.
+
+
+        DateTimeFormatter dateTimeformatter = new DateTimeFormatterBuilder()
+                .appendPattern("yyyy-MM-dd HH:mm:ss")
+                .optionalStart()
+                .appendPattern(".")
+                .appendFraction(ChronoField.MICRO_OF_SECOND, 1, 6, false)
+                .optionalEnd()
+                .toFormatter(); LocalDateTime dateTime = LocalDateTime.parse("2021-12-12 09:25:20", dateTimeformatter);
 
         NoticiaStore.lstNoticias.add(new Noticia(1,dateTime, "a","a","a", new Imagen(1,dateTime,"fotovacia.png")));
         NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
@@ -62,6 +70,7 @@ public class frNoticias extends Fragment {
         NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
         NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
         NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
+
     }
 
     private void mostarNoticias() {
