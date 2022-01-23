@@ -63,7 +63,6 @@ public class frNoticias extends Fragment {
     }
 
     private void cargarNoticias()  {
-        NoticiasCrud n = new NoticiasCrud();
         NoticiaStore.lstNoticias.clear();
         getAllNoticias();
     }

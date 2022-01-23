@@ -7,7 +7,6 @@ public interface IHostingData {
     public final String sRutaImagenes = "media/imagenes/";
 
     // NOTICIA
-
     public final String sLstNoticias = "noticia/lst-noticias.php";
 
 }
