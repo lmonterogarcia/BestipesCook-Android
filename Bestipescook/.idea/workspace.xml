@@ -18,8 +18,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Bestipes_Cook.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Bestipes_Cook.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/controller/noticias/NoticiaAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/controller/noticias/NoticiaAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/controller/noticias/NoticiaStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/controller/noticias/NoticiaStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/logic/NoticiasCrud.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/logic/NoticiasCrud.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/noticias/frNoticias.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/noticias/frNoticias.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,9 +173,29 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/logic/NoticiasCrud.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/logic/NoticiasCrud.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/logic/NoticiasCrud.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/noticias/frNoticias.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="25" />
+          <line>70</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/medac/bestipescook/view/noticias/frNoticias.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

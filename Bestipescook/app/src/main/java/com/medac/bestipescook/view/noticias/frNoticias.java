@@ -1,27 +1,43 @@
 package com.medac.bestipescook.view.noticias;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.noticias.NoticiaAdapter;
 import com.medac.bestipescook.controller.noticias.NoticiaStore;
+import com.medac.bestipescook.logic.IHostingData;
 import com.medac.bestipescook.logic.NoticiasCrud;
 import com.medac.bestipescook.model.Imagen;
 import com.medac.bestipescook.model.noticia.Noticia;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 public class frNoticias extends Fragment {
@@ -44,17 +60,19 @@ public class frNoticias extends Fragment {
         v = inflater.inflate(R.layout.fragment_noticias, container, false);
 
         cargarNoticias();
-        mostarNoticias();
 
         return v;
     }
 
-    private void cargarNoticias() {
+    private void cargarNoticias()  {
+        NoticiasCrud n = new NoticiasCrud();
         NoticiaStore.lstNoticias.clear();
-        NoticiasCrud.getAllNoticias(getContext()); // ESTO ES UNA PRUEBA.
+        getAllNoticias();
+        NoticiaStore.lstNoticias.size();
+        mostarNoticias();
 
 
-        DateTimeFormatter dateTimeformatter = new DateTimeFormatterBuilder()
+        /*DateTimeFormatter dateTimeformatter = new DateTimeFormatterBuilder()
                 .appendPattern("yyyy-MM-dd HH:mm:ss")
                 .optionalStart()
                 .appendPattern(".")
@@ -72,7 +90,7 @@ public class frNoticias extends Fragment {
         NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
         NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "b","b","b", new Imagen(2,dateTime,"fotovacia.png")));
         NoticiaStore.lstNoticias.add(new Noticia(2,dateTime, "z","z","z", new Imagen(2,dateTime,"fotovacia.png")));
-
+*/
     }
 
     private void mostarNoticias() {
@@ -90,6 +108,92 @@ public class frNoticias extends Fragment {
             //startActivity(i);
 
         });
+    }
+
+    public void getAllNoticias() {
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstNoticias;
+        Log.d("Pruebas", url);
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if(s.equals("null")) {
+                            Toast.makeText(getContext(), "No hay noticias disponibles en este momento",Toast.LENGTH_LONG).show();
+                        } else {
+                            Log.d("Pruebas","ENTRA 1");
+                            Toast.makeText(getContext(), "ENTRA 2", Toast.LENGTH_LONG).show();
+                            //Map<String, String> lstObjetos =  new Gson().fromJson(s,new TypeToken<Map<String,String>>() {}.getType());
+                            ObjectMapper mapper = new ObjectMapper();
+                            List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
+                            mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+                            try {
+                                lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                            } catch (IOException e) {
+                                Log.d("Pruebas", "Map no correcto. parse.");
+                                e.printStackTrace();
+                            }
+                            Log.d("Pruebas", "Hola que hace");
+                            NoticiasCrud.rellenarLstNoticias(lstObjetos);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        queue.start();
+
+
+        /*Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if(s.equals("null")) {
+                        Toast.makeText(context, "No hay noticias disponibles en este momento",Toast.LENGTH_LONG).show();
+                    } else {
+                        Log.d("Pruebas","ENTRA 1");
+                        Toast.makeText(context, "ENTRA 2", Toast.LENGTH_LONG).show();
+                        ArrayList<JSONObject> lstObjetos =  new Gson().fromJson(s,new TypeToken<List<JSONObject>>() {}.getType());
+                        rellenarLstNoticias(lstObjetos);
+                    }
+
+                }, VolleyError -> {
+            Toast.makeText(context, VolleyError.toString(), Toast.LENGTH_LONG).show();
+            Log.d("Pruebas", VolleyError.getStackTrace().toString());
+        }));
+        Log.d("Pruebas","ENTRA 2");*/
+
+        /*Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if(s.equals("null")) {
+                        Toast.makeText(context, "No hay noticias disponibles en este momento",Toast.LENGTH_LONG).show();
+                    } else {
+                        Log.d("Pruebas","ENTRA 1");
+                        Toast.makeText(context, "ENTRA 2", Toast.LENGTH_LONG).show();
+                        //Map<String, String> lstObjetos =  new Gson().fromJson(s,new TypeToken<Map<String,String>>() {}.getType());
+                        ObjectMapper mapper = new ObjectMapper();
+                        List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
+                        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+                        try {
+                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                        } catch (IOException e) {
+                            Log.d("Pruebas", "Map no correcto. parse.");
+                            e.printStackTrace();
+                        }
+                        Log.d("Pruebas", "Hola que hace");
+                        rellenarLstNoticias(lstObjetos);
+                    }
+
+                }, VolleyError -> {
+            Toast.makeText(context, VolleyError.toString(), Toast.LENGTH_LONG).show();
+            Log.d("Pruebas", VolleyError.getStackTrace().toString());
+        }));
+        Log.d("Pruebas","ENTRA 2");*/
     }
 
     /*private void loadFragment(Fragment fragment) {

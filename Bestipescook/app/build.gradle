@@ -43,4 +43,7 @@ dependencies {
 
     // Show image frmo url
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //ObjectMapper
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
 }
