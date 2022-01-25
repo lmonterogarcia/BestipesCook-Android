@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity{
 
         NavigationBarView navigationView = findViewById(R.id.botton_navigation);
         navigationView.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
-        loadFragment(frNoticias);
+        if (!frNoticias.isAdded()){loadFragment(frNoticias);}
     }
 
-    private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
@@ -58,9 +58,11 @@ public class MainActivity extends AppCompatActivity{
     };
 
     private void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_container, fragment);
-        transaction.commit();
+        if (!fragment.isAdded()){
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_container, fragment);
+            transaction.commit();
+        }
     }
 
 }

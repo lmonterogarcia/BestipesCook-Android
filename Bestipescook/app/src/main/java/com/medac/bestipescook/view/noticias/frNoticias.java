@@ -39,7 +39,7 @@ import java.util.concurrent.CountDownLatch;
 public class frNoticias extends Fragment {
 
     private View v;
-    public final static CountDownLatch contadorHilo = new CountDownLatch(1);
+    public static NoticiaAdapter adaptador;
 
     public frNoticias() {
 
@@ -66,8 +66,9 @@ public class frNoticias extends Fragment {
         NoticiaCrud.getAllNoticias(getContext(),new VolleyCallBack() {
             @Override
             public void onSuccess() {
-                mostrarNoticias();
+                //mostrarNoticias();
             }});
+        mostrarNoticias();
     }
 
     private void mostrarNoticias() {
@@ -75,17 +76,18 @@ public class frNoticias extends Fragment {
         RecyclerView rvNoticias = v.findViewById(R.id.rvNoticias);
 
         rvNoticias.setLayoutManager(new LinearLayoutManager(getContext()));
-        NoticiaAdapter adaptador = new NoticiaAdapter(getContext());
+        adaptador = new NoticiaAdapter(getContext());
         rvNoticias.setAdapter(adaptador);
 
         adaptador.setOnClickListener(v -> {
             NoticiaStore.iNoticiaSeleccionada = rvNoticias.getChildAdapterPosition(v);
             Noticia_detalle nextFrag= new Noticia_detalle();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame_container, nextFrag, "findThisFragment")
-                    .addToBackStack(null)
-                    .commit();
-
+            if (!nextFrag.isAdded()){
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
         });
     }
 
