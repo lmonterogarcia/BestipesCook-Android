@@ -45,7 +45,6 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHold
         String sTituloNoticia = NoticiaStore.lstNoticias.get(position).getTituloNoticia();
         String sSubtituloNoticia = NoticiaStore.lstNoticias.get(position).getSubtituloNoticia();
         String sRutaUrl = IHostingData.sHosting + IHostingData.sRutaImagenes + NoticiaStore.lstNoticias.get(position).getImagen().getsRutaUrlImagen();
-        Log.d("Foto", sRutaUrl);
 
         holder.lblNoticiaTitulo.setText(sTituloNoticia);
         holder.lblNoticiaSubtitulo.setText(sSubtituloNoticia);
