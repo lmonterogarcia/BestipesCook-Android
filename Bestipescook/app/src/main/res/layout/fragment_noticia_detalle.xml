@@ -11,13 +11,10 @@
 
     <TextView
         android:id="@+id/lblNoticiaDetalleTitulo"
+        style="@style/TextoTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_primario"
-        android:text="@string/noticia_titulo"
-        android:textColor="@color/color_terciario"
-        android:textSize="@dimen/dm_titulo"
-        android:textStyle="bold" />
+        android:text="@string/noticia_titulo" />
 
     <ImageView
         android:id="@+id/ivNoticiaDetalle"
@@ -28,17 +25,15 @@
 
     <TextView
         android:id="@+id/lblNoticiaDetalleSubtitulo"
+        style="@style/TextoSubtitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margenSubtitulo"
-        android:text="@string/noticia_subtitulo"
-        android:textSize="@dimen/dm_subtitulo"
-        android:textStyle="bold" />
+        android:text="@string/noticia_subtitulo" />
 
     <TextView
         android:id="@+id/lblNoticiaDetalleTexto"
+        style="@style/TextoNormal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/noticia_texto"
-        android:textSize="@dimen/dm_txt_normal" />
+        android:text="@string/noticia_texto" />
 </LinearLayout>
