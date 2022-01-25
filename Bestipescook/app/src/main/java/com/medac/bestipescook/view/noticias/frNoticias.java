@@ -82,11 +82,12 @@ public class frNoticias extends Fragment {
         adaptador.setOnClickListener(v -> {
             NoticiaStore.iNoticiaSeleccionada = rvNoticias.getChildAdapterPosition(v);
             Noticia_detalle nextFrag= new Noticia_detalle();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame_container, nextFrag, "findThisFragment")
-                    .addToBackStack(null)
-                    .commit();
-
+            if (!nextFrag.isAdded()){
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
         });
     }
 
