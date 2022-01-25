@@ -1,6 +1,5 @@
 package com.medac.bestipescook.view.noticias;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,8 +14,6 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -26,23 +23,23 @@ import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.noticias.NoticiaAdapter;
 import com.medac.bestipescook.controller.noticias.NoticiaStore;
 import com.medac.bestipescook.logic.IHostingData;
-import com.medac.bestipescook.logic.NoticiasCrud;
-import com.medac.bestipescook.model.Imagen;
+import com.medac.bestipescook.logic.NoticiaCrud;
+import com.medac.bestipescook.logic.VolleyCallBack;
 import com.medac.bestipescook.model.noticia.Noticia;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 
 public class frNoticias extends Fragment {
 
     private View v;
+    public final static CountDownLatch contadorHilo = new CountDownLatch(1);
 
     public frNoticias() {
 
@@ -59,15 +56,21 @@ public class frNoticias extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_noticias, container, false);
         cargarNoticias();
+
         return v;
     }
 
     private void cargarNoticias()  {
+
         NoticiaStore.lstNoticias.clear();
-        getAllNoticias();
+        NoticiaCrud.getAllNoticias(getContext(),new VolleyCallBack() {
+            @Override
+            public void onSuccess() {
+                mostrarNoticias();
+            }});
     }
 
-    private void mostarNoticias() {
+    private void mostrarNoticias() {
 
         RecyclerView rvNoticias = v.findViewById(R.id.rvNoticias);
 
@@ -86,7 +89,7 @@ public class frNoticias extends Fragment {
         });
     }
 
-    public void getAllNoticias() {
+    /*public void getAllNoticias() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstNoticias;
         Log.d("Pruebas", url);
@@ -106,8 +109,8 @@ public class frNoticias extends Fragment {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllNoticias");
                             e.printStackTrace();
                         }
-                        NoticiasCrud.rellenarLstNoticias(lstObjetos);
-                        mostarNoticias();
+                        NoticiaCrud.rellenarLstNoticias(lstObjetos);
+                        mostrarNoticias();
                     }
                 }, error -> {
                     Toast.makeText(getContext(), "Ha habido nu error al recuperar las noticias. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
@@ -117,11 +120,5 @@ public class frNoticias extends Fragment {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
         queue.start();
-    }
-
-    /*private void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction =getActivity().beginTransaction();
-        transaction.replace(R.id.frame_container, fragment);
-        transaction.commit();
     }*/
 }

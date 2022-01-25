@@ -11,4 +11,5 @@
     <dimen name="cardMargin">16dp</dimen>
     <dimen name="cardImageMargin">5dp</dimen>
     <dimen name="margenSubtitulo">16dp</dimen>
+    <dimen name="fargemntToBottom">50dp</dimen>
 </resources>
