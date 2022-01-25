@@ -1,47 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:orientation="vertical"
 
+    android:layout_margin="16dp"
     tools:context=".view.noticias.Noticia_detalle">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/fargemntToBottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/ivNoticiaDetalle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:scaleType="centerCrop"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/lblNoticiaDetalleTitulo"
-            style="@style/TextoTitulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/noticia_titulo" />
+            <TextView
+                android:id="@+id/lblNoticiaDetalleTitulo"
+                style="@style/TextoTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/noticia_titulo" />
 
-        <TextView
-            android:id="@+id/lblNoticiaDetalleSubtitulo"
-            style="@style/TextoSubtitulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/noticia_subtitulo" />
+            <ImageView
+                android:id="@+id/ivNoticiaDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/backgrounds/scenic" />
 
-        <TextView
-            android:id="@+id/lblNoticiaDetalleTexto"
-            style="@style/TextoNormal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/noticia_texto" />
+            <TextView
+                android:id="@+id/lblNoticiaDetalleSubtitulo"
+                style="@style/TextoSubtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/noticia_subtitulo" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/lblNoticiaDetalleTexto"
+                style="@style/TextoNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/noticia_texto" />
+        </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

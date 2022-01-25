@@ -16,6 +16,7 @@ import com.medac.bestipescook.controller.noticias.NoticiaStore;
 import com.medac.bestipescook.model.Imagen;
 import com.medac.bestipescook.model.noticia.INoticia;
 import com.medac.bestipescook.model.noticia.Noticia;
+import com.medac.bestipescook.view.noticias.frNoticias;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -71,11 +72,11 @@ public class NoticiaCrud implements IHostingData, INoticia {
                 public void onSuccess() {
                     aniadirNoticia(lstObjetos.get(j));
                     if (j == lstObjetos.size() - 1){
-                        Collections.sort(NoticiaStore.lstNoticias, Comparator.comparingInt(Noticia::getIdNoticia));
                         callBack.onSuccess();
                     }
                 }});
         }
+
     }
 
     private static void aniadirNoticia(Map<String, Object> noticia) {
@@ -90,5 +91,8 @@ public class NoticiaCrud implements IHostingData, INoticia {
                         LocalDateTime.parse(ImagenCrud.fechaCreacionIamgen,
                                 INoticia.dateTimeformatter),ImagenCrud.sRutaUrl)
         ));
+
+        Collections.sort(NoticiaStore.lstNoticias, Comparator.comparingInt(Noticia::getIdNoticia));
+        frNoticias.adaptador.notifyDataSetChanged();
     }
 }
