@@ -50,12 +50,6 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHold
         holder.lblNoticiaTitulo.setText(sTituloNoticia);
         holder.lblNoticiaSubtitulo.setText(sSubtituloNoticia);
         Picasso.get().load(sRutaUrl).into(holder.ivNoticia);
-        /*try {
-            Bitmap bmImagenNoticia = BitmapFactory.decodeStream(new URL(sRutaUrl).openStream());
-            holder.ivNoticia.setImageBitmap(bmImagenNoticia);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
     }
 

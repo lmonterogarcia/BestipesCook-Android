@@ -3,6 +3,7 @@ package com.medac.bestipescook.model.noticia;
 import com.medac.bestipescook.model.Imagen;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Noticia {
@@ -88,4 +89,5 @@ public class Noticia {
     public int hashCode() {
         return Objects.hash(getIdNoticia(), getTituloNoticia());
     }
+
 }

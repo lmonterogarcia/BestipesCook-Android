@@ -20,4 +20,27 @@
         <item name="itemTextColor">@color/color_terciario</item>
         <item name="android:textSize">@dimen/dm_txt_normal</item>
     </style>
+
+    <style name="TextoTitulo">
+        <item name="android:background">@color/color_primario</item>
+        <item name="itemIconTint">@color/color_terciario</item>
+        <item name="itemTextColor">@color/color_terciario</item>
+        <item name="android:textSize">@dimen/dm_txt_normal</item>
+    </style>
+
+    <style name="TextoSubtitulo">
+        <item name="android:background">@color/color_primario</item>
+        <item name="itemIconTint">@color/color_terciario</item>
+        <item name="itemTextColor">@color/color_terciario</item>
+        <item name="android:textSize">@dimen/dm_txt_normal</item>
+    </style>
+
+    <style name="TextoNormal">
+        <item name="android:background">@color/color_primario</item>
+        <item name="itemIconTint">@color/color_terciario</item>
+        <item name="itemTextColor">@color/color_terciario</item>
+        <item name="android:textSize">@dimen/dm_txt_normal</item>
+    </style>
+
+
 </resources>

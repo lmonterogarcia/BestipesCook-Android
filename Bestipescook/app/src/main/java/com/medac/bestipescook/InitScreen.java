@@ -9,7 +9,7 @@ import android.view.WindowManager;
 
 public class InitScreen extends AppCompatActivity {
 
-    private final int IDURATION = 2500;
+    private final int IDURATION = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
