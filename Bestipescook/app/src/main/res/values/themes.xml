@@ -12,34 +12,45 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/color_texto</item>
     </style>
 
-    <style name="BottomNavigation">
+    <style name="BottomNavigation" parent="Theme.BestipesCook">
         <item name="android:background">@color/color_primario</item>
         <item name="itemIconTint">@color/color_terciario</item>
         <item name="itemTextColor">@color/color_terciario</item>
         <item name="android:textSize">@dimen/dm_txt_normal</item>
     </style>
 
-    <style name="TextoTitulo">
+    <style name="TextoTituloCard" parent="Theme.BestipesCook">
+        <item name="android:background">@color/color_terciario</item>
+        <item name="android:textSize">@dimen/dm_titulo</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">@dimen/cardImageMargin</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="TextoTitulo" parent="Theme.BestipesCook">
         <item name="android:background">@color/color_primario</item>
-        <item name="itemIconTint">@color/color_terciario</item>
-        <item name="itemTextColor">@color/color_terciario</item>
+        <item name="android:textColor">@color/color_terciario</item>
+        <item name="android:textSize">@dimen/dm_titulo</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">@dimen/cardImageMargin</item>
+    </style>
+
+    <style name="TextoSubtitulo" parent="Theme.BestipesCook">
+        <item name="android:textSize">@dimen/dm_subtitulo</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">@dimen/cardImageMargin</item>
+    </style>
+
+    <style name="TextoNormal" parent="Theme.BestipesCook">
         <item name="android:textSize">@dimen/dm_txt_normal</item>
     </style>
 
-    <style name="TextoSubtitulo">
-        <item name="android:background">@color/color_primario</item>
-        <item name="itemIconTint">@color/color_terciario</item>
-        <item name="itemTextColor">@color/color_terciario</item>
-        <item name="android:textSize">@dimen/dm_txt_normal</item>
-    </style>
-
-    <style name="TextoNormal">
-        <item name="android:background">@color/color_primario</item>
-        <item name="itemIconTint">@color/color_terciario</item>
-        <item name="itemTextColor">@color/color_terciario</item>
-        <item name="android:textSize">@dimen/dm_txt_normal</item>
+    <style name="ImagenCard" parent="Theme.BestipesCook">
+        <item name="android:layout_height">@dimen/alturaImagenCard</item>
+        <item name="android:scaleType">centerCrop</item>
     </style>
 
 

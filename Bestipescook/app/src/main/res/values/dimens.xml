@@ -12,4 +12,6 @@
     <dimen name="cardImageMargin">5dp</dimen>
     <dimen name="margenSubtitulo">16dp</dimen>
     <dimen name="fargemntToBottom">50dp</dimen>
+
+    <dimen name="alturaImagenCard">160dp</dimen>
 </resources>
