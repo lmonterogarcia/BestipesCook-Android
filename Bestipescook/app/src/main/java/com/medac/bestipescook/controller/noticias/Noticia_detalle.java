@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.medac.bestipescook.R;
-import com.medac.bestipescook.controller.noticias.NoticiaStore;
 import com.medac.bestipescook.logic.IHostingData;
 import com.squareup.picasso.Picasso;
 
@@ -44,9 +43,9 @@ public class Noticia_detalle extends Fragment {
         lblText = v.findViewById(R.id.lblNoticiaDetalleTexto);
         imagen = v.findViewById(R.id.ivNoticiaDetalle);
 
-        lblTitulo.setText(NoticiaStore.lstNoticias.get(NoticiaStore.iNoticiaSeleccionada).getTituloNoticia());
-        lblSubTitulo.setText(NoticiaStore.lstNoticias.get(NoticiaStore.iNoticiaSeleccionada).getSubtituloNoticia());
-        lblText.setText(NoticiaStore.lstNoticias.get(NoticiaStore.iNoticiaSeleccionada).getTextoNoticia());
+        lblTitulo.setText(NoticiaStore.lstNoticias.get(NoticiaStore.iNoticiaSeleccionada).getsTituloNoticia());
+        lblSubTitulo.setText(NoticiaStore.lstNoticias.get(NoticiaStore.iNoticiaSeleccionada).getsSubtituloNoticia());
+        lblText.setText(NoticiaStore.lstNoticias.get(NoticiaStore.iNoticiaSeleccionada).getsTextoNoticia());
         Picasso.get().load(IHostingData.sHosting + IHostingData.sRutaImagenes +NoticiaStore.lstNoticias.get(NoticiaStore.iNoticiaSeleccionada).getImagen().getsRutaUrlImagen()).into(imagen);
 
         return v;
