@@ -1,9 +1,6 @@
-package com.medac.bestipescook.model.noticia;
-
-import com.medac.bestipescook.model.Imagen;
+package com.medac.bestipescook.model;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Noticia {

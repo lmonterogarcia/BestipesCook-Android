@@ -10,6 +10,9 @@ public interface IHostingData {
     public final String sLstNoticias = "noticia/lst-noticias.php";
 
     // IMAGEN
-    public final String sGetNoticia = "imagen/get-imagen.php?txtidImagen=";
+    public final String sGetImagen = "imagen/get-imagen.php?txtidImagen=";
+
+    // RETO
+    public final String sLstRetos  = "reto/lst-retos.php";
 
 }

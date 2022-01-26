@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_primario"
-    tools:context=".InitScreen">
+    tools:context=".controller.InitScreen">
 
     <ImageView
         android:id="@+id/imageView"

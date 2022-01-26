@@ -1,4 +1,4 @@
-package com.medac.bestipescook.view;
+package com.medac.bestipescook.controller.cuenta;
 
 import android.os.Bundle;
 
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import com.medac.bestipescook.R;
 
-public class frRecetas extends Fragment {
+public class frCuenta extends Fragment {
 
-    public frRecetas() {
+    public frCuenta() {
 
     }
 
@@ -25,6 +25,6 @@ public class frRecetas extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_recetas, container, false);
+        return inflater.inflate(R.layout.fragment_cuenta, container, false);
     }
 }

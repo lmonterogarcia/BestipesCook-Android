@@ -1,4 +1,4 @@
-package com.medac.bestipescook.view.noticias;
+package com.medac.bestipescook.controller.noticias;
 
 import android.os.Bundle;
 
@@ -6,34 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.medac.bestipescook.R;
-import com.medac.bestipescook.controller.noticias.NoticiaAdapter;
-import com.medac.bestipescook.controller.noticias.NoticiaStore;
-import com.medac.bestipescook.logic.IHostingData;
 import com.medac.bestipescook.logic.NoticiaCrud;
-import com.medac.bestipescook.logic.VolleyCallBack;
-import com.medac.bestipescook.model.noticia.Noticia;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CountDownLatch;
 
 
 public class frNoticias extends Fragment {
@@ -63,11 +41,7 @@ public class frNoticias extends Fragment {
     private void cargarNoticias()  {
 
         NoticiaStore.lstNoticias.clear();
-        NoticiaCrud.getAllNoticias(getContext(),new VolleyCallBack() {
-            @Override
-            public void onSuccess() {
-                //mostrarNoticias();
-            }});
+        NoticiaCrud.getAllNoticias(getContext());
         mostrarNoticias();
     }
 

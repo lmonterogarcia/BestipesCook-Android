@@ -1,4 +1,4 @@
-package com.medac.bestipescook.view.noticias;
+package com.medac.bestipescook.controller.noticias;
 
 import android.os.Bundle;
 
