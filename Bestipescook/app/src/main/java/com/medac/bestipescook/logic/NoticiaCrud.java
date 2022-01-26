@@ -14,19 +14,16 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.medac.bestipescook.controller.noticias.NoticiaStore;
 import com.medac.bestipescook.model.Imagen;
-import com.medac.bestipescook.model.noticia.INoticia;
-import com.medac.bestipescook.model.noticia.Noticia;
-import com.medac.bestipescook.view.noticias.frNoticias;
+import com.medac.bestipescook.model.IConstantes;
+import com.medac.bestipescook.model.Noticia;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class NoticiaCrud implements IHostingData, INoticia {
+public class NoticiaCrud implements IHostingData, IConstantes {
 
 
     public static void getAllNoticias(Context context, final VolleyCallBack callBack) {
@@ -82,14 +79,14 @@ public class NoticiaCrud implements IHostingData, INoticia {
     private static void aniadirNoticia(Map<String, Object> noticia) {
         NoticiaStore.aniadirNoticia( new Noticia(
                 Integer.parseInt(noticia.get("idNoticia").toString()),
-                LocalDateTime.parse(noticia.get("fechaCreacionNoticia").toString(), INoticia.dateTimeformatter),
+                LocalDateTime.parse(noticia.get("fechaCreacionNoticia").toString(), IConstantes.dateTimeformatter),
                 noticia.get("tituloNoticia").toString(),
                 noticia.get("subtituloNoticia").toString(),
                 noticia.get("textoNoticia").toString(),
                 new Imagen(
                         ImagenCrud.iIdIamgen,
                         LocalDateTime.parse(ImagenCrud.fechaCreacionIamgen,
-                                INoticia.dateTimeformatter),ImagenCrud.sRutaUrl)
+                                IConstantes.dateTimeformatter),ImagenCrud.sRutaUrl)
         ));
 
         // Ordenar un Arraylist segun PK integer.

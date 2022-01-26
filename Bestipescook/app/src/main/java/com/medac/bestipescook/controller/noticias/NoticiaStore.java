@@ -1,10 +1,9 @@
 package com.medac.bestipescook.controller.noticias;
 
-import com.medac.bestipescook.model.noticia.Noticia;
+import com.medac.bestipescook.model.Noticia;
 import com.medac.bestipescook.view.noticias.frNoticias;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class NoticiaStore {
 

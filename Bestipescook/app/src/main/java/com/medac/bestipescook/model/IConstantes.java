@@ -1,11 +1,11 @@
-package com.medac.bestipescook.model.noticia;
+package com.medac.bestipescook.model;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
-public interface INoticia {
-        
+public interface IConstantes {
+
         public DateTimeFormatter dateTimeformatter = new DateTimeFormatterBuilder()
                 .appendPattern("yyyy-MM-dd HH:mm:ss")
                 .optionalStart()
