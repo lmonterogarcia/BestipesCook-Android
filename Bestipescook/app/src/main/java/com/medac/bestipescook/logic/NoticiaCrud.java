@@ -80,7 +80,7 @@ public class NoticiaCrud implements IHostingData, INoticia {
     }
 
     private static void aniadirNoticia(Map<String, Object> noticia) {
-        NoticiaStore.lstNoticias.add( new Noticia(
+        NoticiaStore.aniadirNoticia( new Noticia(
                 Integer.parseInt(noticia.get("idNoticia").toString()),
                 LocalDateTime.parse(noticia.get("fechaCreacionNoticia").toString(), INoticia.dateTimeformatter),
                 noticia.get("tituloNoticia").toString(),
@@ -92,7 +92,7 @@ public class NoticiaCrud implements IHostingData, INoticia {
                                 INoticia.dateTimeformatter),ImagenCrud.sRutaUrl)
         ));
 
-        Collections.sort(NoticiaStore.lstNoticias, Comparator.comparingInt(Noticia::getIdNoticia));
-        frNoticias.adaptador.notifyDataSetChanged();
+        // Ordenar un Arraylist segun PK integer.
+        // Collections.sort(NoticiaStore.lstNoticias, Comparator.comparingInt(Noticia::getIdNoticia));
     }
 }
