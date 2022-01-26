@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvGeneral"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/cardCornerRadius"
+    app:cardElevation="@dimen/cardElevation"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:id="@+id/llpral"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/cardMargin"
+        android:layout_marginBottom="@dimen/cardMargin"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lblNoticiaTitulo"
+            style="@style/TextoTituloCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/noticia_titulo" />
+
+        <ImageView
+            android:id="@+id/ivNoticia"
+            style="@style/ImagenCard"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="@dimen/cardImageMargin" />
+
+        <TextView
+            android:id="@+id/lblNoticiaSubtitulo"
+            style="@style/TextoSubtitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/noticia_subtitulo" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
