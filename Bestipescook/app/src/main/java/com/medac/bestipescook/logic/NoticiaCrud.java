@@ -26,12 +26,12 @@ import java.util.Map;
 public class NoticiaCrud implements IHostingData, IConstantes {
 
 
-    public static void getAllNoticias(Context context, final VolleyCallBack callBack) {
+    public static void getAllNoticias(Context context) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstNoticias;
         Log.d("Pruebas", url);
 
-        // Request a string response from the provided URL.
+        // Request a string Para conseguir todas las noticias.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 s -> {
                     if(s.equals("null")) {
@@ -46,7 +46,7 @@ public class NoticiaCrud implements IHostingData, IConstantes {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllNoticias");
                             e.printStackTrace();
                         }
-                            rellenarLstNoticias(context, lstObjetos, callBack);
+                            rellenarLstNoticias(context, lstObjetos);
                     }
                 }, error -> {
             Toast.makeText(context, "Ha habido nu error al recuperar las noticias. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
@@ -54,26 +54,16 @@ public class NoticiaCrud implements IHostingData, IConstantes {
         });
 
         // Add the request to the RequestQueue.
-
             queue.add(stringRequest);
             queue.start();
 
     }
 
-    private static void rellenarLstNoticias(Context context, List<Map<String, Object>> lstObjetos, final VolleyCallBack callBack) {
+    private static void rellenarLstNoticias(Context context, List<Map<String, Object>> lstObjetos) {
 
-        for (int i = 0 ; i < lstObjetos.size() ; i++){
-            final int j = i;
-            ImagenCrud.getImagenLstNoticias(context, Integer.parseInt(lstObjetos.get(i).get("imagenidImagen").toString()), new VolleyCallBack() {
-                @Override
-                public void onSuccess() {
-                    aniadirNoticia(lstObjetos.get(j));
-                    if (j == lstObjetos.size() - 1){
-                        callBack.onSuccess();
-                    }
-                }});
-        }
-
+        lstObjetos.forEach(n ->{
+            ImagenCrud.getImagenLstNoticias(context, Integer.parseInt(n.get("imagenidImagen").toString()), () -> aniadirNoticia(n)); // La funcion Lamda es un VolleyCallBack.
+        });
     }
 
     private static void aniadirNoticia(Map<String, Object> noticia) {
@@ -88,8 +78,5 @@ public class NoticiaCrud implements IHostingData, IConstantes {
                         LocalDateTime.parse(ImagenCrud.fechaCreacionIamgen,
                                 IConstantes.dateTimeformatter),ImagenCrud.sRutaUrl)
         ));
-
-        // Ordenar un Arraylist segun PK integer.
-        // Collections.sort(NoticiaStore.lstNoticias, Comparator.comparingInt(Noticia::getIdNoticia));
     }
 }

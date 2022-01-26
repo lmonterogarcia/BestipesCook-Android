@@ -1,4 +1,4 @@
-package com.medac.bestipescook.view;
+package com.medac.bestipescook.controller.challenges;
 
 import android.os.Bundle;
 
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import com.medac.bestipescook.R;
 
-public class frRanking extends Fragment {
+public class frChallenges extends Fragment {
 
-    public frRanking() {
+    public frChallenges() {
 
     }
 
@@ -25,6 +25,6 @@ public class frRanking extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_ranking, container, false);
+        return inflater.inflate(R.layout.fragment_challenges, container, false);
     }
 }

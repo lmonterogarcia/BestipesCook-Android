@@ -1,4 +1,4 @@
-package com.medac.bestipescook.view.noticias;
+package com.medac.bestipescook.controller.noticias;
 
 import android.os.Bundle;
 
@@ -11,10 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.medac.bestipescook.R;
-import com.medac.bestipescook.controller.noticias.NoticiaAdapter;
-import com.medac.bestipescook.controller.noticias.NoticiaStore;
 import com.medac.bestipescook.logic.NoticiaCrud;
-import com.medac.bestipescook.logic.VolleyCallBack;
 
 
 public class frNoticias extends Fragment {
@@ -44,11 +41,7 @@ public class frNoticias extends Fragment {
     private void cargarNoticias()  {
 
         NoticiaStore.lstNoticias.clear();
-        NoticiaCrud.getAllNoticias(getContext(),new VolleyCallBack() {
-            @Override
-            public void onSuccess() {
-                //mostrarNoticias();
-            }});
+        NoticiaCrud.getAllNoticias(getContext());
         mostrarNoticias();
     }
 

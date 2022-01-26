@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BestipesCook">
         <activity
-            android:name=".MainActivity"
+            android:name=".controller.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".InitScreen"
+            android:name=".controller.InitScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

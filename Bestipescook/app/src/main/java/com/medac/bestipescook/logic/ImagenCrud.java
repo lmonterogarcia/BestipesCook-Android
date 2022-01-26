@@ -13,7 +13,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ImagenCrud {
@@ -23,7 +22,7 @@ public class ImagenCrud {
     public static String sRutaUrl;
 
     public static void getImagenLstNoticias(Context context, int imangenidImagen, final VolleyCallBack callBack){
-        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sGetNoticia + imangenidImagen;
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sGetImagen + imangenidImagen;
         //Toast.makeText(context, url,Toast.LENGTH_LONG).show();
         Log.d("Pruebas", url);
 
