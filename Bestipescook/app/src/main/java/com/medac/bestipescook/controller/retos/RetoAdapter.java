@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.medac.bestipescook.R;
-import com.medac.bestipescook.controller.retos.RetoAdapter;
-import com.medac.bestipescook.controller.retos.RetoStore;
 import com.medac.bestipescook.logic.IHostingData;
 import com.squareup.picasso.Picasso;
 

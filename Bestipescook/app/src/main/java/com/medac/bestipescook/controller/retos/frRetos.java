@@ -11,9 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.medac.bestipescook.R;
-import com.medac.bestipescook.controller.noticias.RetoAdapter;
-import com.medac.bestipescook.controller.noticias.RetoStore;
-import com.medac.bestipescook.controller.noticias.Reto_detalle;
 import com.medac.bestipescook.logic.RetoCrud;
 
 public class frRetos extends Fragment {
