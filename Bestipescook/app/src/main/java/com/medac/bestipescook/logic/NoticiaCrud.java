@@ -69,14 +69,14 @@ public class NoticiaCrud implements IHostingData, IConstantes {
     private static void aniadirNoticia(Map<String, Object> noticia) {
         NoticiaStore.aniadirNoticia( new Noticia(
                 Integer.parseInt(noticia.get("idNoticia").toString()),
-                LocalDateTime.parse(noticia.get("fechaCreacionNoticia").toString(), IConstantes.dateTimeformatter),
+                LocalDateTime.parse(noticia.get("fechaCreacionNoticia").toString(), IConstantes.dateTimeformatterFromDB),
                 noticia.get("tituloNoticia").toString(),
                 noticia.get("subtituloNoticia").toString(),
                 noticia.get("textoNoticia").toString(),
                 new Imagen(
                         ImagenCrud.iIdIamgen,
                         LocalDateTime.parse(ImagenCrud.fechaCreacionIamgen,
-                                IConstantes.dateTimeformatter),ImagenCrud.sRutaUrl)
+                                IConstantes.dateTimeformatterFromDB),ImagenCrud.sRutaUrl)
         ));
     }
 }

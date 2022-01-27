@@ -6,7 +6,7 @@ import java.time.temporal.ChronoField;
 
 public interface IConstantes {
 
-        public DateTimeFormatter dateTimeformatter = new DateTimeFormatterBuilder()
+        public static DateTimeFormatter dateTimeformatterFromDB = new DateTimeFormatterBuilder()
                 .appendPattern("yyyy-MM-dd HH:mm:ss")
                 .optionalStart()
                 .appendPattern(".")
@@ -14,6 +14,10 @@ public interface IConstantes {
                 .optionalEnd()
                 .toFormatter(); //LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
 
+
+        public static DateTimeFormatter dateTimeformatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        public static DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        public static DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm");
 
         // Ordenar un Arraylist segun PK integer. Esto no va a qui, pero para que se sepa como ordenar un arraylist de objetos personalizados.
         // Collections.sort(NoticiaStore.lstNoticias, Comparator.comparingInt(Noticia::getIdNoticia));

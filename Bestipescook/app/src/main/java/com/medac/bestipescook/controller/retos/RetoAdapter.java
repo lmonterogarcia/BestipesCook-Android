@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.logic.IHostingData;
+import com.medac.bestipescook.model.IConstantes;
 import com.squareup.picasso.Picasso;
 
-public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> implements View.OnClickListener{
+public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> implements View.OnClickListener, IConstantes {
 
     private Context context;
     private View.OnClickListener listener;
@@ -37,7 +38,7 @@ public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> im
 
         String sTituloReto = RetoStore.lstRetos.get(position).getsTituloReto();
         String sSubtituloReto = RetoStore.lstRetos.get(position).getsSubtituloReto();
-        String sFechaFinalizacionReto = (RetoStore.lstRetos.get(position).getFechaFinalizacionReto()).toString();
+        String sFechaFinalizacionReto = (RetoStore.lstRetos.get(position).getFechaFinalizacionReto()).format(dateTimeformatter);
         String sRutaUrl = IHostingData.sHosting + IHostingData.sRutaImagenes + RetoStore.lstRetos.get(position).getImagen().getsRutaUrlImagen();
 
         holder.lblRetoTitulo.setText(sTituloReto);
