@@ -1,8 +1,5 @@
 package com.medac.bestipescook.controller.noticias;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.View;
 
 import android.content.Context;
@@ -17,9 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.logic.IHostingData;
 import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
-import java.net.URL;
 
 public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHolder> implements View.OnClickListener{
 
@@ -42,8 +36,8 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        String sTituloNoticia = NoticiaStore.lstNoticias.get(position).getTituloNoticia();
-        String sSubtituloNoticia = NoticiaStore.lstNoticias.get(position).getSubtituloNoticia();
+        String sTituloNoticia = NoticiaStore.lstNoticias.get(position).getsTituloNoticia();
+        String sSubtituloNoticia = NoticiaStore.lstNoticias.get(position).getsSubtituloNoticia();
         String sRutaUrl = IHostingData.sHosting + IHostingData.sRutaImagenes + NoticiaStore.lstNoticias.get(position).getImagen().getsRutaUrlImagen();
 
         holder.lblNoticiaTitulo.setText(sTituloNoticia);

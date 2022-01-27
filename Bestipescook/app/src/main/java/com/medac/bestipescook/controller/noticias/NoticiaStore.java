@@ -18,7 +18,7 @@ public class NoticiaStore {
             int iPosicion = 0;
             boolean noticiaAniadida = false;
             do {
-                if (noticia.getIdNoticia() < lstNoticias.get(iPosicion).getIdNoticia()){
+                if (noticia.getiIdNoticia() < lstNoticias.get(iPosicion).getiIdNoticia()){
                     lstNoticias.add(iPosicion, noticia);
                     noticiaAniadida = true;
                 }
@@ -27,7 +27,7 @@ public class NoticiaStore {
             if (!noticiaAniadida){
                 lstNoticias.add(noticia);
             }
-        } else if (lstNoticias.size() == 1 && lstNoticias.get(0).getIdNoticia() > noticia.getIdNoticia()) {
+        } else if (lstNoticias.size() == 1 && lstNoticias.get(0).getiIdNoticia() > noticia.getiIdNoticia()) {
             lstNoticias.add(0, noticia);
         } else {
             lstNoticias.add(noticia);
