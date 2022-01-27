@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cvGeneral"
+    android:id="@+id/cvNoticia"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/cardCornerRadius"
@@ -10,7 +10,7 @@
     app:cardUseCompatPadding="true">
 
     <LinearLayout
-        android:id="@+id/llpral"
+        android:id="@+id/llpralNoticia"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/cardMargin"
@@ -19,23 +19,23 @@
 
         <TextView
             android:id="@+id/lblNoticiaTitulo"
-            style="@style/TextoTituloCard"
+            style="@style/texto_titulo_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/noticia_titulo" />
+            android:text="@string/texto_titulo" />
 
         <ImageView
             android:id="@+id/ivNoticia"
-            style="@style/ImagenCard"
+            style="@style/imagen_card"
             android:layout_width="match_parent"
             android:layout_marginVertical="@dimen/cardImageMargin" />
 
         <TextView
             android:id="@+id/lblNoticiaSubtitulo"
-            style="@style/TextoSubtitulo"
+            style="@style/texto_subtitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/noticia_subtitulo" />
+            android:text="@string/texto_subtitulo" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

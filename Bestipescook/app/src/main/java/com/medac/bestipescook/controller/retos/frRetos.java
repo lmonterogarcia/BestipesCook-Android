@@ -31,7 +31,7 @@ public class frRetos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        v = inflater.inflate(R.layout.fragment_noticias, container, false);
+        v = inflater.inflate(R.layout.fragment_retos, container, false);
         cargarRetos();
 
         return v;

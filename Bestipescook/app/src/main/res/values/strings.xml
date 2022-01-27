@@ -1,7 +1,6 @@
 <resources>
+
     <string name="app_name">Bestipes Cook</string>
-
-
     <string name="title_noticias">Noticias</string>
     <string name="title_challenges">Chanllenges</string>
     <string name="title_recetas">Recetas</string>
@@ -9,7 +8,9 @@
     <string name="title_cuenta">Cuenta</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="noticia_titulo">Titulo</string>
-    <string name="noticia_subtitulo">Subtitulo</string>
-    <string name="noticia_texto">Texto</string>
+    <string name="texto_titulo">Titulo</string>
+    <string name="texto_subtitulo">Subtitulo</string>
+    <string name="texto_parrafo">Texto</string>
+    <string name="texto_fecha_reto_detalle">Finaliza: 00/00/0000</string>
+
 </resources>

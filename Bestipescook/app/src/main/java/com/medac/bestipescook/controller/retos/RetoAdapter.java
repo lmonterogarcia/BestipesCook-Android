@@ -27,7 +27,7 @@ public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> im
     @Override
     public RetoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflated = LayoutInflater.from(context);
-        View view = inflated.inflate(R.layout.reto_item, parent, false);
+        View view = inflated.inflate(R.layout.fragment_reto_item, parent, false);
         view.setOnClickListener(this);
         return new RetoAdapter.ViewHolder(view);
     }
@@ -37,10 +37,12 @@ public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> im
 
         String sTituloReto = RetoStore.lstRetos.get(position).getsTituloReto();
         String sSubtituloReto = RetoStore.lstRetos.get(position).getsSubtituloReto();
+        String sFechaFinalizacionReto = (RetoStore.lstRetos.get(position).getFechaFinalizacionReto()).toString();
         String sRutaUrl = IHostingData.sHosting + IHostingData.sRutaImagenes + RetoStore.lstRetos.get(position).getImagen().getsRutaUrlImagen();
 
         holder.lblRetoTitulo.setText(sTituloReto);
         holder.lblRetoSubtitulo.setText(sSubtituloReto);
+        holder.lblRetoFecha.setText(sFechaFinalizacionReto);
         Picasso.get().load(sRutaUrl).into(holder.ivReto);
 
     }
@@ -65,6 +67,7 @@ public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> im
 
         private TextView lblRetoTitulo;
         private TextView lblRetoSubtitulo;
+        private TextView lblRetoFecha;
         private ImageView ivReto;
 
         public ViewHolder(@NonNull View itemView) {
@@ -72,6 +75,7 @@ public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> im
 
             lblRetoTitulo = itemView.findViewById(R.id.lblRetoTitulo);
             lblRetoSubtitulo = itemView.findViewById(R.id.lblRetoSubtitulo);
+            lblRetoFecha = itemView.findViewById(R.id.lblRetoDetalleSubtitulo);
             ivReto = itemView.findViewById(R.id.ivReto);
         }
     }
