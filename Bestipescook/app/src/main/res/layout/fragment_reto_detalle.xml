@@ -2,15 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintViewNoticiaDetalle"
+    android:id="@+id/constraintViewRetoDetalle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     android:layout_margin="16dp"
-    tools:context=".controller.noticias.Noticia_detalle">
+    tools:context=".controller.retos.Reto_detalle">
 
     <ScrollView
-        android:id="@+id/ScrollViewNoticiaDetalle"
+        android:id="@+id/ScrollViewRetoDetalle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/fargemntToBottom"
@@ -20,13 +20,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/llNoticiaDetalle"
+            android:id="@+id/llRetoDetalle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lblNoticiaDetalleTitulo"
+                android:id="@+id/lblRetoDetalleTitulo"
                 style="@style/texto_titulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,21 +34,28 @@
                 tools:ignore="TextContrastCheck" />
 
             <ImageView
-                android:id="@+id/ivNoticiaDetalle"
+                android:id="@+id/ivRetoDetalle"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:scaleType="centerCrop"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
-                android:id="@+id/lblNoticiaDetalleSubtitulo"
+                android:id="@+id/lblRetoDetalleSubtitulo"
                 style="@style/texto_subtitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/texto_subtitulo" />
 
             <TextView
-                android:id="@+id/lblNoticiaDetalleTexto"
+                android:id="@+id/lblFechaFinalizacionRetoDetalle"
+                style="@style/texto_subtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/texto_fecha_reto_detalle" />
+
+            <TextView
+                android:id="@+id/lblRetoDetalleTexto"
                 style="@style/texto_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

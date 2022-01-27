@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvReto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/cardCornerRadius"
+    app:cardElevation="@dimen/cardElevation"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:id="@+id/llpralReto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/cardMargin"
+        android:layout_marginBottom="@dimen/cardMargin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_terciario"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lblRetoTitulo"
+                style="@style/texto_titulo_card_reto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/texto_titulo" />
+
+            <TextView
+                android:id="@+id/lblRetoFecha"
+                style="@style/texto_fecha_card_reto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="00/00/0000" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivReto"
+            style="@style/imagen_card"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="@dimen/cardImageMargin" />
+
+        <TextView
+            android:id="@+id/lblRetoSubtitulo"
+            style="@style/texto_subtitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/texto_subtitulo" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

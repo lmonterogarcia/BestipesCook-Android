@@ -28,7 +28,7 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflated = LayoutInflater.from(context);
-        View view = inflated.inflate(R.layout.noticia_item, parent, false);
+        View view = inflated.inflate(R.layout.fragment_noticia_item, parent, false);
         view.setOnClickListener(this);
         return new ViewHolder(view);
     }

@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity{
         if (!frNoticias.isAdded()){loadFragment(frNoticias, true);}
     }
 
+    @Override
+    public void onBackPressed () {
+
+    }
+
     private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnItemSelectedListener() {
         @SuppressLint("NonConstantResourceId")
         @Override

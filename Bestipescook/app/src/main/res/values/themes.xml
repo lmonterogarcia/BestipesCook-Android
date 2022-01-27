@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
     <style name="Theme.BestipesCook" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -15,14 +16,14 @@
         <item name="android:textColor">@color/color_texto</item>
     </style>
 
-    <style name="BottomNavigation" parent="Theme.BestipesCook">
+    <style name="bottom_navigation" parent="Theme.BestipesCook">
         <item name="android:background">@color/color_primario</item>
         <item name="itemIconTint">@color/color_terciario</item>
         <item name="itemTextColor">@color/color_terciario</item>
         <item name="android:textSize">@dimen/dm_txt_normal</item>
     </style>
 
-    <style name="TextoTituloCard" parent="Theme.BestipesCook">
+    <style name="texto_titulo_card" parent="Theme.BestipesCook">
         <item name="android:background">@color/color_terciario</item>
         <item name="android:textSize">@dimen/dm_titulo</item>
         <item name="android:textStyle">bold</item>
@@ -30,7 +31,7 @@
         <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="TextoTitulo" parent="Theme.BestipesCook">
+    <style name="texto_titulo" parent="Theme.BestipesCook">
         <item name="android:background">@color/color_primario</item>
         <item name="android:textColor">@color/color_terciario</item>
         <item name="android:textSize">@dimen/dm_titulo</item>
@@ -38,20 +39,38 @@
         <item name="android:paddingStart">@dimen/cardImageMargin</item>
     </style>
 
-    <style name="TextoSubtitulo" parent="Theme.BestipesCook">
+    <style name="texto_titulo_card_reto" parent="Theme.BestipesCook">
+        <item name="android:background">@color/color_terciario</item>
+        <item name="android:textSize">@dimen/dm_titulo</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">@dimen/cardImageMargin</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="texto_fecha_card_reto" parent="Theme.BestipesCook">
+        <item name="android:background">@color/color_terciario</item>
+        <item name="android:textSize">@dimen/dm_txt_normal</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">@dimen/cardImageMargin</item>
+        <item name="android:paddingEnd">@dimen/cardImageMargin</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="texto_subtitulo" parent="Theme.BestipesCook">
         <item name="android:textSize">@dimen/dm_subtitulo</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginStart">@dimen/cardImageMargin</item>
     </style>
 
-    <style name="TextoNormal" parent="Theme.BestipesCook">
+    <style name="texto_normal" parent="Theme.BestipesCook">
         <item name="android:textSize">@dimen/dm_txt_normal</item>
     </style>
 
-    <style name="ImagenCard" parent="Theme.BestipesCook">
+    <style name="imagen_card" parent="Theme.BestipesCook">
         <item name="android:layout_height">@dimen/alturaImagenCard</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
-
 
 </resources>

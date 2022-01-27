@@ -11,7 +11,7 @@ public class RetoStore {
 
     /**
      * @param reto
-     * Introduce una reto en un lugar ordenando por idReto
+     * Introduce un reto en lstRetos segun su idReto.
      */
     public static void aniadirReto(Reto reto){
         if (lstRetos.size() > 1) {
