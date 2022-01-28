@@ -48,7 +48,7 @@
                 android:text="@string/texto_subtitulo" />
 
             <TextView
-                android:id="@+id/lblFechaFinalizacionRetoDetalle"
+                android:id="@+id/lblRetoDetalleFechaFinalizacion"
                 style="@style/texto_subtitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
