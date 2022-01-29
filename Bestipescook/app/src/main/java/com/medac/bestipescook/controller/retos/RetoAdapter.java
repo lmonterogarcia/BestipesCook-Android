@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.logic.IHostingData;
+import com.medac.bestipescook.model.IConstantes;
 import com.squareup.picasso.Picasso;
 
-public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> implements View.OnClickListener{
+public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> implements View.OnClickListener, IConstantes {
 
     private Context context;
     private View.OnClickListener listener;
@@ -37,12 +38,12 @@ public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> im
 
         String sTituloReto = RetoStore.lstRetos.get(position).getsTituloReto();
         String sSubtituloReto = RetoStore.lstRetos.get(position).getsSubtituloReto();
-        String sFechaFinalizacionReto = (RetoStore.lstRetos.get(position).getFechaFinalizacionReto()).toString();
+        String sFechaFinalizacionReto = (RetoStore.lstRetos.get(position).getFechaFinalizacionReto()).format(dateformatter);
         String sRutaUrl = IHostingData.sHosting + IHostingData.sRutaImagenes + RetoStore.lstRetos.get(position).getImagen().getsRutaUrlImagen();
 
         holder.lblRetoTitulo.setText(sTituloReto);
         holder.lblRetoSubtitulo.setText(sSubtituloReto);
-        holder.lblRetoFecha.setText(sFechaFinalizacionReto);
+        holder.lblRetoFecha.setText(context.getString(R.string.texto_fecha_reto) + " " + sFechaFinalizacionReto);
         Picasso.get().load(sRutaUrl).into(holder.ivReto);
 
     }
@@ -75,7 +76,7 @@ public class RetoAdapter extends RecyclerView.Adapter<RetoAdapter.ViewHolder> im
 
             lblRetoTitulo = itemView.findViewById(R.id.lblRetoTitulo);
             lblRetoSubtitulo = itemView.findViewById(R.id.lblRetoSubtitulo);
-            lblRetoFecha = itemView.findViewById(R.id.lblRetoDetalleSubtitulo);
+            lblRetoFecha = itemView.findViewById(R.id.lblRetoFecha);
             ivReto = itemView.findViewById(R.id.ivReto);
         }
     }

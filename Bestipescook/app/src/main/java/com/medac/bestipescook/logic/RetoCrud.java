@@ -67,15 +67,15 @@ public class RetoCrud {
     private static void aniadirReto(Map<String, Object> reto) {
         RetoStore.aniadirReto( new Reto(
                 Integer.parseInt(reto.get("idReto").toString()),
-                LocalDateTime.parse(reto.get("fechaCreacionReto").toString(), IConstantes.dateTimeformatter),
-                LocalDateTime.parse(reto.get("fechaFinalizacionReto").toString(), IConstantes.dateTimeformatter),
+                LocalDateTime.parse(reto.get("fechaCreacionReto").toString(), IConstantes.dateTimeformatterFromDB),
+                LocalDateTime.parse(reto.get("fechaFinalizacionReto").toString(), IConstantes.dateTimeformatterFromDB),
                 reto.get("tituloReto").toString(),
                 reto.get("subtituloReto").toString(),
                 reto.get("textoReto").toString(),
                 new Imagen(
                         ImagenCrud.iIdIamgen,
                         LocalDateTime.parse(ImagenCrud.fechaCreacionIamgen,
-                                IConstantes.dateTimeformatter),ImagenCrud.sRutaUrl)
+                                IConstantes.dateTimeformatterFromDB),ImagenCrud.sRutaUrl)
         ));
     }
     

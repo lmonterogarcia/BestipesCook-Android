@@ -11,6 +11,7 @@
     <string name="texto_titulo">Titulo</string>
     <string name="texto_subtitulo">Subtitulo</string>
     <string name="texto_parrafo">Texto</string>
-    <string name="texto_fecha_reto_detalle">Finaliza: 00/00/0000</string>
+    <string name="texto_fecha_reto">Finaliza:</string>
+    <string name="texto_fecha_reto_detalle">Válido hasta</string>
 
 </resources>
