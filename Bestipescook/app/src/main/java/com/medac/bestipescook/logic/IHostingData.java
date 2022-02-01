@@ -15,4 +15,7 @@ public interface IHostingData {
     // RETO
     public final String sLstRetos  = "reto/lst-retos.php";
 
+    // RECETA
+    public final String sLstRecetas = "recetas/lst-recetas.php";
+
 }
