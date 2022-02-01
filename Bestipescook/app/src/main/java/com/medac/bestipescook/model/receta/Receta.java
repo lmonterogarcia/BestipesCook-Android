@@ -1,9 +1,10 @@
 package com.medac.bestipescook.model.receta;
 
+import com.medac.bestipescook.model.usuario.Usuario;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import model.usuario.Usuario;
 
 public class Receta {
 
