@@ -3,41 +3,37 @@ package com.medac.bestipescook.controller.cuenta;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.medac.bestipescook.R;
-import com.medac.bestipescook.controller.noticias.Noticia_detalle;
 
-public class frCuenta extends Fragment {
-    private String data = "";
-    public frCuenta() {
-
+public class frLogIn extends Fragment {
+    private View v;
+    public frLogIn() {
+        // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-    }
+    public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(data.equals("")) {
-            frLogIn nextFrag = new frLogIn();
+
+        v = inflater.inflate(R.layout.fragment_log_in, container, false);
+
+        v.findViewById(R.id.btnRegistro).setOnClickListener(e ->{
+            frCrearCuenta nextFrag = new frCrearCuenta();
             if (!nextFrag.isAdded()) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_container, nextFrag, "findThisFragment")
                         .addToBackStack(null)
                         .commit();
             }
-        }
-        return inflater.inflate(R.layout.fragment_cuenta, container, false);
+        });
+        return v;
     }
 }

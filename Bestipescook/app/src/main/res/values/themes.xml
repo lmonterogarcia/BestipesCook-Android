@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="Theme.BestipesCook" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/color_secundario</item>
+        <item name="colorPrimary">@color/color_primario</item>
         <item name="colorPrimaryVariant">@color/color_primario</item>
         <item name="colorOnPrimary">@color/color_terciario</item>
         <!-- Secondary brand color. -->
@@ -14,6 +14,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/color_texto</item>
+
     </style>
 
     <style name="bottom_navigation" parent="Theme.BestipesCook">

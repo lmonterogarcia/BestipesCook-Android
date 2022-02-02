@@ -12,4 +12,7 @@
     <color name="color_secundario">#ffffcc </color>
     <color name="color_terciario">#fcecdd</color>
     <color name="color_texto">#262626</color>
+
+    <color name="color_google">#FF0000</color>
+    <color name="color_facebook">#002AFF</color>
 </resources>
