@@ -24,7 +24,6 @@ public class ImagenCrud {
     public static void getImagen(Context context, int imangenidImagen, final VolleyCallBack callBack){
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sGetImagen + imangenidImagen;
         //Toast.makeText(context, url,Toast.LENGTH_LONG).show();
-        Log.d("Pruebas", url);
 
         Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET,url,
                 s -> {
@@ -38,6 +37,32 @@ public class ImagenCrud {
                             oObjeto = mapper.readValue(s , new TypeReference<Map<String, String>>(){});
                         } catch (IOException e) {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllNoticias");
+                            e.printStackTrace();
+                        }
+                        rellenarImagen(oObjeto);
+                        callBack.onSuccess();
+                    }
+                }
+                , VolleyError -> {
+        }));
+    }
+
+    public static void getImagenReceta(Context context, int imangenidImagen, final VolleyCallBack callBack){
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sGetRecetaImagen + imangenidImagen;
+
+        Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET,url,
+                s -> {
+                    if(s.equals("")) {
+                        Toast.makeText(context, "No se ha encontrado la imagen con la id " + imangenidImagen,Toast.LENGTH_LONG).show();
+                    } else {
+                        ObjectMapper mapper = new ObjectMapper();
+                        Map<String, String> oObjeto = new HashMap<String, String>();
+                        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+                        try {
+                            oObjeto = mapper.readValue(s , new TypeReference<Map<String, String>>(){});
+
+                        } catch (IOException e) {
+                            Log.d("Pruebas", "El parseo del Map no correcto en AQUI");
                             e.printStackTrace();
                         }
                         rellenarImagen(oObjeto);

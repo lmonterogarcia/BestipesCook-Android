@@ -7,12 +7,16 @@ public class UsuarioRecetaEstrella {
 
 	private Usuario oUsuario;
 	private Receta oReceta;
-	private byte bPuntucaionReceta;
+	private float bPuntucaionReceta;
 	
 	public UsuarioRecetaEstrella() {
 	}
 
-	public UsuarioRecetaEstrella(Usuario oUsuario, Receta oReceta, byte bPuntucaionReceta) {
+	public UsuarioRecetaEstrella(int iIdUsuario, float bPuntucaionReceta) {
+		this.bPuntucaionReceta = bPuntucaionReceta;
+	}
+
+	public UsuarioRecetaEstrella(Usuario oUsuario, Receta oReceta, float bPuntucaionReceta) {
 		this.oUsuario = oUsuario;
 		this.oReceta = oReceta;
 		this.bPuntucaionReceta = bPuntucaionReceta;
@@ -34,11 +38,11 @@ public class UsuarioRecetaEstrella {
 		this.oReceta = oReceta;
 	}
 
-	public byte getbPuntucaionReceta() {
+	public float getbPuntucaionReceta() {
 		return bPuntucaionReceta;
 	}
 
-	public void setbPuntucaionReceta(byte bPuntucaionReceta) {
+	public void setbPuntucaionReceta(float bPuntucaionReceta) {
 		this.bPuntucaionReceta = bPuntucaionReceta;
 	}
 
@@ -59,7 +63,12 @@ public class UsuarioRecetaEstrella {
 		return Objects.equals(oReceta, other.oReceta) && Objects.equals(oUsuario, other.oUsuario);
 	}
 
-	
-
-	
+	@Override
+	public String toString() {
+		return "UsuarioRecetaEstrella{" +
+				"oUsuario=" + oUsuario +
+				", oReceta=" + oReceta +
+				", bPuntucaionReceta=" + bPuntucaionReceta +
+				'}';
+	}
 }

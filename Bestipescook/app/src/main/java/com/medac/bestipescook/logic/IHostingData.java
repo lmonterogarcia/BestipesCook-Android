@@ -16,6 +16,11 @@ public interface IHostingData {
     public final String sLstRetos  = "reto/lst-retos.php";
 
     // RECETA
-    public final String sLstRecetas = "recetas/lst-recetas.php";
+    public final String sLstRecetas = "receta/lst-recetas.php";
+
+    public final String sGetRecetaImagen = "receta/get-imagenIdReceta.php?txtIdReceta=";
+
+    public final String sGetStarRate = "receta/get-puntuacionestrella.php?txtIdReceta=";
+
 
 }
