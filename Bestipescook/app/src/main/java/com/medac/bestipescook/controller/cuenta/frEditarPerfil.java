@@ -27,8 +27,6 @@ public class frEditarPerfil extends Fragment {
                              Bundle savedInstanceState) {
         v =  inflater.inflate(R.layout.fragment_editar_perfil, container, false);
 
-        v.findViewById(R.id.spnPais);
-
         return v;
     }
 }

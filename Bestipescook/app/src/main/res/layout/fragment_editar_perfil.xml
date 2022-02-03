@@ -29,7 +29,7 @@
                 tools:src="@drawable/logo_fondo_bestipescook" />
 
             <Button
-                android:id="@+id/btnGuardar"
+                android:id="@+id/btnEntrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -222,6 +222,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/border"
+                android:entries="@array/Paises"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblPais" />
 

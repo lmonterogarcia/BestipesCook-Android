@@ -4,12 +4,15 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.medac.bestipescook.R;
+import com.medac.bestipescook.logic.CuentaCrud;
 
 public class frLogIn extends Fragment {
     private View v;
@@ -17,13 +20,17 @@ public class frLogIn extends Fragment {
         // Required empty public constructor
     }
 
-    public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);}
+    public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.fragment_log_in, container, false);
+        v.findViewById(R.id.btnEntrar).setOnClickListener(e ->{
+            logearse();
+        });
 
         v.findViewById(R.id.btnRegistro).setOnClickListener(e ->{
             frCrearCuenta nextFrag = new frCrearCuenta();
@@ -35,5 +42,11 @@ public class frLogIn extends Fragment {
             }
         });
         return v;
+    }
+
+    private void logearse() {
+        TextInputEditText user = v.findViewById(R.id.txtUser);
+        TextInputEditText pass = v.findViewById(R.id.txtPass);
+        CuentaCrud.getUsuario(getContext(),user.getEditableText().toString(),pass.getEditableText().toString());
     }
 }

@@ -14,4 +14,10 @@
     <string name="texto_fecha_reto">Finaliza:</string>
     <string name="texto_fecha_reto_detalle">Válido hasta</string>
 
+    <string-array name="Paises">
+        <item>España</item>
+        <item>Inglaterra</item>
+        <item>Alemania</item>
+    </string-array>
+
 </resources>

@@ -18,4 +18,7 @@ public interface IHostingData {
     // RECETA
     public final String sLstRecetas = "recetas/lst-recetas.php";
 
+    // USUARIO
+    public final String sGetUsuario = "usuario/get-usuario.php";
+
 }
