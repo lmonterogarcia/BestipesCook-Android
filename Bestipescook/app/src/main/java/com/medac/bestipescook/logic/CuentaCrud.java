@@ -1,7 +1,7 @@
 package com.medac.bestipescook.logic;
 
 import android.content.Context;
-import android.os.Environment;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,6 +26,7 @@ import java.util.Map;
 public class CuentaCrud {
     public static String nombreUsuario;
     public static String passUsuario;
+    public static SharedPreferences preferencias;
 
     public static void getUsuario(Context context, String nombreUsuario, String passwordUsuario) {
         Log.d("Pruebas", "LLEGA AQUI TAMBIEN");
@@ -48,29 +49,29 @@ public class CuentaCrud {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllNoticias");
                             e.printStackTrace();
                         }
-                        guardarUsuario(oObjeto);
+                        guardarUsuario(context,oObjeto);
                     }
                 }
                 , VolleyError -> {
         }));
     }
 
-    private static void guardarUsuario(Map<String, String> oObjeto) {
+    private static void guardarUsuario(Context context, Map<String, String> oObjeto) {
         nombreUsuario = oObjeto.get("nombreUsuario").toString();
         passUsuario = oObjeto.get("passwordUsuario").toString();
-        File file = new File("app\\src\\main\\java\\com\\medac\\bestipescook\\model\\usuario\\LoginData.txt");
-        Log.d("PruebasWritter", "Crea el File");
-        try {
-            FileWriter fileWriter = new FileWriter(file);
-            Log.d("PruebasWritter", "Crea el FileWriter");
-            BufferedWriter bw = new BufferedWriter(fileWriter);
-            Log.d("PruebasWritter", "Crea el Buffer Writer");
-            bw.write(nombreUsuario+":"+passUsuario);
-            Log.d("PruebasWritter", "Esribe los datos en el fichero");
-            bw.close();
-            Log.d("PruebasWritter", "Cierra el buffer");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        preferencias = context.getSharedPreferences("datos",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferencias.edit();
+        editor.putString("usuario", nombreUsuario);
+        editor.putString("pass", passUsuario);
+        editor.commit();
+
+        mostrarDatos(context);
     }
+
+    private static void mostrarDatos(Context context){
+        Log.d("pruebas2", preferencias.getString("usuario",""));
+        Log.d("pruebas2", preferencias.getString("pass",""));
+    }
+
 }
