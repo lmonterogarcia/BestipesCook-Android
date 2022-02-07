@@ -1,17 +1,23 @@
 package com.medac.bestipescook.controller.cuenta;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.medac.bestipescook.R;
+import com.medac.bestipescook.logic.CuentaCrud;
 
 public class frCrearCuenta extends Fragment {
     private View v;
+
     public frCrearCuenta() {
         // Required empty public constructor
     }
@@ -25,7 +31,13 @@ public class frCrearCuenta extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_crear_cuenta, container, false);
-        v.findViewById(R.id.btnEntrar).setOnClickListener(e ->{
+        v.findViewById(R.id.btnCrearCuenta).setOnClickListener(e ->{
+
+            TextInputEditText textMail = v.findViewById(R.id.txtMail);
+            TextInputEditText textUsuario = v.findViewById(R.id.txtUser);
+            TextInputEditText textPass = v.findViewById(R.id.txtPass);
+
+            CuentaCrud.insertUsuario(getContext(), textMail.getEditableText().toString(), textUsuario.getEditableText().toString(),textPass.getEditableText().toString());
             frEditarPerfil nextFrag = new frEditarPerfil();
             if (!nextFrag.isAdded()) {
                 getActivity().getSupportFragmentManager().beginTransaction()

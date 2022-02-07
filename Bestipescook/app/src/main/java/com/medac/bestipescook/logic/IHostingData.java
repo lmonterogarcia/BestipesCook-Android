@@ -20,5 +20,6 @@ public interface IHostingData {
 
     // USUARIO
     public final String sGetUsuario = "usuario/get-usuario.php";
+    public final String sInsertUsuario = "usuario/insert-usuario.php";
 
 }
