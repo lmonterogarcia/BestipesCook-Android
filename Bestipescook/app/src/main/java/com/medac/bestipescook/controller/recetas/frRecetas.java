@@ -6,9 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.logic.RecetaCrud;
@@ -18,6 +22,7 @@ public class frRecetas extends Fragment {
 
     private View v;
     public static RecetaAdapter adaptador;
+    public static String query;
 
     public frRecetas() {
 
@@ -35,6 +40,19 @@ public class frRecetas extends Fragment {
         v = inflater.inflate(R.layout.fragment_recetas, container, false);
         cargarRecetas();
 
+        v.findViewById(R.id.btnBuscar).setOnClickListener(e -> {
+            EditText txtquery = v.findViewById(R.id.txtquery);
+
+            if (!String.valueOf(txtquery.getText()).equals("")){
+                query = null;
+                query = String.valueOf(txtquery.getText());
+                Log.d("Pruebas", query);
+                cargarRecetasSearch();
+            }else{
+                Log.d("Pruebas", "No hay datos");
+            }
+
+        });
         return v;
     }
 
@@ -43,6 +61,14 @@ public class frRecetas extends Fragment {
         RecetaStore.lstRecetas.clear();
         RecetaStore.lstImagenes.clear();
         RecetaCrud.getAllRecetas(getContext());
+        mostrarRecetas();
+    }
+
+    private void cargarRecetasSearch()  {
+
+        RecetaStore.lstRecetas.clear();
+        RecetaStore.lstImagenes.clear();
+        RecetaCrud.getAllRecetasSearch(getContext());
         mostrarRecetas();
     }
 
@@ -65,4 +91,7 @@ public class frRecetas extends Fragment {
             }
         });
     }
+
+
+
 }

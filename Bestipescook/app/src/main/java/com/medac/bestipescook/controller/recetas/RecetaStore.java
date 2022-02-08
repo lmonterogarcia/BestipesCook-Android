@@ -23,26 +23,27 @@ public class RecetaStore {
             boolean recetaAniadida = false;
             do {
                 if (receta.getiIdReceta() < lstRecetas.get(iPosicion).getiIdReceta()){
-                    lstRecetas.add(iPosicion, receta);
                     lstImagenes.add(iPosicion, imagen);
                     lstPuntuacion.add(iPosicion, starRate);
+                    lstRecetas.add(iPosicion, receta);
                     recetaAniadida = true;
                 }
                 iPosicion++;
             }while(!recetaAniadida && iPosicion < lstRecetas.size());
             if (!recetaAniadida){
-                lstRecetas.add(receta);
                 lstImagenes.add(imagen);
                 lstPuntuacion.add(starRate);
+                lstRecetas.add(receta);
             }
         } else if (lstRecetas.size() == 1 && lstRecetas.get(0).getiIdReceta() > receta.getiIdReceta()) {
-            lstRecetas.add(0, receta);
             lstImagenes.add(0, imagen);
             lstPuntuacion.add(0, starRate);
+            lstRecetas.add(0, receta);
+
         } else {
-            lstRecetas.add(receta);
             lstImagenes.add(imagen);
             lstPuntuacion.add(starRate);
+            lstRecetas.add(receta);
         }
         frRecetas.adaptador.notifyDataSetChanged();
     }
