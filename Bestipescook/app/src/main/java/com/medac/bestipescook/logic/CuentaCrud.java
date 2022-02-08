@@ -27,9 +27,10 @@ import java.util.Map;
 public class CuentaCrud {
     public static String nombreUsuario;
     public static String passUsuario;
-    public static SharedPreferences preferencias;
+    public static String mailUsuario;
+    public static SharedPreferences preferencias = null;
 
-    public static void getUsuario(Context context, String nombreUsuario, String passwordUsuario) {
+    public static void getUsuario(Context context, String nombreUsuario, String passwordUsuario, final VolleyCallBack callBack) {
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sGetUsuario +"?txtNombreUsuario="+ nombreUsuario+"&txtPasswordUsuario="+passwordUsuario;
         //Toast.makeText(context, url,Toast.LENGTH_LONG).show();
         Log.d("Pruebas", url);
@@ -50,6 +51,7 @@ public class CuentaCrud {
                             e.printStackTrace();
                         }
                         guardarUsuario(context,oObjeto);
+                        callBack.onSuccess();
                     }
                 }
                 , VolleyError -> {
@@ -57,16 +59,15 @@ public class CuentaCrud {
     }
 
     private static void guardarUsuario(Context context, Map<String, String> oObjeto) {
-        oObjeto.entrySet().forEach(entry->{
-            Log.d("Pruebas",entry.getKey() + " = " + entry.getValue());
-        });
         nombreUsuario = oObjeto.get("nombreUsuario").toString();
         passUsuario = oObjeto.get("passwordUsuario").toString();
+        mailUsuario = oObjeto.get("emailUsuario").toString();
 
         preferencias = context.getSharedPreferences("datos",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferencias.edit();
         editor.putString("usuario", nombreUsuario);
         editor.putString("pass", passUsuario);
+        editor.putString("mail", mailUsuario);
         editor.commit();
 
         mostrarDatos(context);
@@ -75,30 +76,47 @@ public class CuentaCrud {
     private static void mostrarDatos(Context context){
         Log.d("pruebas2", preferencias.getString("usuario",""));
         Log.d("pruebas2", preferencias.getString("pass",""));
+        Log.d("pruebas2", preferencias.getString("mail",""));
     }
 
 
-    public static void insertUsuario(Context context, String sMail, String sUsuario, String sPass) {
-        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sInsertUsuario +"?txtNombreUsuario="+sUsuario+"&txtPasswordUsuario="+sPass+"&txtMail="+ sMail;
+    public static void insertUsuario(Context context, String sMail, String sUsuario, String sPass, final VolleyCallBack callBack) {
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sInsertUsuario +"?txtMail="+ sMail +"&txtNombreUsuario="+sUsuario+"&txtPasswordUsuario="+sPass;
         //Toast.makeText(context, url,Toast.LENGTH_LONG).show();
         Log.d("Pruebas", url);
 
         Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET, url,
                 s -> {
-                    if (s.equals("null")) {
+                    if (s.equals(null)) {
                         Toast.makeText(context, "Error al crear un usuario", Toast.LENGTH_LONG).show();
                     } else {
-                        ObjectMapper mapper = new ObjectMapper();
                         Map<String, String> oObjeto = new HashMap<String, String>();
-                        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-                        try {
-                            oObjeto = mapper.readValue(s, new TypeReference<Map<String, String>>() {
-                            });
-                        } catch (IOException e) {
-                            Log.d("Pruebas", "El parseo del Map no correcto en getAllNoticias");
-                            e.printStackTrace();
-                        }
+                        oObjeto.put("nombreUsuario",sUsuario);
+                        oObjeto.put("passwordUsuario",sPass);
+                        oObjeto.put("emailUsuario",sMail);
                         guardarUsuario(context,oObjeto);
+                        callBack.onSuccess();
+                    }
+                }
+                , VolleyError -> {
+        }));
+    }
+
+    public static void updUsuario(Context context,Usuario oUsuario) {
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sUpdateUsuario
+                +"?txtNombreCompleto="+ oUsuario.getsNombreCompletoUsuario()
+                +"&txtGenero="+oUsuario.getbGeneroUsuario()
+                +"&txtFechaNacimiento='"+oUsuario.getFechaNacimientoUsuario()
+                +"'&txtPais="+oUsuario.getiPaisUsuario()
+                +"&txtCodigoPostal="+oUsuario.getsCodigoPostalUsuario()
+                +"&txtNombreUsuario="+CuentaCrud.preferencias.getString("usuario","");
+        //Toast.makeText(context, url,Toast.LENGTH_LONG).show();
+        Log.d("Pruebas", url);
+
+        Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if (s.equals(null)) {
+                        Toast.makeText(context, "Error al actualizar un usuario", Toast.LENGTH_LONG).show();
                     }
                 }
                 , VolleyError -> {

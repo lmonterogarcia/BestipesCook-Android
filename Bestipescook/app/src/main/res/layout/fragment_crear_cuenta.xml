@@ -29,7 +29,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtMailContainer">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtMail"
+                android:id="@+id/txtUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Usuario" />
@@ -55,7 +55,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtUser"
+                android:id="@+id/txtMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email" />

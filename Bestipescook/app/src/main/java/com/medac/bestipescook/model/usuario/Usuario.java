@@ -1,5 +1,6 @@
 package com.medac.bestipescook.model.usuario;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public class Usuario {
 		private boolean booBaneadoUsuario, booENRevisionUsuario, booAdmin;
 		// N
 		private String sNombreCompletoUsuario, sCodigoPostalUsuario;
-		private LocalDateTime fechaNacimientoUsuario;
+		private LocalDate fechaNacimientoUsuario;
 		private int iPaisUsuario, imagenidImagen;
 		
 		public Usuario() {
@@ -38,7 +39,7 @@ public class Usuario {
 
 		public Usuario(String sNombreUsuraio, LocalDateTime fechaCreacionUsuario, String sEmailUsuario, String sPassUsuario,
 				byte bGeneroUsuario, boolean booBaneadoUsuario, boolean booENRevisionUsuario, boolean booAdmin,
-				String sNombreCompletoUsuario, String sCodigoPostalUsuario, LocalDateTime fechaNacimientoUsuario,
+				String sNombreCompletoUsuario, String sCodigoPostalUsuario, LocalDate fechaNacimientoUsuario,
 				int iPaisUsuario, int imagenidImagen) {
 			this.sNombreUsuraio = sNombreUsuraio;
 			this.fechaCreacionUsuario = fechaCreacionUsuario;
@@ -135,11 +136,11 @@ public class Usuario {
 			this.sCodigoPostalUsuario = sCodigoPostalUsuario;
 		}
 
-		public LocalDateTime getFechaNacimientoUsuario() {
+		public LocalDate getFechaNacimientoUsuario() {
 			return fechaNacimientoUsuario;
 		}
 
-		public void setFechaNacimientoUsuario(LocalDateTime fechaNacimientoUsuario) {
+		public void setFechaNacimientoUsuario(LocalDate fechaNacimientoUsuario) {
 			this.fechaNacimientoUsuario = fechaNacimientoUsuario;
 		}
 

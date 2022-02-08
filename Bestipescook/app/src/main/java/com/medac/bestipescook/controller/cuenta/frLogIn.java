@@ -43,8 +43,18 @@ public class frLogIn extends Fragment {
     }
 
     private void logearse() {
-        TextInputEditText user = v.findViewById(R.id.txtUser);
+        TextInputEditText user = v.findViewById(R.id.txtMail);
         TextInputEditText pass = v.findViewById(R.id.txtPass);
-        CuentaCrud.getUsuario(getContext(),user.getEditableText().toString(),pass.getEditableText().toString());
+        CuentaCrud.getUsuario(getContext(),user.getEditableText().toString(),pass.getEditableText().toString(),() -> abrirFragmentCuenta());
+    }
+
+    private void abrirFragmentCuenta() {
+        frCuenta nextFrag = new frCuenta();
+        if (!nextFrag.isAdded()) {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 }

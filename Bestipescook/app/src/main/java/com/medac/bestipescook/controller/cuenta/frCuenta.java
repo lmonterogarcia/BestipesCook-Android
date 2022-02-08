@@ -12,9 +12,10 @@ import android.view.ViewGroup;
 
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.noticias.Noticia_detalle;
+import com.medac.bestipescook.logic.CuentaCrud;
 
 public class frCuenta extends Fragment {
-    private String data = "";
+    private View v;
     public frCuenta() {
 
     }
@@ -29,7 +30,8 @@ public class frCuenta extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(data.equals("")) {
+        v = inflater.inflate(R.layout.fragment_cuenta, container, false);
+        if(CuentaCrud.preferencias == null) {
             frLogIn nextFrag = new frLogIn();
             if (!nextFrag.isAdded()) {
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -38,6 +40,6 @@ public class frCuenta extends Fragment {
                         .commit();
             }
         }
-        return inflater.inflate(R.layout.fragment_cuenta, container, false);
+        return v;
     }
 }
