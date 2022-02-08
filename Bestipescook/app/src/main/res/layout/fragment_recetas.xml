@@ -6,13 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".controller.recetas.frRecetas">
 
+    <Button
+        android:id="@+id/btnBuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="6dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Buscar"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/rvRecetas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtquery"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRecetas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/fargemntToBottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.145" />
+
+    <EditText
+        android:id="@+id/txtquery"
+        android:layout_width="294dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="6dp"
+        android:ems="10"
+        android:hint="Filtrar por ingrediente"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/rvRecetas"
+        app:layout_constraintEnd_toStartOf="@+id/btnBuscar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

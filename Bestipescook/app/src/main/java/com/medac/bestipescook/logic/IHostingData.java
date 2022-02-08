@@ -18,6 +18,8 @@ public interface IHostingData {
     // RECETA
     public final String sLstRecetas = "receta/lst-recetas.php";
 
+    public final String sLstRecetasSearch = "receta/lst-recetasSearch.php?txtNombreIngrediente=";
+
     public final String sGetRecetaImagen = "receta/get-imagenIdReceta.php?txtIdReceta=";
 
     public final String sGetStarRate = "receta/get-puntuacionestrella.php?txtIdReceta=";
