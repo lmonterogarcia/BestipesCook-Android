@@ -47,6 +47,7 @@ public class frRanking extends Fragment {
 
         RecetaStore.lstRecetas.clear();
         RecetaStore.lstImagenes.clear();
+        RecetaStore.lstPuntuacion.clear();
         RankingCrud.getAllRecetas(getContext());
         mostrarRecetas();
     }

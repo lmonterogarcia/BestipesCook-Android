@@ -94,33 +94,30 @@ public class RankingCrud implements IHostingData, IConstantes {
     }
 
     private static void rellenarLstRecetas(Context context, List<Map<String, Object>> lstObjetos) {
-
         lstObjetos.forEach(n ->{
-            StartRateCrud.getRate(context, Integer.parseInt(n.get("idReceta").toString()) , () -> aniadirReceta(n));
-            ImagenCrud.getImagenReceta(context, Integer.parseInt(n.get("idReceta").toString()) ,  () -> aniadirReceta(n)); // La funcion Lamda es un VolleyCallBack.
-
+            aniadirReceta(n);
         });
     }
 
     private static void aniadirReceta(Map<String, Object> receta) {
+
         RecetaStore.aniadirRecetaRank( new Receta(
-                Integer.parseInt(receta.get("idReceta").toString()),
-                LocalDateTime.parse(receta.get("fechaCreacionReceta").toString(), IConstantes.dateTimeformatterFromDB),
-                receta.get("tituloReceta").toString(),
-                receta.get("textoReceta").toString(),
-                Boolean.parseBoolean(receta.get("enRevision").toString()),
-                new Usuario(receta.get("usuarionombreUsuario").toString()),
-                Short.parseShort(receta.get("comensalesReceta").toString()),
-                Float.parseFloat(receta.get("duracionReceta").toString())),
+                        Integer.parseInt(receta.get("idReceta").toString()),
+                        LocalDateTime.parse(receta.get("fechaCreacionReceta").toString(), IConstantes.dateTimeformatterFromDB),
+                        receta.get("tituloReceta").toString(),
+                        receta.get("textoReceta").toString(),
+                        Boolean.parseBoolean(receta.get("enRevision").toString()),
+                        new Usuario(receta.get("usuarionombreUsuario").toString()),
+                        Short.parseShort(receta.get("comensalesReceta").toString()),
+                        Float.parseFloat(receta.get("duracionReceta").toString())),
 
                 (new Imagen(
-                ImagenCrud.iIdIamgen,
-                LocalDateTime.parse(ImagenCrud.fechaCreacionIamgen,
-                        IConstantes.dateTimeformatterFromDB),ImagenCrud.sRutaUrl)),
+                        Integer.parseInt(String.valueOf(receta.get("idImagen"))),
+                        LocalDateTime.parse(String.valueOf(receta.get("fechaCreacionImagen")),
+                                IConstantes.dateTimeformatterFromDB),String.valueOf(receta.get("rutaRelativaImagen")))),
 
                 (new UsuarioRecetaEstrella(
-                Integer.parseInt(receta.get("idReceta").toString()),
-                StartRateCrud.bPuntucaionReceta))
+                        Integer.parseInt(receta.get("idReceta").toString()), Float.parseFloat(receta.get("puntuacionMedia").toString())))
         );
     }
 }

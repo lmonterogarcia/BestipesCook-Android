@@ -59,6 +59,7 @@ public class frRecetas extends Fragment {
 
         RecetaStore.lstRecetas.clear();
         RecetaStore.lstImagenes.clear();
+        RecetaStore.lstPuntuacion.clear();
         RecetaCrud.getAllRecetas(getContext());
         mostrarRecetas();
     }
