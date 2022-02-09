@@ -40,6 +40,15 @@ public class frCuenta extends Fragment {
                         .commit();
             }
         }
+        v.findViewById(R.id.btnEdit).setOnClickListener(e ->{
+            frEditarPerfil nextFrag = new frEditarPerfil();
+            if (!nextFrag.isAdded()) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
         return v;
     }
 }

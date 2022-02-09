@@ -29,6 +29,7 @@ public class CuentaCrud {
     public static String passUsuario;
     public static String mailUsuario;
     public static SharedPreferences preferencias = null;
+    public static Map<String, String> oObjeto = null;
 
     public static void getUsuario(Context context, String nombreUsuario, String passwordUsuario, final VolleyCallBack callBack) {
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sGetUsuario +"?txtNombreUsuario="+ nombreUsuario+"&txtPasswordUsuario="+passwordUsuario;
@@ -41,7 +42,7 @@ public class CuentaCrud {
                         Toast.makeText(context, "Usuario o contraseña inválida ", Toast.LENGTH_LONG).show();
                     } else {
                         ObjectMapper mapper = new ObjectMapper();
-                        Map<String, String> oObjeto = new HashMap<String, String>();
+                        oObjeto = new HashMap<String, String>();
                         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
                         try {
                             oObjeto = mapper.readValue(s, new TypeReference<Map<String, String>>() {
@@ -102,7 +103,7 @@ public class CuentaCrud {
         }));
     }
 
-    public static void updUsuario(Context context,Usuario oUsuario) {
+    public static void updUsuario(Context context,Usuario oUsuario, final VolleyCallBack callBack) {
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sUpdateUsuario
                 +"?txtNombreCompleto="+ oUsuario.getsNombreCompletoUsuario()
                 +"&txtGenero="+oUsuario.getbGeneroUsuario()
@@ -118,6 +119,7 @@ public class CuentaCrud {
                     if (s.equals(null)) {
                         Toast.makeText(context, "Error al actualizar un usuario", Toast.LENGTH_LONG).show();
                     }
+                    callBack.onSuccess();
                 }
                 , VolleyError -> {
         }));
