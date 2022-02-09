@@ -11,10 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.medac.bestipescook.R;
+
 import com.medac.bestipescook.logic.RecetaCrud;
 
 

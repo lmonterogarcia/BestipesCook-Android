@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.noticias.NoticiaStore;
-import com.medac.bestipescook.logic.IHostingData;
-import com.squareup.picasso.Picasso;
 
 public class Receta_detalle extends Fragment {
 
@@ -37,7 +35,7 @@ public class Receta_detalle extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_noticia_detalle, container, false);
 
-        lblTitulo = v.findViewById(R.id.lblRecetaTitulo);
+        lblTitulo = v.findViewById(R.id.lblRecetaTituloRank);
         lblText = v.findViewById(R.id.lblNoticiaDetalleTexto);
         //imagen = v.findViewById(R.id.ivNoticiaDetalle);
 

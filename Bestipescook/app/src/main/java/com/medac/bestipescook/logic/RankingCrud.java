@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class RecetaCrud implements IHostingData, IConstantes {
+public class RankingCrud implements IHostingData, IConstantes {
 
 
     public static void getAllRecetas(Context context) {
@@ -93,8 +93,6 @@ public class RecetaCrud implements IHostingData, IConstantes {
 
     }
 
-
-
     private static void rellenarLstRecetas(Context context, List<Map<String, Object>> lstObjetos) {
 
         lstObjetos.forEach(n ->{
@@ -105,7 +103,7 @@ public class RecetaCrud implements IHostingData, IConstantes {
     }
 
     private static void aniadirReceta(Map<String, Object> receta) {
-        RecetaStore.aniadirReceta( new Receta(
+        RecetaStore.aniadirRecetaRank( new Receta(
                 Integer.parseInt(receta.get("idReceta").toString()),
                 LocalDateTime.parse(receta.get("fechaCreacionReceta").toString(), IConstantes.dateTimeformatterFromDB),
                 receta.get("tituloReceta").toString(),
