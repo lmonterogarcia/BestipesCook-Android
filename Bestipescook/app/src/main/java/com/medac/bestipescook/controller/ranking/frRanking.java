@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -17,6 +19,8 @@ import com.medac.bestipescook.controller.recetas.RecetaStore;
 import com.medac.bestipescook.controller.recetas.Receta_detalle;
 import com.medac.bestipescook.logic.RankingCrud;
 
+import java.util.ArrayList;
+
 
 public class frRanking extends Fragment {
 
@@ -24,6 +28,7 @@ public class frRanking extends Fragment {
     public static RankingAdapter adaptador;
     private Spinner spinerCategoriaLugar;
     public static String query;
+    public static ArrayList<String> list = RecetaStore.lstNombreCategoria;
 
     public frRanking() {
 
@@ -39,17 +44,36 @@ public class frRanking extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_ranking, container, false);
-        spinerCategoriaLugar = v.findViewById(R.id.spCategoria);
+
 
         cargarRecetas();
-        cargarCategorias();
+
+        spinerCategoriaLugar = v.findViewById(R.id.spCategoria);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getActivity(),
+                android.R.layout.simple_spinner_dropdown_item,
+                list
+        );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinerCategoriaLugar.setAdapter(adapter);
+
+        spinerCategoriaLugar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                String categoria = (String) spinerCategoriaLugar.getSelectedItem();
+                Log.d("Pruebas", categoria);
+                spinerCategoriaLugar.setSelection(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // No seleccionaron nada
+            }
+        });
 
         return v;
-    }
-
-    private void cargarCategorias()  {
-        spinerCategoriaLugar.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, RecetaStore.lstNombreCategoria));
-
     }
 
     private void cargarRecetas()  {
