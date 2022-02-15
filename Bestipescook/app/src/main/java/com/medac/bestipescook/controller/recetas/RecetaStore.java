@@ -2,6 +2,7 @@ package com.medac.bestipescook.controller.recetas;
 
 import com.medac.bestipescook.controller.ranking.frRanking;
 import com.medac.bestipescook.model.Imagen;
+import com.medac.bestipescook.model.categoria.Categoria;
 import com.medac.bestipescook.model.receta.Receta;
 import com.medac.bestipescook.model.usuario.UsuarioRecetaEstrella;
 
@@ -11,6 +12,8 @@ public class RecetaStore {
 
     public static ArrayList<Receta> lstRecetas = new ArrayList<Receta>();
     public static ArrayList<Imagen> lstImagenes = new ArrayList<Imagen>();
+    public static ArrayList<Categoria> lstCategorias = new ArrayList<Categoria>();
+    public static ArrayList<String> lstNombreCategoria = new ArrayList<String>();
     public static ArrayList<UsuarioRecetaEstrella> lstPuntuacion = new ArrayList<UsuarioRecetaEstrella>();
     public static int iRecetaSeleccionada;
 
@@ -76,6 +79,33 @@ public class RecetaStore {
             lstImagenes.add(imagen);
             lstPuntuacion.add(starRate);
             lstRecetas.add(receta);
+        }
+        frRanking.adaptador.notifyDataSetChanged();
+    }
+
+    public static void aniadirCategoria(Categoria categoria){
+        if (lstCategorias.size() > 1) {
+            int iPosicion = 0;
+            boolean categoriaAniadida = false;
+            do {
+                if (categoria.getIdCategoria() < lstCategorias.get(iPosicion).getIdCategoria()){
+                    lstCategorias.add(iPosicion, categoria);
+                    lstNombreCategoria.add(iPosicion, categoria.getNombreCategoria());
+                    categoriaAniadida = true;
+                }
+                iPosicion++;
+            }while(!categoriaAniadida && iPosicion < lstCategorias.size());
+            if (!categoriaAniadida){
+                lstCategorias.add(categoria);
+                lstNombreCategoria.add(categoria.getNombreCategoria());
+            }
+        } else if (lstCategorias.size() == 1 && lstCategorias.get(0).getIdCategoria() > categoria.getIdCategoria()) {
+            lstCategorias.add(0, categoria);
+            lstNombreCategoria.add(0, categoria.getNombreCategoria());
+
+        } else {
+            lstCategorias.add(categoria);
+            lstNombreCategoria.add(categoria.getNombreCategoria());
         }
         frRanking.adaptador.notifyDataSetChanged();
     }

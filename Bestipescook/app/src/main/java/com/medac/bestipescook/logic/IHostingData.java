@@ -24,5 +24,7 @@ public interface IHostingData {
 
     public final String sGetStarRate = "receta/get-puntuacionestrella.php?txtIdReceta=";
 
+    // RANKING
 
+    public final String sLstCategorias = "ranking/lst-categorias.php";
 }

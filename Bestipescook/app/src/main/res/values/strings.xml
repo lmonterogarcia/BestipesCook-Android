@@ -17,5 +17,6 @@
     <string name="mas_valoradas">⭐ Mas valoradas</string>
     <string name="buscar">Buscar</string>
     <string name="filtrar_por_ingrediente">Filtrar por ingrediente</string>
+    <string name="filtrar">Filtrar</string>
 
 </resources>

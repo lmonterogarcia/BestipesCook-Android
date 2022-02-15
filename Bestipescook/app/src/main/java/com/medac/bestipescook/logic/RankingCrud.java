@@ -16,6 +16,7 @@ import com.medac.bestipescook.controller.recetas.RecetaStore;
 import com.medac.bestipescook.controller.recetas.frRecetas;
 import com.medac.bestipescook.model.IConstantes;
 import com.medac.bestipescook.model.Imagen;
+import com.medac.bestipescook.model.categoria.Categoria;
 import com.medac.bestipescook.model.receta.Receta;
 import com.medac.bestipescook.model.usuario.Usuario;
 import com.medac.bestipescook.model.usuario.UsuarioRecetaEstrella;
@@ -93,9 +94,47 @@ public class RankingCrud implements IHostingData, IConstantes {
 
     }
 
+    public static void getAllCategorias(Context context) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstCategorias;
+
+        // Request a string Para conseguir todas las recetas.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if(s.equals("null")) {
+                        Toast.makeText(context, "No hay recetas disponibles en este momento",Toast.LENGTH_LONG).show();
+                    } else {
+                        ObjectMapper mapper = new ObjectMapper();
+                        List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
+                        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+                        try {
+                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                        } catch (IOException e) {
+                            Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
+                            e.printStackTrace();
+                        }
+                        rellenarLstCategorias(context, lstObjetos);
+                    }
+                }, error -> {
+            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
+            Log.d("Bestipes" , error.toString());
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        queue.start();
+
+    }
+
     private static void rellenarLstRecetas(Context context, List<Map<String, Object>> lstObjetos) {
         lstObjetos.forEach(n ->{
             aniadirReceta(n);
+        });
+    }
+
+    private static void rellenarLstCategorias(Context context, List<Map<String, Object>> lstObjetos) {
+        lstObjetos.forEach(n ->{
+            aniadirCategoria(n);
         });
     }
 
@@ -110,6 +149,7 @@ public class RankingCrud implements IHostingData, IConstantes {
                         new Usuario(receta.get("usuarionombreUsuario").toString()),
                         Short.parseShort(receta.get("comensalesReceta").toString()),
                         Float.parseFloat(receta.get("duracionReceta").toString())),
+                        
 
                 (new Imagen(
                         Integer.parseInt(String.valueOf(receta.get("idImagen"))),
@@ -119,5 +159,13 @@ public class RankingCrud implements IHostingData, IConstantes {
                 (new UsuarioRecetaEstrella(
                         Integer.parseInt(receta.get("idReceta").toString()), Float.parseFloat(receta.get("puntuacionMedia").toString())))
         );
+    }
+
+    private static void aniadirCategoria(Map<String, Object> categoria) {
+
+        RecetaStore.aniadirCategoria(new Categoria(
+                Integer.parseInt(categoria.get("idCategoria").toString()),
+                (categoria.get("nombreCategoria").toString())
+        ));
     }
 }

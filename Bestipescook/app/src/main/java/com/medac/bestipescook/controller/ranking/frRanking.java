@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.recetas.RecetaStore;
@@ -20,6 +22,7 @@ public class frRanking extends Fragment {
 
     private View v;
     public static RankingAdapter adaptador;
+    private Spinner spinerCategoriaLugar;
     public static String query;
 
     public frRanking() {
@@ -36,10 +39,16 @@ public class frRanking extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_ranking, container, false);
+        spinerCategoriaLugar = v.findViewById(R.id.spCategoria);
 
         cargarRecetas();
+        cargarCategorias();
 
         return v;
+    }
+
+    private void cargarCategorias()  {
+        spinerCategoriaLugar.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, RecetaStore.lstNombreCategoria));
 
     }
 
@@ -49,6 +58,7 @@ public class frRanking extends Fragment {
         RecetaStore.lstImagenes.clear();
         RecetaStore.lstPuntuacion.clear();
         RankingCrud.getAllRecetas(getContext());
+        RankingCrud.getAllCategorias(getContext());
         mostrarRecetas();
     }
 
