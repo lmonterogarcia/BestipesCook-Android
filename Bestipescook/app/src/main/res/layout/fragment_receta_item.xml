@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvReceta"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/cardCornerRadius"
+    app:cardElevation="@dimen/cardElevation"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:id="@+id/llpralReceta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/cardMargin"
+        android:layout_marginBottom="@dimen/cardMargin"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lblRecetaTitulo"
+            style="@style/texto_titulo_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/texto_titulo" />
+
+        <ImageView
+            android:id="@+id/ivReceta"
+            style="@style/imagen_card"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="@dimen/cardImageMargin" />
+
+        <RatingBar
+            android:id="@+id/rtBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:stepSize="0.5"
+            android:transformPivotX="0dp"
+            android:transformPivotY="0dp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
