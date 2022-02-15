@@ -111,7 +111,6 @@ public class CuentaCrud {
                 +"'&txtPais="+oUsuario.getiPaisUsuario()
                 +"&txtCodigoPostal="+oUsuario.getsCodigoPostalUsuario()
                 +"&txtNombreUsuario="+CuentaCrud.preferencias.getString("usuario","");
-        //Toast.makeText(context, url,Toast.LENGTH_LONG).show();
         Log.d("Pruebas", url);
 
         Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET, url,

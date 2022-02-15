@@ -11,6 +11,7 @@ public interface IHostingData {
 
     // IMAGEN
     public final String sGetImagen = "imagen/get-imagen.php?txtidImagen=";
+    public final String sInsertImage = "imagen/ins-imagen.php";
 
     // RETO
     public final String sLstRetos  = "reto/lst-retos.php";

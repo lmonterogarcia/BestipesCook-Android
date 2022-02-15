@@ -53,4 +53,22 @@ public class ImagenCrud {
         fechaCreacionIamgen = oObjeto.get("fechaCreacionImagen").toString();
         sRutaUrl = oObjeto.get("rutaRelativaImagen").toString();
     }
+
+    public static void insertImage(Context context, String sUrl, final VolleyCallBack callBack) {
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sInsertImage +"?txtUrl="+ sUrl;
+        //Toast.makeText(context, url,Toast.LENGTH_LONG).show();
+        Log.d("Pruebas", url);
+
+        Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if (s.equals(null)) {
+                        Toast.makeText(context, "Error al crear un usuario", Toast.LENGTH_LONG).show();
+                    } else {
+                        callBack.onSuccess();
+                    }
+                }
+                , VolleyError -> {
+        }));
+    }
 }
+

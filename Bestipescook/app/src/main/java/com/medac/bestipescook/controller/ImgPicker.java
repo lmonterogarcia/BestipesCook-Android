@@ -20,6 +20,7 @@ import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.medac.bestipescook.R;
@@ -85,6 +86,10 @@ public class ImgPicker extends AppCompatActivity {
 
                             // Transformamos la URI de la imagen a inputStream y este a un Bitmap
                             frEditarPerfil.bmp = BitmapFactory.decodeStream(imageStream);
+                            frEditarPerfil.urlLocal = selectedPath;
+                            Log.d("Pruebas4",selectedPath);
+                            Log.d("Pruebas4",selectedImage.toString());
+                            Log.d("Pruebas4",imageReturnedIntent.getDataString());
 
                             // Ponemos nuestro bitmap en un ImageView que tengamos en la vista
                             ImageView mImg = findViewById(R.id.img_btn);

@@ -19,10 +19,14 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.medac.bestipescook.R;
+import com.medac.bestipescook.controller.ClienteFTP;
 import com.medac.bestipescook.controller.ImgPicker;
+import com.medac.bestipescook.controller.ImgPicker2;
 import com.medac.bestipescook.logic.CuentaCrud;
+import com.medac.bestipescook.logic.ImagenCrud;
 import com.medac.bestipescook.model.usuario.Usuario;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -35,6 +39,7 @@ public class frEditarPerfil extends Fragment {
     private View v;
     private byte bGenero = 0;
     public static Bitmap bmp = null;
+    public static String urlLocal = "";
     public static ImageView img;
 
     public frEditarPerfil() {
@@ -141,7 +146,16 @@ public class frEditarPerfil extends Fragment {
             oUsuario.setbGeneroUsuario(bGenero);
             oUsuario.setiPaisUsuario(txtSpinner.getSelectedItemPosition());
 
-            CuentaCrud.updUsuario(getContext(), oUsuario, () -> actualizarDatos());
+
+            if(bmp != null){
+                File f = new File(urlLocal);
+                ClienteFTP.start(true);
+                ImagenCrud.insertImage(getContext(), f.getName(), () ->{
+                    CuentaCrud.updUsuario(getContext(), oUsuario, () -> actualizarDatos());
+                } );
+            }else{
+                CuentaCrud.updUsuario(getContext(), oUsuario, () -> actualizarDatos());
+            }
 
         }
 
