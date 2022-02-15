@@ -18,10 +18,12 @@
             android:exported="true" />
         <activity
             android:name=".controller.ImgPicker2"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".controller.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".controller.InitScreen"
             android:exported="true">
