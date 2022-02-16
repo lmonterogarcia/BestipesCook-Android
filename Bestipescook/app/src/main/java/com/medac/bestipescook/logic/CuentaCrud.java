@@ -82,7 +82,7 @@ public class CuentaCrud {
 
 
     public static void insertUsuario(Context context, String sMail, String sUsuario, String sPass, final VolleyCallBack callBack) {
-        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sInsertUsuario +"?txtMail="+ sMail +"&txtNombreUsuario="+sUsuario+"&txtPasswordUsuario="+sPass;
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sInsertUsuario +"?txtNombreUsuario="+sUsuario+"&txtMail="+sMail+"&txtPasswordUsuario="+sPass;
         //Toast.makeText(context, url,Toast.LENGTH_LONG).show();
         Log.d("Pruebas", url);
 
