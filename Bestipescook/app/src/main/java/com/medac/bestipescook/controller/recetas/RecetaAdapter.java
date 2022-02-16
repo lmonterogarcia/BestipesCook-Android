@@ -38,7 +38,7 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         String sTituloReceta = RecetaStore.lstRecetas.get(position).getsTituloReceta();
-        Float fRateStar = RecetaStore.lstPuntuacion.get(position).getbPuntucaionReceta();
+        Float fRateStar = RecetaStore.lstPuntuacion.get(position);
 
         //TRAER LAS IMAGENES RELACIONADAS CON LA TABLA RECETA IMAGENES
 

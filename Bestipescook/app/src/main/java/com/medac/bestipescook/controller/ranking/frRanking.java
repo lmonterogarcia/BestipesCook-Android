@@ -81,7 +81,7 @@ public class frRanking extends Fragment {
             Receta_detalle nextFrag= new Receta_detalle();
             if (!nextFrag.isAdded()){
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                        .replace(R.id.frame_container, nextFrag, "ranking")
                         .addToBackStack(null)
                         .commit();
             }

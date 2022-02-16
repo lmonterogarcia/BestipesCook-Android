@@ -57,7 +57,7 @@ public class frRetos extends Fragment {
             Reto_detalle nextFrag= new Reto_detalle();
             if (!nextFrag.isAdded()){
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                        .replace(R.id.frame_container, nextFrag, "retos")
                         .addToBackStack(null)
                         .commit();
             }

@@ -1,7 +1,7 @@
 package com.medac.bestipescook.model.receta;
 
 import java.util.Objects;
-import model.receta.IIngredienteReceta;
+import com.medac.bestipescook.model.receta.IIngredienteReceta;
 
 public class IngredienteReceta implements IIngredienteReceta{
 

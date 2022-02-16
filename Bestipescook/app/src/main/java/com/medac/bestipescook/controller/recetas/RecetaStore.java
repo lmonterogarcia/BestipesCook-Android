@@ -3,6 +3,8 @@ package com.medac.bestipescook.controller.recetas;
 import com.medac.bestipescook.controller.ranking.frRanking;
 import com.medac.bestipescook.model.Imagen;
 import com.medac.bestipescook.model.categoria.Categoria;
+import com.medac.bestipescook.model.receta.IngredienteReceta;
+import com.medac.bestipescook.model.receta.Paso;
 import com.medac.bestipescook.model.receta.Receta;
 import com.medac.bestipescook.model.usuario.UsuarioRecetaEstrella;
 
@@ -14,14 +16,16 @@ public class RecetaStore {
     public static ArrayList<Imagen> lstImagenes = new ArrayList<Imagen>();
     public static ArrayList<Categoria> lstCategorias = new ArrayList<Categoria>();
     public static ArrayList<String> lstNombreCategoria = new ArrayList<String>();
-    public static ArrayList<UsuarioRecetaEstrella> lstPuntuacion = new ArrayList<UsuarioRecetaEstrella>();
+    public static ArrayList<Float> lstPuntuacion = new ArrayList<Float>();
+    public static ArrayList<IngredienteReceta> lstIngredientes = new ArrayList<IngredienteReceta>();
+    public static ArrayList<Paso> lstPasos = new ArrayList<Paso>();
     public static int iRecetaSeleccionada;
 
     /**
      * @param receta
      * Introduce una receta en un lugar ordenando por idReceta
      */
-    public static void aniadirReceta(Receta receta, Imagen imagen, UsuarioRecetaEstrella starRate){
+    public static void aniadirReceta(Receta receta, Imagen imagen, Float starRate){
         if (lstRecetas.size() > 1) {
             int iPosicion = 0;
             boolean recetaAniadida = false;
@@ -52,7 +56,7 @@ public class RecetaStore {
         frRecetas.adaptador.notifyDataSetChanged();
     }
 
-    public static void aniadirRecetaRank(Receta receta, Imagen imagen, UsuarioRecetaEstrella starRate){
+    public static void aniadirRecetaRank(Receta receta, Imagen imagen, Float starRate){
         if (lstRecetas.size() > 1) {
             int iPosicion = 0;
             boolean recetaAniadida = false;

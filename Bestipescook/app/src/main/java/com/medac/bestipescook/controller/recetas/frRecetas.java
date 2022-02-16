@@ -86,7 +86,7 @@ public class frRecetas extends Fragment {
             Receta_detalle nextFrag= new Receta_detalle();
             if (!nextFrag.isAdded()){
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                        .replace(R.id.frame_container, nextFrag, "receta")
                         .addToBackStack(null)
                         .commit();
             }
