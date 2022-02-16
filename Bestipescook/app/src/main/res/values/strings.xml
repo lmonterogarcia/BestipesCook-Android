@@ -18,12 +18,7 @@
     <string name="buscar">Buscar</string>
     <string name="filtrar_por_ingrediente">Filtrar por ingrediente</string>
     <string name="filtrar">🔎</string>
-
-    <string-array name="Paises">
-        <item>España</item>
-        <item>Inglaterra</item>
-        <item>Alemania</item>
-    </string-array>
+    <string name="editar">  ✏️</string>
 
     <string-array name="Paises">
         <item>España</item>
