@@ -8,51 +8,41 @@
 
 
     <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/btnGroup"
-        android:layout_width="match_parent"
+        android:id="@+id/toggleButtonGroup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:singleSelection="true">
 
-        <Button
-            android:id="@+id/btnLikes"
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHombre"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/purple_200"
-            android:bottomLeftRadius="10dp"
-            android:bottomRightRadius="10dp"
             android:text="@string/con_mas_me_gusta"
-            android:textColor="#000000"
-            android:topLeftRadius="10dp"
-            android:topRightRadius="10dp"
-            app:rippleColor="@color/color_primario" />
+            android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/btnStars"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMujer"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/purple_200"
-            android:bottomLeftRadius="10dp"
-            android:bottomRightRadius="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/mas_valoradas"
-            android:textColor="#000000"
-            android:topLeftRadius="10dp"
-            android:topRightRadius="10dp"
-            app:rippleColor="@color/color_primario" />
-
+            android:textSize="18sp" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRanking"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="@dimen/fargemntToBottom"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,21 +52,20 @@
         android:id="@+id/spCategoria"
         android:layout_width="233dp"
         android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:entries="Categorias"
+        android:layout_marginTop="8dp"
+        android:entries="@array/Paises"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/toggleButtonGroup" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="109dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/purple_500"
         android:text="@string/filtrar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/toggleButtonGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
