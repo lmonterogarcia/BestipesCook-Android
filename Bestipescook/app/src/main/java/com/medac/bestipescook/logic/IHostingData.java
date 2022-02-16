@@ -11,6 +11,7 @@ public interface IHostingData {
 
     // IMAGEN
     public final String sGetImagen = "imagen/get-imagen.php?txtidImagen=";
+    public final String sInsertImage = "imagen/ins-imagen.php";
 
     // RETO
     public final String sLstRetos  = "reto/lst-retos.php";
@@ -24,5 +25,10 @@ public interface IHostingData {
 
     public final String sGetStarRate = "receta/get-puntuacionestrella.php?txtIdReceta=";
 
+
+    // USUARIO
+    public final String sGetUsuario = "usuario/get-usuario.php";
+    public final String sInsertUsuario = "usuario/insert-usuario.php";
+    public final String sUpdateUsuario = "usuario/upd-usuario.php";
 
 }

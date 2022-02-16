@@ -1,5 +1,5 @@
 package com.medac.bestipescook.model.usuario;
 
-public class IUsuario {
-
+public interface IUsuario {
+    public final String[] APAIS = {"España","Inglaterra","Alemania"};
 }
