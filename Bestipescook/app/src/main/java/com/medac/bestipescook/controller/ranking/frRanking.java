@@ -40,10 +40,10 @@ public class frRanking extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_ranking, container, false);
-       // spinerCategoriaLugar = v.findViewById(R.id.spCategoria);
+       spinerCategoriaLugar = v.findViewById(R.id.spCategoria);
 
         cargarRecetas();
-        cargarCategorias();
+        //cargarCategorias();
 
         return v;
     }
