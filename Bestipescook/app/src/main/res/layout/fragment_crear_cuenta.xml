@@ -117,16 +117,16 @@
             android:layout_marginBottom="32dp"
             android:backgroundTint="@color/color_google"
             android:text="GOOGLE"
-            app:layout_constraintBottom_toTopOf="@+id/btnRegistro"
+            app:layout_constraintBottom_toTopOf="@+id/btnLogIn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/btnRegistro"
+            android:id="@+id/btnLogIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="150dp"
-            android:text="¿No tienes cuenta? Regístrate"
+            android:text="¿Tienes cuenta? Conéctate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

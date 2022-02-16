@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.medac.bestipescook.controller.ranking.RankingStore;
 import com.medac.bestipescook.controller.recetas.RecetaStore;
 import com.medac.bestipescook.controller.recetas.frRecetas;
 import com.medac.bestipescook.model.IConstantes;
@@ -24,6 +25,7 @@ import com.medac.bestipescook.model.usuario.UsuarioRecetaEstrella;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -94,7 +96,7 @@ public class RankingCrud implements IHostingData, IConstantes {
 
     }
 
-    public static void getAllCategorias(Context context) {
+    public static void getAllCategorias(Context context,  final VolleyCallBack callBack) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstCategorias;
 
@@ -114,6 +116,7 @@ public class RankingCrud implements IHostingData, IConstantes {
                             e.printStackTrace();
                         }
                         rellenarLstCategorias(context, lstObjetos);
+                        callBack.onSuccess();
                     }
                 }, error -> {
             Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
@@ -133,6 +136,7 @@ public class RankingCrud implements IHostingData, IConstantes {
     }
 
     private static void rellenarLstCategorias(Context context, List<Map<String, Object>> lstObjetos) {
+        RankingStore.lstCategorias = new ArrayList<String>();
         lstObjetos.forEach(n ->{
             aniadirCategoria(n);
         });
@@ -146,26 +150,26 @@ public class RankingCrud implements IHostingData, IConstantes {
                         receta.get("tituloReceta").toString(),
                         receta.get("textoReceta").toString(),
                         Boolean.parseBoolean(receta.get("enRevision").toString()),
-                        new Usuario(receta.get("usuarionombreUsuario").toString()),
+                        new Usuario(receta.get("usuarionombreUsuario").toString(), receta.get("rutaImgUsuario").toString()),
+                        new Categoria(Integer.parseInt(receta.get("idCategoria").toString()),receta.get("nombreCategoria").toString()),
                         Short.parseShort(receta.get("comensalesReceta").toString()),
                         Float.parseFloat(receta.get("duracionReceta").toString())),
                         
 
-                (new Imagen(
+                new Imagen(
                         Integer.parseInt(String.valueOf(receta.get("idImagen"))),
                         LocalDateTime.parse(String.valueOf(receta.get("fechaCreacionImagen")),
-                                IConstantes.dateTimeformatterFromDB),String.valueOf(receta.get("rutaRelativaImagen")))),
+                                IConstantes.dateTimeformatterFromDB),String.valueOf(receta.get("rutaRelativaImagen"))),
 
-                (new UsuarioRecetaEstrella(
-                        Integer.parseInt(receta.get("idReceta").toString()), Float.parseFloat(receta.get("puntuacionMedia").toString())))
-        );
+                 Float.parseFloat(receta.get("puntuacionMedia").toString()));
     }
 
     private static void aniadirCategoria(Map<String, Object> categoria) {
-
-        RecetaStore.aniadirCategoria(new Categoria(
-                Integer.parseInt(categoria.get("idCategoria").toString()),
-                (categoria.get("nombreCategoria").toString())
-        ));
+        //Rellenar el arrayList de categorias para el ranking
+        for(Map.Entry<String, Object> entry : categoria.entrySet()) {
+            if(entry.getKey().equals("nombreCategoria")){
+                RankingStore.lstCategorias.add(entry.getValue().toString());
+            }
+        }
     }
 }

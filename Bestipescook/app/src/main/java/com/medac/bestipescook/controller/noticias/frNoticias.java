@@ -58,7 +58,7 @@ public class frNoticias extends Fragment {
             Noticia_detalle nextFrag= new Noticia_detalle();
             if (!nextFrag.isAdded()){
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                        .replace(R.id.frame_container, nextFrag, "noticia")
                         .addToBackStack(null)
                         .commit();
             }

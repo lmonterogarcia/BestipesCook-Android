@@ -16,6 +16,15 @@ public class Imagen {
         this.iIdIamgen = iIdIamgen;
     }
 
+    public Imagen(String sRutaRelativaImagen) {
+        this.sRutaUrlImagen = sRutaRelativaImagen;
+    }
+
+    public Imagen(int iIdIamgen, String sRutaRelativaImagen) {
+        this.iIdIamgen = iIdIamgen;
+        this.sRutaUrlImagen = sRutaRelativaImagen;
+    }
+
     public Imagen(int iIdIamgen, LocalDateTime fechaCreacionImagen, String sRutaRelativaImagen) {
         this.iIdIamgen = iIdIamgen;
         this.fechaCreacionImagen = fechaCreacionImagen;

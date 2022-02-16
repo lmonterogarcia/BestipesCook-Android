@@ -25,6 +25,7 @@ public class frRanking extends Fragment {
     private Spinner spinerCategoriaLugar;
     public static String query;
 
+
     public frRanking() {
 
     }
@@ -39,16 +40,21 @@ public class frRanking extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_ranking, container, false);
-       // spinerCategoriaLugar = v.findViewById(R.id.spCategoria);
+       spinerCategoriaLugar = v.findViewById(R.id.spCategoria);
 
         cargarRecetas();
-        cargarCategorias();
+        //cargarCategorias();
 
         return v;
     }
 
     private void cargarCategorias()  {
-        spinerCategoriaLugar.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, RecetaStore.lstNombreCategoria));
+        //spinerCategoriaLugar.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, RecetaStore.lstNombreCategoria));
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, RankingStore.lstCategorias);
+        spinnerArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+
+        spinerCategoriaLugar.setAdapter(spinnerArrayAdapter);
 
     }
 
@@ -58,7 +64,7 @@ public class frRanking extends Fragment {
         RecetaStore.lstImagenes.clear();
         RecetaStore.lstPuntuacion.clear();
         RankingCrud.getAllRecetas(getContext());
-        RankingCrud.getAllCategorias(getContext());
+        RankingCrud.getAllCategorias(getContext(),() -> cargarCategorias());
         mostrarRecetas();
     }
 
@@ -75,7 +81,7 @@ public class frRanking extends Fragment {
             Receta_detalle nextFrag= new Receta_detalle();
             if (!nextFrag.isAdded()){
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                        .replace(R.id.frame_container, nextFrag, "ranking")
                         .addToBackStack(null)
                         .commit();
             }
