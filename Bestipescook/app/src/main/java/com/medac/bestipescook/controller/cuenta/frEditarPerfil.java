@@ -1,5 +1,7 @@
 package com.medac.bestipescook.controller.cuenta;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -14,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,6 +34,7 @@ import com.medac.bestipescook.model.usuario.Usuario;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 import android.widget.ImageView;
 
@@ -41,6 +47,7 @@ public class frEditarPerfil extends Fragment {
     public static Bitmap bmp = null;
     public static String urlLocal = "";
     public static ImageView img;
+    public static EditText fecha;
 
     public frEditarPerfil() {
         // Required empty public constructor
@@ -58,6 +65,7 @@ public class frEditarPerfil extends Fragment {
 
         TextView lblUsuario = v.findViewById(R.id.lblUsuarioEdit);
         TextView lblMail = v.findViewById(R.id.lblEmailEdit);
+        fecha = v.findViewById(R.id.txtFechaNacimiento);
 
         lblUsuario.setText(CuentaCrud.preferencias.getString("usuario", ""));
         lblMail.setText(CuentaCrud.preferencias.getString("mail", ""));
@@ -99,6 +107,10 @@ public class frEditarPerfil extends Fragment {
             img.setImageDrawable(roundDrawable);
         }
 
+        v.findViewById(R.id.txtFechaNacimiento).setOnClickListener(e ->{
+            showDatePickerDialog(v);
+        });
+
         v.findViewById(R.id.btnImg).setOnClickListener(e -> {
             Intent intent = new Intent(getActivity(), ImgPicker.class);
             startActivity(intent);
@@ -130,7 +142,6 @@ public class frEditarPerfil extends Fragment {
             oUsuario.setsPassUsuario(CuentaCrud.preferencias.getString("pass", ""));
 
             TextView txtName = v.findViewById(R.id.txtName);
-            TextView txtFecha = v.findViewById(R.id.txtFechaNacimiento);
             TextView txtCodigoPostal = v.findViewById(R.id.txtCodigoPostal);
             Spinner txtSpinner = v.findViewById(R.id.spnPais);
 
@@ -138,7 +149,7 @@ public class frEditarPerfil extends Fragment {
 
             //convert String to LocalDate
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String date = txtFecha.getText().toString();
+            String date = fecha.getText().toString();
             LocalDate localDate = LocalDate.parse(date, formatter);
 
             oUsuario.setFechaNacimientoUsuario(localDate);
@@ -172,5 +183,10 @@ public class frEditarPerfil extends Fragment {
                     .commit();
         }
     }
+
+    public void showDatePickerDialog(View v) {
+        frDatePicker newFragment = new frDatePicker();
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+        }
 
 }

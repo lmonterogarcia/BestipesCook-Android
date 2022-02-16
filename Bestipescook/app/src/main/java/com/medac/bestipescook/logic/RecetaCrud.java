@@ -116,4 +116,35 @@ public class RecetaCrud implements IHostingData, IConstantes {
                 Integer.parseInt(receta.get("idReceta").toString()), Float.parseFloat(receta.get("puntuacionMedia").toString())))
         );
     }
+
+    public static void getAllCategorias(Context context) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstRecetas;
+
+        // Request a string Para conseguir todas las recetas.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if(s.equals("null")) {
+                        Toast.makeText(context, "No hay recetas disponibles en este momento",Toast.LENGTH_LONG).show();
+                    } else {
+                        ObjectMapper mapper = new ObjectMapper();
+                        List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
+                        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+                        try {
+                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                        } catch (IOException e) {
+                            Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
+                            e.printStackTrace();
+                        }
+                        rellenarLstRecetas(context, lstObjetos);
+                    }
+                }, error -> {
+            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
+            Log.d("Bestipes" , error.toString());
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        queue.start();
+    }
 }

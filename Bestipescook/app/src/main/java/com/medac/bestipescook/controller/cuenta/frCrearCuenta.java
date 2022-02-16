@@ -30,11 +30,21 @@ public class frCrearCuenta extends Fragment {
         v = inflater.inflate(R.layout.fragment_crear_cuenta, container, false);
         v.findViewById(R.id.btnCrearCuenta).setOnClickListener(e ->{
 
-            TextInputEditText textMail = v.findViewById(R.id.txtUser);
-            TextInputEditText textUsuario = v.findViewById(R.id.txtMail);
+            TextInputEditText textMail = v.findViewById(R.id.txtMail);
+            TextInputEditText textUsuario = v.findViewById(R.id.txtUser);
             TextInputEditText textPass = v.findViewById(R.id.txtPass);
 
             CuentaCrud.insertUsuario(getContext(), textMail.getEditableText().toString(), textUsuario.getEditableText().toString(),textPass.getEditableText().toString(),() -> abrirFragmentEditarPerfil());
+        });
+
+        v.findViewById(R.id.btnLogIn).setOnClickListener(e ->{
+            frLogIn nextFrag = new frLogIn();
+            if (!nextFrag.isAdded()) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
         });
         return v;
     }
