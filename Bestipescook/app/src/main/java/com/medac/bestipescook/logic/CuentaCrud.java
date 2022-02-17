@@ -13,18 +13,25 @@ import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.medac.bestipescook.controller.cuenta.CuentaRecetaStore;
+import com.medac.bestipescook.controller.recetas.RecetaStore;
+import com.medac.bestipescook.model.IConstantes;
+import com.medac.bestipescook.model.Imagen;
+import com.medac.bestipescook.model.receta.Receta;
 import com.medac.bestipescook.model.usuario.Usuario;
+import com.medac.bestipescook.model.usuario.UsuarioRecetaEstrella;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CuentaCrud {
+public class CuentaCrud implements IHostingData, IConstantes{
     public static String nombreUsuario;
     public static String passUsuario;
     public static String mailUsuario;
@@ -122,5 +129,66 @@ public class CuentaCrud {
                 }
                 , VolleyError -> {
         }));
+    }
+
+        private static void rellenarLstRecetas(Context context, List<Map<String, Object>> lstObjetos) {
+            lstObjetos.forEach(n ->{
+                aniadirReceta(n);
+            });
+        }
+
+        private static void aniadirReceta(Map<String, Object> receta) {
+
+            if(receta.get("usuarionombreUsuario").toString().equals(preferencias.getString("usuario",""))){
+                CuentaRecetaStore.aniadirReceta( new Receta(
+                                Integer.parseInt(receta.get("idReceta").toString()),
+                                LocalDateTime.parse(receta.get("fechaCreacionReceta").toString(), IConstantes.dateTimeformatterFromDB),
+                                receta.get("tituloReceta").toString(),
+                                receta.get("textoReceta").toString(),
+                                Boolean.parseBoolean(receta.get("enRevision").toString()),
+                                new Usuario(receta.get("usuarionombreUsuario").toString()),
+                                Short.parseShort(receta.get("comensalesReceta").toString()),
+                                Float.parseFloat(receta.get("duracionReceta").toString())),
+
+                        (new Imagen(
+                                Integer.parseInt(String.valueOf(receta.get("idImagen"))),
+                                LocalDateTime.parse(String.valueOf(receta.get("fechaCreacionImagen")),
+                                        IConstantes.dateTimeformatterFromDB),String.valueOf(receta.get("rutaRelativaImagen")))),
+
+                        (new UsuarioRecetaEstrella(
+                                Integer.parseInt(receta.get("idReceta").toString()), Float.parseFloat(receta.get("puntuacionMedia").toString())))
+                );
+            }
+        }
+
+    public static void getAllRecetas(Context context) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstRecetas;
+        Log.d("prueba8",url);
+        // Request a string Para conseguir todas las recetas.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if(s.equals("null")) {
+                        Toast.makeText(context, "No hay recetas disponibles en este momento",Toast.LENGTH_LONG).show();
+                    } else {
+                        ObjectMapper mapper = new ObjectMapper();
+                        List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
+                        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+                        try {
+                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                        } catch (IOException e) {
+                            Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
+                            e.printStackTrace();
+                        }
+                        rellenarLstRecetas(context, lstObjetos);
+                    }
+                }, error -> {
+            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
+            Log.d("Bestipes" , error.toString());
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        queue.start();
     }
 }
