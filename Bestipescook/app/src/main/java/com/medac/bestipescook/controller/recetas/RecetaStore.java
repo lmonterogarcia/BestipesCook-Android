@@ -20,6 +20,7 @@ public class RecetaStore {
     public static ArrayList<IngredienteReceta> lstIngredientes = new ArrayList<IngredienteReceta>();
     public static ArrayList<Paso> lstPasos = new ArrayList<Paso>();
     public static int iRecetaSeleccionada;
+    public static int iRecetaPasoSeleccionada;
 
     /**
      * @param receta
@@ -87,6 +88,8 @@ public class RecetaStore {
         frRanking.adaptador.notifyDataSetChanged();
     }
 
+
+   // NO UTILIZADAS - NO BOORAR X SI ACASO SE UTILIZAN EN EL FUTURO
     public static void aniadirCategoria(Categoria categoria){
         if (lstCategorias.size() > 1) {
             int iPosicion = 0;

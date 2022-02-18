@@ -88,7 +88,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ESTRELLAS y ME GUSTA" />
+                    android:text="ESTRELLAS y ME GUSTA"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -101,12 +102,16 @@
                     android:id="@+id/lblCategoriaReceta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="end"
                     android:text="categoriaReceta" />
 
                 <TextView
                     android:id="@+id/lblTituloReceta"
+                    style="@style/texto_titulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="tituloReceta" />
 
                 <TextView
@@ -141,6 +146,7 @@
                 android:paddingTop="15dp">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRecetaPasos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingStart="5dp" />
@@ -156,6 +162,7 @@
                     android:id="@+id/lblFechaCreacionReceta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:layout_weight="4"
                     android:text="TextView" />
 
@@ -165,7 +172,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="10dp"
-                    android:text="EDITAR" />
+                    android:text="EDITAR"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,7 @@ import java.time.LocalDateTime;
 public class Receta_detalle extends Fragment implements IConstantes, IIngredienteReceta {
 
     private View v;
+    public static RecetaPasosAdapter adaptador;
 
     private ImageView imgUsuarioReceta;
     private TextView sNombreUsuario;
@@ -77,7 +80,7 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
         sTituloReceta.setText(RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getsTituloReceta());
         sDescripcionReceta.setText(RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getsTextoReceta());
         RecetaCrud.getIngredientes(getContext(), RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> cargarIngredientes());
-        //Pasos
+        cargarPasos();
         sFechaCreacionReceta.setText("Publicado el " + (RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getFechaCreacionReceta()).format(dateformatter));
 
         return v;
@@ -100,5 +103,25 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
         sTiempo = iHoras + "h " + iMinutos + "min";
 
         return sTiempo;
+    }
+
+    private void cargarPasos()  {
+
+        RecetaStore.lstPasos.clear();;
+        RecetaCrud.getAllPasos(getContext(), RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getiIdReceta());
+        mostrarRecetas();
+    }
+
+    private void mostrarRecetas() {
+
+        RecyclerView rvRecetasPasos = v.findViewById(R.id.rvRecetaPasos);
+
+        rvRecetasPasos.setLayoutManager(new LinearLayoutManager(getContext()));
+        adaptador = new RecetaPasosAdapter(getContext());
+        rvRecetasPasos.setAdapter(adaptador);
+
+        adaptador.setOnClickListener(v -> {
+
+        });
     }
 }

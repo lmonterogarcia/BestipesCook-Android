@@ -28,6 +28,8 @@ public interface IHostingData {
 
     public final String sGetIngredientes = "receta/get-receta-ingrediente.php?txtIdReceta=";
 
+    public final String sGetPasos = "receta/get-receta-paso.php?txtIdReceta=";
+
     // RANKING
 
     public final String sLstCategorias = "ranking/lst-categorias.php";
@@ -39,5 +41,4 @@ public interface IHostingData {
     public final String sGetUsuario = "usuario/get-usuario.php";
     public final String sInsertUsuario = "usuario/insert-usuario.php";
     public final String sUpdateUsuario = "usuario/upd-usuario.php";
-
 }

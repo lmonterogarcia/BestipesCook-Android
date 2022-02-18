@@ -34,7 +34,7 @@
 
     <style name="texto_titulo" parent="Theme.BestipesCook">
         <item name="android:background">@color/color_primario</item>
-        <item name="android:textColor">@color/color_terciario</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/dm_titulo</item>
         <item name="android:textStyle">bold</item>
         <item name="android:paddingStart">@dimen/cardImageMargin</item>
