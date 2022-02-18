@@ -1,5 +1,6 @@
 package com.medac.bestipescook.model.receta;
 
+import com.medac.bestipescook.model.categoria.Categoria;
 import com.medac.bestipescook.model.usuario.Usuario;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public class Receta {
 	private String sTextoReceta;
 	private boolean booEnREvision;
 	private Usuario usuario;
+	private Categoria categoria;
 	// N
 	private short shComensalesReceta;
 	private float fDuracionReceta;
@@ -36,13 +38,14 @@ public class Receta {
 		this.usuario = usuario;
 	}
 
-	public Receta(int iIdReceta, LocalDateTime fechaCreacionReceta, String sTituloReceta, String sTextoReceta, boolean booEnREvision, Usuario usuario, short shComensalesReceta, float fDuracionReceta) {
+	public Receta(int iIdReceta, LocalDateTime fechaCreacionReceta, String sTituloReceta, String sTextoReceta, boolean booEnREvision, Usuario usuario, Categoria categoria, short shComensalesReceta, float fDuracionReceta) {
 		this.iIdReceta = iIdReceta;
 		this.fechaCreacionReceta = fechaCreacionReceta;
 		this.sTituloReceta = sTituloReceta;
 		this.sTextoReceta = sTextoReceta;
 		this.booEnREvision = booEnREvision;
 		this.usuario = usuario;
+		this.categoria = categoria;
 		this.shComensalesReceta = shComensalesReceta;
 		this.fDuracionReceta = fDuracionReceta;
 	}
@@ -95,6 +98,11 @@ public class Receta {
 		this.usuario = usuario;
 	}
 
+	public Categoria getCategoria() { return categoria; }
+
+	public void setCategoria(Categoria categoria){
+		this.categoria = categoria; }
+
 	public short getShComensalesReceta() {
 		return shComensalesReceta;
 	}
@@ -124,17 +132,4 @@ public class Receta {
 		return Objects.hash(iIdReceta, fechaCreacionReceta, sTituloReceta, sTextoReceta, booEnREvision, usuario, shComensalesReceta, fDuracionReceta);
 	}
 
-	@Override
-	public String toString() {
-		return "Receta{" +
-				"iIdReceta=" + iIdReceta +
-				", fechaCreacionReceta=" + fechaCreacionReceta +
-				", sTituloReceta='" + sTituloReceta + '\'' +
-				", sTextoReceta='" + sTextoReceta + '\'' +
-				", booEnREvision=" + booEnREvision +
-				", usuario=" + usuario +
-				", shComensalesReceta=" + shComensalesReceta +
-				", fDuracionReceta=" + fDuracionReceta +
-				'}';
-	}
 }

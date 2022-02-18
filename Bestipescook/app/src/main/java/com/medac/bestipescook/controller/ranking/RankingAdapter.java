@@ -1,4 +1,4 @@
-package com.medac.bestipescook.controller.recetas;
+package com.medac.bestipescook.controller.ranking;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,15 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.medac.bestipescook.R;
+import com.medac.bestipescook.controller.recetas.RecetaStore;
 import com.medac.bestipescook.logic.IHostingData;
 import com.squareup.picasso.Picasso;
 
-public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.ViewHolder> implements View.OnClickListener{
+public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHolder> implements View.OnClickListener{
 
     private Context context;
     private View.OnClickListener listener;
 
-    public RecetaAdapter(Context context) {
+    public RankingAdapter(Context context) {
         this.context = context;
     }
 
@@ -29,7 +30,7 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflated = LayoutInflater.from(context);
-        View view = inflated.inflate(R.layout.fragment_receta_item, parent, false);
+        View view = inflated.inflate(R.layout.fragment_ranking_item, parent, false);
         view.setOnClickListener(this);
         return new ViewHolder(view);
     }
@@ -44,10 +45,10 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.ViewHolder
 
         String sRutaUrl = IHostingData.sHosting + IHostingData.sRutaImagenes + RecetaStore.lstImagenes.get(position).getsRutaUrlImagen();
 
-        holder.lblRecetaTitulo.setText(sTituloReceta);
-        holder.rtBar.setRating(fRateStar);
+        holder.lblRecetaTituloRank.setText(sTituloReceta);
+        holder.rtBarRank.setRating(fRateStar);
         Log.d("Pruebas", String.valueOf(fRateStar));
-        Picasso.get().load(sRutaUrl).into(holder.ivReceta);
+        Picasso.get().load(sRutaUrl).into(holder.ivRecetaRank);
 
     }
 
@@ -69,16 +70,16 @@ public class RecetaAdapter extends RecyclerView.Adapter<RecetaAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView lblRecetaTitulo;
-        private ImageView ivReceta;
-        private RatingBar rtBar;
+        private TextView lblRecetaTituloRank;
+        private ImageView ivRecetaRank;
+        private RatingBar rtBarRank;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            lblRecetaTitulo = itemView.findViewById(R.id.lblRecetaTitulo);
-            ivReceta = itemView.findViewById(R.id.ivReceta);
-            rtBar = itemView.findViewById(R.id.rtBar);
+            lblRecetaTituloRank = itemView.findViewById(R.id.lblRecetaTituloRank);
+            ivRecetaRank = itemView.findViewById(R.id.ivRecetaRank);
+            rtBarRank = itemView.findViewById(R.id.rtBarRank);
         }
     }
 }

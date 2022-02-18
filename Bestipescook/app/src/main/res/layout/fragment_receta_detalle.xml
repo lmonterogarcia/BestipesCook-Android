@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintViewRecetaDetalle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_margin="16dp"
+    android:paddingTop="15dp"
+    tools:context=".controller.recetas.Receta_detalle">
+
+    <ScrollView
+        android:id="@+id/ScrollViewNoticiaDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/fargemntToBottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:id="@+id/lyRecetaPral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <LinearLayout
+                android:id="@+id/lyRecetaSuperior"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivUsuarioReceta"
+                    android:layout_width="37dp"
+                    android:layout_height="49dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    tools:src="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/lblNombreUsuarioReceta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center|start"
+                    android:text="nombreUsuario" />
+
+                <TextView
+                    android:id="@+id/lblTiempoReceta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|end"
+                    android:text="1h 30min" />
+
+                <TextView
+                    android:id="@+id/lblComensalesReceta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text=" - 4 comensales" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivPralReceta"
+                android:layout_width="match_parent"
+                android:layout_height="226dp"
+                android:layout_marginBottom="5dp"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <LinearLayout
+                android:id="@+id/lyEstrellasMeGustas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ESTRELLAS y ME GUSTA" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyInfoReceta"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblCategoriaReceta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="categoriaReceta" />
+
+                <TextView
+                    android:id="@+id/lblTituloReceta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="tituloReceta" />
+
+                <TextView
+                    android:id="@+id/lblDescripcionReceta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="false"
+                    android:text="Descripcion de la receta. pjnwefhjberfhjb erh ufb erhuofb uwerhob fowhuerb fghuowerb guobwerguob erguob egohuberob" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyIngredientesReceta"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp">
+
+                <TextView
+                    android:id="@+id/lblIngredientesRecetas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredientes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyPasos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="15dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyFechaEditarReceta"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lblFechaCreacionReceta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="TextView" />
+
+                <Button
+                    android:id="@+id/btnEditarReceta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="EDITAR" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,179 +1,199 @@
 package com.medac.bestipescook.model.usuario;
 
+import com.medac.bestipescook.model.Imagen;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Usuario {
 
-	// PK
-		private String sNombreUsuraio;
-		// NN
-		private LocalDateTime fechaCreacionUsuario;
-		private String sEmailUsuario, sPassUsuario;
-		private byte bGeneroUsuario;
-		private boolean booBaneadoUsuario, booENRevisionUsuario, booAdmin;
-		// N
-		private String sNombreCompletoUsuario, sCodigoPostalUsuario;
-		private LocalDate fechaNacimientoUsuario;
-		private int iPaisUsuario, imagenidImagen;
-		
-		public Usuario() {
-		}
+    // PK
+    private String sNombreUsuraio;
+    // NN
+    private LocalDateTime fechaCreacionUsuario;
+    private String sEmailUsuario, sPassUsuario;
+    private byte bGeneroUsuario;
+    private boolean booBaneadoUsuario, booENRevisionUsuario, booAdmin;
+    // N
+    private String sNombreCompletoUsuario, sCodigoPostalUsuario;
+    private LocalDate fechaNacimientoUsuario;
+    private int iPaisUsuario;
+    Imagen imagen ;
 
-		public Usuario(String sNombreUsuraio) {
-			this.sNombreUsuraio = sNombreUsuraio;
-		}
+    // ESTO NO  ES ASI.
+	private int imagenidImagen; // ESTO HAY SE SETEA EN IMAGEN, ARRIBA
 
-		public Usuario(String sNombreUsuraio, LocalDateTime fechaCreacionUsuario, String sEmailUsuario, String sPassUsuario,
-				byte bGeneroUsuario, boolean booBaneadoUsuario, boolean booENRevisionUsuario, boolean booAdmin) {
-			this.sNombreUsuraio = sNombreUsuraio;
-			this.fechaCreacionUsuario = fechaCreacionUsuario;
-			this.sEmailUsuario = sEmailUsuario;
-			this.sPassUsuario = sPassUsuario;
-			this.bGeneroUsuario = bGeneroUsuario;
-			this.booBaneadoUsuario = booBaneadoUsuario;
-			this.booENRevisionUsuario = booENRevisionUsuario;
-			this.booAdmin = booAdmin;
-		}
+    public Usuario() {
+    }
 
-		public Usuario(String sNombreUsuraio, LocalDateTime fechaCreacionUsuario, String sEmailUsuario, String sPassUsuario,
-				byte bGeneroUsuario, boolean booBaneadoUsuario, boolean booENRevisionUsuario, boolean booAdmin,
-				String sNombreCompletoUsuario, String sCodigoPostalUsuario, LocalDate fechaNacimientoUsuario,
-				int iPaisUsuario, int imagenidImagen) {
-			this.sNombreUsuraio = sNombreUsuraio;
-			this.fechaCreacionUsuario = fechaCreacionUsuario;
-			this.sEmailUsuario = sEmailUsuario;
-			this.sPassUsuario = sPassUsuario;
-			this.bGeneroUsuario = bGeneroUsuario;
-			this.booBaneadoUsuario = booBaneadoUsuario;
-			this.booENRevisionUsuario = booENRevisionUsuario;
-			this.booAdmin = booAdmin;
-			this.sNombreCompletoUsuario = sNombreCompletoUsuario;
-			this.sCodigoPostalUsuario = sCodigoPostalUsuario;
-			this.fechaNacimientoUsuario = fechaNacimientoUsuario;
-			this.iPaisUsuario = iPaisUsuario;
-			this.imagenidImagen = imagenidImagen;
-		}
+    public Usuario(String sNombreUsuraio) {
+        this.sNombreUsuraio = sNombreUsuraio;
+    }
 
-		public String getsNombreUsuraio() {
-			return sNombreUsuraio;
-		}
+    public Usuario(String sNombreUsuraio, String sRutaImagen) {
 
-		public void setsNombreUsuraio(String sNombreUsuraio) {
-			this.sNombreUsuraio = sNombreUsuraio;
-		}
+        this.sNombreUsuraio = sNombreUsuraio;
+        this.imagen = new Imagen(0, sRutaImagen);
+    }
 
-		public LocalDateTime getFechaCreacionUsuario() {
-			return fechaCreacionUsuario;
-		}
+    public Usuario(String sNombreUsuraio, LocalDateTime fechaCreacionUsuario, String sEmailUsuario, String sPassUsuario,
+                   byte bGeneroUsuario, boolean booBaneadoUsuario, boolean booENRevisionUsuario, boolean booAdmin) {
+        this.sNombreUsuraio = sNombreUsuraio;
+        this.fechaCreacionUsuario = fechaCreacionUsuario;
+        this.sEmailUsuario = sEmailUsuario;
+        this.sPassUsuario = sPassUsuario;
+        this.bGeneroUsuario = bGeneroUsuario;
+        this.booBaneadoUsuario = booBaneadoUsuario;
+        this.booENRevisionUsuario = booENRevisionUsuario;
+        this.booAdmin = booAdmin;
+    }
 
-		public void setFechaCreacionUsuario(LocalDateTime fechaCreacionUsuario) {
-			this.fechaCreacionUsuario = fechaCreacionUsuario;
-		}
+    public Usuario(String sNombreUsuraio, LocalDateTime fechaCreacionUsuario, String sEmailUsuario, String sPassUsuario,
+                   byte bGeneroUsuario, boolean booBaneadoUsuario, boolean booENRevisionUsuario, boolean booAdmin,
+                   String sNombreCompletoUsuario, String sCodigoPostalUsuario, LocalDate fechaNacimientoUsuario,
+                   int iPaisUsuario, int imagenidImagen) {
+        this.sNombreUsuraio = sNombreUsuraio;
+        this.fechaCreacionUsuario = fechaCreacionUsuario;
+        this.sEmailUsuario = sEmailUsuario;
+        this.sPassUsuario = sPassUsuario;
+        this.bGeneroUsuario = bGeneroUsuario;
+        this.booBaneadoUsuario = booBaneadoUsuario;
+        this.booENRevisionUsuario = booENRevisionUsuario;
+        this.booAdmin = booAdmin;
+        this.sNombreCompletoUsuario = sNombreCompletoUsuario;
+        this.sCodigoPostalUsuario = sCodigoPostalUsuario;
+        this.fechaNacimientoUsuario = fechaNacimientoUsuario;
+        this.iPaisUsuario = iPaisUsuario;
+        this.imagenidImagen = imagenidImagen;
+    }
 
-		public String getsEmailUsuario() {
-			return sEmailUsuario;
-		}
+    public String getsNombreUsuraio() {
+        return sNombreUsuraio;
+    }
 
-		public void setsEmailUsuario(String sEmailUsuario) {
-			this.sEmailUsuario = sEmailUsuario;
-		}
+    public void setsNombreUsuraio(String sNombreUsuraio) {
+        this.sNombreUsuraio = sNombreUsuraio;
+    }
 
-		public String getsPassUsuario() {
-			return sPassUsuario;
-		}
+    public LocalDateTime getFechaCreacionUsuario() {
+        return fechaCreacionUsuario;
+    }
 
-		public void setsPassUsuario(String sPassUsuario) {
-			this.sPassUsuario = sPassUsuario;
-		}
+    public void setFechaCreacionUsuario(LocalDateTime fechaCreacionUsuario) {
+        this.fechaCreacionUsuario = fechaCreacionUsuario;
+    }
 
-		public byte getbGeneroUsuario() {
-			return bGeneroUsuario;
-		}
+    public String getsEmailUsuario() {
+        return sEmailUsuario;
+    }
 
-		public void setbGeneroUsuario(byte bGeneroUsuario) {
-			this.bGeneroUsuario = bGeneroUsuario;
-		}
+    public void setsEmailUsuario(String sEmailUsuario) {
+        this.sEmailUsuario = sEmailUsuario;
+    }
 
-		public boolean isBooBaneadoUsuario() {
-			return booBaneadoUsuario;
-		}
+    public String getsPassUsuario() {
+        return sPassUsuario;
+    }
 
-		public void setBooBaneadoUsuario(boolean booBaneadoUsuario) {
-			this.booBaneadoUsuario = booBaneadoUsuario;
-		}
+    public void setsPassUsuario(String sPassUsuario) {
+        this.sPassUsuario = sPassUsuario;
+    }
 
-		public boolean isBooENRevisionUsuario() {
-			return booENRevisionUsuario;
-		}
+    public byte getbGeneroUsuario() {
+        return bGeneroUsuario;
+    }
 
-		public void setBooENRevisionUsuario(boolean booENRevisionUsuario) {
-			this.booENRevisionUsuario = booENRevisionUsuario;
-		}
+    public void setbGeneroUsuario(byte bGeneroUsuario) {
+        this.bGeneroUsuario = bGeneroUsuario;
+    }
 
-		public boolean isBooAdmin() {
-			return booAdmin;
-		}
+    public boolean isBooBaneadoUsuario() {
+        return booBaneadoUsuario;
+    }
 
-		public void setBooAdmin(boolean booAdmin) {
-			this.booAdmin = booAdmin;
-		}
+    public void setBooBaneadoUsuario(boolean booBaneadoUsuario) {
+        this.booBaneadoUsuario = booBaneadoUsuario;
+    }
 
-		public String getsNombreCompletoUsuario() {
-			return sNombreCompletoUsuario;
-		}
+    public boolean isBooENRevisionUsuario() {
+        return booENRevisionUsuario;
+    }
 
-		public void setsNombreCompletoUsuario(String sNombreCompletoUsuario) {
-			this.sNombreCompletoUsuario = sNombreCompletoUsuario;
-		}
+    public void setBooENRevisionUsuario(boolean booENRevisionUsuario) {
+        this.booENRevisionUsuario = booENRevisionUsuario;
+    }
 
-		public String getsCodigoPostalUsuario() {
-			return sCodigoPostalUsuario;
-		}
+    public boolean isBooAdmin() {
+        return booAdmin;
+    }
 
-		public void setsCodigoPostalUsuario(String sCodigoPostalUsuario) {
-			this.sCodigoPostalUsuario = sCodigoPostalUsuario;
-		}
+    public void setBooAdmin(boolean booAdmin) {
+        this.booAdmin = booAdmin;
+    }
 
-		public LocalDate getFechaNacimientoUsuario() {
-			return fechaNacimientoUsuario;
-		}
+    public String getsNombreCompletoUsuario() {
+        return sNombreCompletoUsuario;
+    }
 
-		public void setFechaNacimientoUsuario(LocalDate fechaNacimientoUsuario) {
-			this.fechaNacimientoUsuario = fechaNacimientoUsuario;
-		}
+    public void setsNombreCompletoUsuario(String sNombreCompletoUsuario) {
+        this.sNombreCompletoUsuario = sNombreCompletoUsuario;
+    }
 
-		public int getiPaisUsuario() {
-			return iPaisUsuario;
-		}
+    public String getsCodigoPostalUsuario() {
+        return sCodigoPostalUsuario;
+    }
 
-		public void setiPaisUsuario(int iPaisUsuario) {
-			this.iPaisUsuario = iPaisUsuario;
-		}
+    public void setsCodigoPostalUsuario(String sCodigoPostalUsuario) {
+        this.sCodigoPostalUsuario = sCodigoPostalUsuario;
+    }
 
-		public int getImagenidImagen() {
-			return imagenidImagen;
-		}
+    public LocalDate getFechaNacimientoUsuario() {
+        return fechaNacimientoUsuario;
+    }
 
-		public void setImagenidImagen(int imagenidImagen) {
-			this.imagenidImagen = imagenidImagen;
-		}
+    public void setFechaNacimientoUsuario(LocalDate fechaNacimientoUsuario) {
+        this.fechaNacimientoUsuario = fechaNacimientoUsuario;
+    }
 
-		@Override
-		public int hashCode() {
-			return Objects.hash(sNombreUsuraio);
-		}
+    public int getiPaisUsuario() {
+        return iPaisUsuario;
+    }
 
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Usuario other = (Usuario) obj;
-			return Objects.equals(sNombreUsuraio, other.sNombreUsuraio);
-		}
+    public void setiPaisUsuario(int iPaisUsuario) {
+        this.iPaisUsuario = iPaisUsuario;
+    }
+
+    public int getImagenidImagen() {
+        return imagenidImagen;
+    }
+
+    public void setImagenidImagen(int imagenidImagen) {
+        this.imagenidImagen = imagenidImagen;
+    }
+
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sNombreUsuraio);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Usuario other = (Usuario) obj;
+        return Objects.equals(sNombreUsuraio, other.sNombreUsuraio);
+    }
 }

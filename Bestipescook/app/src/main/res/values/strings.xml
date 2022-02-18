@@ -13,6 +13,12 @@
     <string name="texto_parrafo">Texto</string>
     <string name="texto_fecha_reto">Finaliza:</string>
     <string name="texto_fecha_reto_detalle">Válido hasta</string>
+    <string name="con_mas_me_gusta">♥ Top Likes</string>
+    <string name="mas_valoradas">⭐ Top Rate</string>
+    <string name="buscar">Buscar</string>
+    <string name="filtrar_por_ingrediente">Filtrar por ingrediente</string>
+    <string name="filtrar">🔎</string>
+    <string name="editar">  ✏️</string>
 
     <string-array name="Paises">
         <item>España</item>

@@ -11,10 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.medac.bestipescook.R;
+
 import com.medac.bestipescook.logic.RecetaCrud;
 
 
@@ -60,6 +59,7 @@ public class frRecetas extends Fragment {
 
         RecetaStore.lstRecetas.clear();
         RecetaStore.lstImagenes.clear();
+        RecetaStore.lstPuntuacion.clear();
         RecetaCrud.getAllRecetas(getContext());
         mostrarRecetas();
     }
@@ -68,6 +68,7 @@ public class frRecetas extends Fragment {
 
         RecetaStore.lstRecetas.clear();
         RecetaStore.lstImagenes.clear();
+        RecetaStore.lstPuntuacion.clear();
         RecetaCrud.getAllRecetasSearch(getContext());
         mostrarRecetas();
     }
@@ -85,7 +86,7 @@ public class frRecetas extends Fragment {
             Receta_detalle nextFrag= new Receta_detalle();
             if (!nextFrag.isAdded()){
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_container, nextFrag, "findThisFragment")
+                        .replace(R.id.frame_container, nextFrag, "receta")
                         .addToBackStack(null)
                         .commit();
             }

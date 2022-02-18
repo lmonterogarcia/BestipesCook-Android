@@ -1,5 +1,6 @@
 package com.medac.bestipescook.logic;
 
+
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -11,13 +12,12 @@ import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.medac.bestipescook.controller.ranking.RankingStore;
 import com.medac.bestipescook.controller.recetas.RecetaStore;
 import com.medac.bestipescook.controller.recetas.frRecetas;
 import com.medac.bestipescook.model.IConstantes;
 import com.medac.bestipescook.model.Imagen;
 import com.medac.bestipescook.model.categoria.Categoria;
-import com.medac.bestipescook.model.receta.Ingrediente;
-import com.medac.bestipescook.model.receta.IngredienteReceta;
 import com.medac.bestipescook.model.receta.Receta;
 import com.medac.bestipescook.model.usuario.Usuario;
 import com.medac.bestipescook.model.usuario.UsuarioRecetaEstrella;
@@ -25,10 +25,12 @@ import com.medac.bestipescook.model.usuario.UsuarioRecetaEstrella;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RecetaCrud implements IHostingData, IConstantes {
+public class RankingCrud implements IHostingData, IConstantes {
+
 
     public static void getAllRecetas(Context context) {
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -49,7 +51,7 @@ public class RecetaCrud implements IHostingData, IConstantes {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
                             e.printStackTrace();
                         }
-                        rellenarLstRecetas(lstObjetos);
+                        rellenarLstRecetas(context, lstObjetos);
                     }
                 }, error -> {
             Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
@@ -59,6 +61,7 @@ public class RecetaCrud implements IHostingData, IConstantes {
         // Add the request to the RequestQueue.
             queue.add(stringRequest);
             queue.start();
+
     }
 
     public static void getAllRecetasSearch(Context context) {
@@ -80,7 +83,7 @@ public class RecetaCrud implements IHostingData, IConstantes {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
                             e.printStackTrace();
                         }
-                        rellenarLstRecetas(lstObjetos);
+                        rellenarLstRecetas(context, lstObjetos);
                     }
                 }, error -> {
             Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
@@ -90,83 +93,12 @@ public class RecetaCrud implements IHostingData, IConstantes {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
         queue.start();
+
     }
 
-    public static void getIngredientes(Context context, int iIdReceta, final VolleyCallBack callBack){
+    public static void getAllCategorias(Context context,  final VolleyCallBack callBack) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sGetIngredientes + iIdReceta;
-
-        // Request a string Para conseguir todas las recetas.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                s -> {
-                    if(s.equals("null")) {
-                        Toast.makeText(context, "Error leer los ingredientes",Toast.LENGTH_LONG).show();
-                    } else {
-                        ObjectMapper mapper = new ObjectMapper();
-                        List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
-                        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-                        try {
-                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
-                        } catch (IOException e) {
-                            Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
-                            e.printStackTrace();
-                        }
-                        rellenarLstIngredientes(lstObjetos, callBack);
-                    }
-                }, error -> {
-            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
-            Log.d("Bestipes" , error.toString());
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-        queue.start();
-    }
-
-    private static void rellenarLstIngredientes(List<Map<String, Object>> lstObjetos, VolleyCallBack callBack) {
-        RecetaStore.lstIngredientes.clear();
-        lstObjetos.forEach(i ->{
-            RecetaStore.lstIngredientes.add(new IngredienteReceta(
-                    //Receta oReceta, Ingrediente oIngrediente, int iCantidadIngrediente, int iMedida
-                    new Receta(Integer.parseInt(i.get("idReceta").toString())),
-                    new Ingrediente(Integer.parseInt(i.get("idIngrediente").toString()), i.get("nombreIngrediente").toString()),
-                    Integer.parseInt(i.get("cantidadIngrediente").toString()),
-                            Integer.parseInt(i.get("cantidadIngrediente").toString())
-            ));
-        });
-        callBack.onSuccess();
-    }
-
-    private static void rellenarLstRecetas(List<Map<String, Object>> lstObjetos) {
-        lstObjetos.forEach(n ->{
-            aniadirReceta(n);
-        });
-    }
-
-    private static void aniadirReceta(Map<String, Object> receta) {
-
-        RecetaStore.aniadirReceta( new Receta(
-                Integer.parseInt(receta.get("idReceta").toString()),
-                LocalDateTime.parse(receta.get("fechaCreacionReceta").toString(), IConstantes.dateTimeformatterFromDB),
-                receta.get("tituloReceta").toString(),
-                receta.get("textoReceta").toString(),
-                Boolean.parseBoolean(receta.get("enRevision").toString()),
-                new Usuario(receta.get("usuarionombreUsuario").toString(), receta.get("rutaImgUsuario").toString()),
-                new Categoria(Integer.parseInt(receta.get("idCategoria").toString()),receta.get("nombreCategoria").toString()),
-                Short.parseShort(receta.get("comensalesReceta").toString()),
-                Float.parseFloat(receta.get("duracionReceta").toString())),
-
-                (new Imagen(
-                        Integer.parseInt(String.valueOf(receta.get("idImagen"))),
-                        LocalDateTime.parse(String.valueOf(receta.get("fechaCreacionImagen")),
-                                IConstantes.dateTimeformatterFromDB),String.valueOf(receta.get("rutaRelativaImagen")))),
-
-                Float.parseFloat(receta.get("puntuacionMedia").toString()));
-    }
-
-    public static void getAllCategorias(Context context) {
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstRecetas;
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstCategorias;
 
         // Request a string Para conseguir todas las recetas.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -183,7 +115,8 @@ public class RecetaCrud implements IHostingData, IConstantes {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
                             e.printStackTrace();
                         }
-                        rellenarLstRecetas(lstObjetos);
+                        rellenarLstCategorias(context, lstObjetos);
+                        callBack.onSuccess();
                     }
                 }, error -> {
             Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
@@ -193,5 +126,50 @@ public class RecetaCrud implements IHostingData, IConstantes {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
         queue.start();
+
+    }
+
+    private static void rellenarLstRecetas(Context context, List<Map<String, Object>> lstObjetos) {
+        lstObjetos.forEach(n ->{
+            aniadirReceta(n);
+        });
+    }
+
+    private static void rellenarLstCategorias(Context context, List<Map<String, Object>> lstObjetos) {
+        RankingStore.lstCategorias = new ArrayList<String>();
+        lstObjetos.forEach(n ->{
+            aniadirCategoria(n);
+        });
+    }
+
+    private static void aniadirReceta(Map<String, Object> receta) {
+
+        RecetaStore.aniadirRecetaRank( new Receta(
+                        Integer.parseInt(receta.get("idReceta").toString()),
+                        LocalDateTime.parse(receta.get("fechaCreacionReceta").toString(), IConstantes.dateTimeformatterFromDB),
+                        receta.get("tituloReceta").toString(),
+                        receta.get("textoReceta").toString(),
+                        Boolean.parseBoolean(receta.get("enRevision").toString()),
+                        new Usuario(receta.get("usuarionombreUsuario").toString(), receta.get("rutaImgUsuario").toString()),
+                        new Categoria(Integer.parseInt(receta.get("idCategoria").toString()),receta.get("nombreCategoria").toString()),
+                        Short.parseShort(receta.get("comensalesReceta").toString()),
+                        Float.parseFloat(receta.get("duracionReceta").toString())),
+                        
+
+                new Imagen(
+                        Integer.parseInt(String.valueOf(receta.get("idImagen"))),
+                        LocalDateTime.parse(String.valueOf(receta.get("fechaCreacionImagen")),
+                                IConstantes.dateTimeformatterFromDB),String.valueOf(receta.get("rutaRelativaImagen"))),
+
+                 Float.parseFloat(receta.get("puntuacionMedia").toString()));
+    }
+
+    private static void aniadirCategoria(Map<String, Object> categoria) {
+        //Rellenar el arrayList de categorias para el ranking
+        for(Map.Entry<String, Object> entry : categoria.entrySet()) {
+            if(entry.getKey().equals("nombreCategoria")){
+                RankingStore.lstCategorias.add(entry.getValue().toString());
+            }
+        }
     }
 }
