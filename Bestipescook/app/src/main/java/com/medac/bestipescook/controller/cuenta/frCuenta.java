@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public class frCuenta extends Fragment {
     private View v;
-    private Spinner spinerCategoria;
+    //private Spinner spinerCategoria;
     public static CuentaAdapter adaptador;
     boolean toogle = false;
     public frCuenta() {
@@ -52,7 +52,7 @@ public class frCuenta extends Fragment {
                              Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.fragment_cuenta, container, false);
-        spinerCategoria = v.findViewById(R.id.spinner);
+        //spinerCategoria = v.findViewById(R.id.spinner);
 
         if(CuentaCrud.preferencias == null) {
             frLogIn nextFrag = new frLogIn();
@@ -63,7 +63,7 @@ public class frCuenta extends Fragment {
                         .commit();
             }
         }else{
-            RankingCrud.getAllCategorias(getContext(),() -> cargarCategorias());
+            //RankingCrud.getAllCategorias(getContext(),() -> cargarCategorias());
         }
 
         v.findViewById(R.id.btnEdit).setOnClickListener(e ->{
@@ -75,7 +75,7 @@ public class frCuenta extends Fragment {
                         .commit();
             }
         });
-
+/*
         spinerCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
@@ -89,20 +89,35 @@ public class frCuenta extends Fragment {
             }
         });
 
+ */
+
         v.findViewById(R.id.btnMyReceta).setOnClickListener(e -> {
-            Log.d("prueba8","entra aqui");
             cargarRecetas();
+        });
+
+        v.findViewById(R.id.btnFavorita).setOnClickListener(e -> {
+            cargarRecetasFavoritas();
         });
 
         return v;
     }
 
+    private void cargarRecetasFavoritas() {
+        if(toogle) {
+            toogle=false;
+        }else{
+            toogle = true;
+        }
+    }
+/*
     private void cargarCategorias()  {
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, RankingStore.lstCategorias);
         spinnerArrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 
         spinerCategoria.setAdapter(spinnerArrayAdapter);
     }
+
+ */
 
     private void cargarRecetas()  {
         if(!toogle) {
