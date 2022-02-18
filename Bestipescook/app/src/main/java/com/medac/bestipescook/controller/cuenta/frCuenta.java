@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.google.android.material.button.MaterialButton;
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.noticias.Noticia_detalle;
 import com.medac.bestipescook.controller.ranking.RankingStore;
@@ -35,7 +36,8 @@ public class frCuenta extends Fragment {
     private View v;
     //private Spinner spinerCategoria;
     public static CuentaAdapter adaptador;
-    boolean toogle = false;
+    boolean toogleMisRecetas = false;
+    boolean toogleMegusta = false;
     public frCuenta() {
 
     }
@@ -96,18 +98,10 @@ public class frCuenta extends Fragment {
         });
 
         v.findViewById(R.id.btnFavorita).setOnClickListener(e -> {
-            cargarRecetasFavoritas();
+            cargarRecetasMegusta();
         });
 
         return v;
-    }
-
-    private void cargarRecetasFavoritas() {
-        if(toogle) {
-            toogle=false;
-        }else{
-            toogle = true;
-        }
     }
 /*
     private void cargarCategorias()  {
@@ -119,21 +113,39 @@ public class frCuenta extends Fragment {
 
  */
 
-    private void cargarRecetas()  {
-        if(!toogle) {
+    private void cargarRecetasMegusta() {
+        if(!toogleMegusta) {
             CuentaRecetaStore.lstRecetas.clear();
             CuentaRecetaStore.lstImagenes.clear();
             CuentaRecetaStore.lstPuntuacion.clear();
-            CuentaCrud.getAllRecetas(getContext());
+            CuentaCrud.getAllRecetasMegusta(getContext());
             mostrarRecetas();
-            toogle=true;
-            Log.d("prueba8",CuentaRecetaStore.lstRecetas.toString());
+            toogleMegusta=true;
+            toogleMisRecetas=false;
         }else{
             CuentaRecetaStore.lstRecetas.clear();
             CuentaRecetaStore.lstImagenes.clear();
             CuentaRecetaStore.lstPuntuacion.clear();
             mostrarRecetas();
-            toogle = false;
+            toogleMegusta = false;
+        }
+    }
+
+    private void cargarRecetas()  {
+        if(!toogleMisRecetas) {
+            CuentaRecetaStore.lstRecetas.clear();
+            CuentaRecetaStore.lstImagenes.clear();
+            CuentaRecetaStore.lstPuntuacion.clear();
+            CuentaCrud.getAllRecetas(getContext());
+            mostrarRecetas();
+            toogleMisRecetas=true;
+            toogleMegusta = false;
+        }else{
+            CuentaRecetaStore.lstRecetas.clear();
+            CuentaRecetaStore.lstImagenes.clear();
+            CuentaRecetaStore.lstPuntuacion.clear();
+            mostrarRecetas();
+            toogleMisRecetas = false;
         }
     }
 
@@ -146,7 +158,7 @@ public class frCuenta extends Fragment {
 
         adaptador.setOnClickListener(v -> {
             CuentaRecetaStore.iRecetaSeleccionada = rvRecetas.getChildAdapterPosition(v);
-            Receta_detalle nextFrag= new Receta_detalle();
+            CuentaRecetaDetalle nextFrag= new CuentaRecetaDetalle();
             if (!nextFrag.isAdded()){
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_container, nextFrag, "findThisFragment")
@@ -154,17 +166,6 @@ public class frCuenta extends Fragment {
                         .commit();
             }
         });
-    }
-
-    private void cargarRecetas(String sCategoria)  {
-        if(toogle) {
-            CuentaRecetaStore.lstRecetas.clear();
-            CuentaRecetaStore.lstImagenes.clear();
-            CuentaRecetaStore.lstPuntuacion.clear();
-            CuentaCrud.getAllRecetas(getContext());
-            filtrarCategoria(sCategoria);
-            mostrarRecetas();
-        }
     }
 
     private void filtrarCategoria(String sCategoria) {

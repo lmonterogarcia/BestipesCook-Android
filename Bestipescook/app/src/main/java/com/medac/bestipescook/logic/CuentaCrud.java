@@ -138,6 +138,12 @@ public class CuentaCrud implements IHostingData, IConstantes{
             });
         }
 
+    private static void rellenarLstRecetasMegusta(Context context, List<Map<String, Object>> lstObjetos) {
+        lstObjetos.forEach(n ->{
+            aniadirRecetaMegusta(n);
+        });
+    }
+
         private static void aniadirReceta(Map<String, Object> receta) {
 
             if(receta.get("usuarionombreUsuario").toString().equals(preferencias.getString("usuario",""))){
@@ -161,6 +167,29 @@ public class CuentaCrud implements IHostingData, IConstantes{
             }
         }
 
+    private static void aniadirRecetaMegusta(Map<String, Object> receta) {
+
+        if(receta.get("usuarioMeGusta").toString().equals(preferencias.getString("usuario",""))){
+            CuentaRecetaStore.aniadirReceta( new Receta(
+                            Integer.parseInt(receta.get("idReceta").toString()),
+                            LocalDateTime.parse(receta.get("fechaCreacionReceta").toString(), IConstantes.dateTimeformatterFromDB),
+                            receta.get("tituloReceta").toString(),
+                            receta.get("textoReceta").toString(),
+                            Boolean.parseBoolean(receta.get("enRevision").toString()),
+                            new Usuario(receta.get("usuarionombreUsuario").toString(), receta.get("rutaImgUsuario").toString()),
+                            new Categoria(Integer.parseInt(receta.get("idCategoria").toString()),receta.get("nombreCategoria").toString()),
+                            Short.parseShort(receta.get("comensalesReceta").toString()),
+                            Float.parseFloat(receta.get("duracionReceta").toString())),
+
+                    (new Imagen(
+                            Integer.parseInt(String.valueOf(receta.get("idImagen"))),
+                            LocalDateTime.parse(String.valueOf(receta.get("fechaCreacionImagen")),
+                                    IConstantes.dateTimeformatterFromDB),String.valueOf(receta.get("rutaRelativaImagen")))),
+
+                    Float.parseFloat(receta.get("puntuacionMedia").toString()));
+        }
+    }
+
     public static void getAllRecetas(Context context) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstRecetas;
@@ -181,6 +210,36 @@ public class CuentaCrud implements IHostingData, IConstantes{
                             e.printStackTrace();
                         }
                         rellenarLstRecetas(context, lstObjetos);
+                    }
+                }, error -> {
+            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
+            Log.d("Bestipes" , error.toString());
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        queue.start();
+    }
+
+    public static void getAllRecetasMegusta(Context context) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstRecetasMeGusta;
+        // Request a string Para conseguir todas las recetas.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if(s.equals("null")) {
+                        Toast.makeText(context, "No hay recetas disponibles en este momento",Toast.LENGTH_LONG).show();
+                    } else {
+                        ObjectMapper mapper = new ObjectMapper();
+                        List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
+                        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+                        try {
+                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                        } catch (IOException e) {
+                            Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
+                            e.printStackTrace();
+                        }
+                        rellenarLstRecetasMegusta(context, lstObjetos);
                     }
                 }, error -> {
             Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
