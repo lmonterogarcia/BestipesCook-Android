@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public class CuentaRecetaStore {
     public static ArrayList<Receta> lstRecetas = new ArrayList<Receta>();
-    public static ArrayList<UsuarioRecetaEstrella> lstPuntuacion = new ArrayList<UsuarioRecetaEstrella>();
+    public static ArrayList<Float> lstPuntuacion = new ArrayList<Float>();
     public static ArrayList<Imagen> lstImagenes = new ArrayList<Imagen>();
     public static int iRecetaSeleccionada;
 
-    public static void aniadirReceta(Receta receta, Imagen imagen, UsuarioRecetaEstrella starRate){
+    public static void aniadirReceta(Receta receta, Imagen imagen, Float starRate){
         if (lstRecetas.size() > 1) {
             int iPosicion = 0;
             boolean recetaAniadida = false;

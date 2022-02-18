@@ -17,6 +17,7 @@ import com.medac.bestipescook.controller.cuenta.CuentaRecetaStore;
 import com.medac.bestipescook.controller.recetas.RecetaStore;
 import com.medac.bestipescook.model.IConstantes;
 import com.medac.bestipescook.model.Imagen;
+import com.medac.bestipescook.model.categoria.Categoria;
 import com.medac.bestipescook.model.receta.Receta;
 import com.medac.bestipescook.model.usuario.Usuario;
 import com.medac.bestipescook.model.usuario.UsuarioRecetaEstrella;
@@ -146,7 +147,8 @@ public class CuentaCrud implements IHostingData, IConstantes{
                                 receta.get("tituloReceta").toString(),
                                 receta.get("textoReceta").toString(),
                                 Boolean.parseBoolean(receta.get("enRevision").toString()),
-                                new Usuario(receta.get("usuarionombreUsuario").toString()),
+                                new Usuario(receta.get("usuarionombreUsuario").toString(), receta.get("rutaImgUsuario").toString()),
+                                new Categoria(Integer.parseInt(receta.get("idCategoria").toString()),receta.get("nombreCategoria").toString()),
                                 Short.parseShort(receta.get("comensalesReceta").toString()),
                                 Float.parseFloat(receta.get("duracionReceta").toString())),
 
@@ -155,9 +157,7 @@ public class CuentaCrud implements IHostingData, IConstantes{
                                 LocalDateTime.parse(String.valueOf(receta.get("fechaCreacionImagen")),
                                         IConstantes.dateTimeformatterFromDB),String.valueOf(receta.get("rutaRelativaImagen")))),
 
-                        (new UsuarioRecetaEstrella(
-                                Integer.parseInt(receta.get("idReceta").toString()), Float.parseFloat(receta.get("puntuacionMedia").toString())))
-                );
+                        Float.parseFloat(receta.get("puntuacionMedia").toString()));
             }
         }
 
