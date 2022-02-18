@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.medac.bestipescook.controller.ranking.RankingStore;
+import com.medac.bestipescook.controller.ranking.frRanking;
 import com.medac.bestipescook.controller.recetas.RecetaStore;
 import com.medac.bestipescook.controller.recetas.frRecetas;
 import com.medac.bestipescook.model.IConstantes;
@@ -66,7 +67,7 @@ public class RankingCrud implements IHostingData, IConstantes {
 
     public static void getAllRecetasSearch(Context context) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstRecetasSearch + frRecetas.query;
+        String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sLstRanking + frRanking.query + IHostingData.sLstRanking2 + frRanking.query2;
 
         // Request a string Para conseguir todas las recetas.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,

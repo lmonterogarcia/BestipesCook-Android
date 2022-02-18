@@ -1,7 +1,5 @@
 package com.medac.bestipescook.controller.cuenta;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -9,15 +7,12 @@ import android.os.Bundle;
 
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,7 +21,6 @@ import com.google.android.material.button.MaterialButton;
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.ClienteFTP;
 import com.medac.bestipescook.controller.ImgPicker;
-import com.medac.bestipescook.controller.ImgPicker2;
 import com.medac.bestipescook.logic.CuentaCrud;
 import com.medac.bestipescook.logic.ImagenCrud;
 import com.medac.bestipescook.model.usuario.Usuario;
@@ -34,11 +28,8 @@ import com.medac.bestipescook.model.usuario.Usuario;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 
 import android.widget.ImageView;
-
-import org.w3c.dom.Text;
 
 public class frEditarPerfil extends Fragment {
     private static final int IMAGE_PICKER_SELECT = 0;
@@ -88,11 +79,11 @@ public class frEditarPerfil extends Fragment {
                     btn_Otro.setChecked(true);
                     break;
                 case 1:
-                    MaterialButton btn_Hombre = v.findViewById(R.id.btnHombre);
+                    MaterialButton btn_Hombre = v.findViewById(R.id.btnLikes);
                     btn_Hombre.setChecked(true);
                     break;
                 case 2:
-                    MaterialButton btn_Mujer = v.findViewById(R.id.btnMujer);
+                    MaterialButton btn_Mujer = v.findViewById(R.id.btnEstrellas);
                     btn_Mujer.setChecked(true);
                     break;
             }
@@ -116,11 +107,11 @@ public class frEditarPerfil extends Fragment {
             startActivity(intent);
         });
 
-        v.findViewById(R.id.btnHombre).setOnClickListener(e -> {
+        v.findViewById(R.id.btnLikes).setOnClickListener(e -> {
             bGenero = 1;
         });
 
-        v.findViewById(R.id.btnMujer).setOnClickListener(e -> {
+        v.findViewById(R.id.btnEstrellas).setOnClickListener(e -> {
             bGenero = 2;
         });
 

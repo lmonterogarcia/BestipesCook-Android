@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.medac.bestipescook.R;
@@ -23,7 +26,10 @@ public class frRanking extends Fragment {
     private View v;
     public static RankingAdapter adaptador;
     private Spinner spinerCategoriaLugar;
+    private Button btnMegusta;
+    private Button btnEstrellas;
     public static String query;
+    public static String query2;
 
 
     public frRanking() {
@@ -41,9 +47,27 @@ public class frRanking extends Fragment {
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_ranking, container, false);
        spinerCategoriaLugar = v.findViewById(R.id.spCategoria);
+       btnEstrellas = v.findViewById(R.id.btnLikes);
+       btnMegusta = v.findViewById(R.id.btnEstrellas);
 
         cargarRecetas();
         //cargarCategorias();
+
+        v.findViewById(R.id.btnRankingSrch).setOnClickListener(e -> {
+
+            if (btnMegusta.isActivated()){
+                query = spinerCategoriaLugar.getSelectedItem().toString();;
+                query2 = "megusta";
+                Log.d("Pruebas", query);
+                cargarRecetasSearch();
+            }else{
+                query = spinerCategoriaLugar.getSelectedItem().toString();;
+                query2 = "puntuacionMedia";
+                Log.d("Pruebas", query);
+                cargarRecetasSearch();
+            }
+
+        });
 
         return v;
     }
@@ -64,6 +88,15 @@ public class frRanking extends Fragment {
         RecetaStore.lstImagenes.clear();
         RecetaStore.lstPuntuacion.clear();
         RankingCrud.getAllRecetas(getContext());
+        RankingCrud.getAllCategorias(getContext(),() -> cargarCategorias());
+        mostrarRecetas();
+    }
+
+    private void cargarRecetasSearch()  {
+        RecetaStore.lstRecetas.clear();
+        RecetaStore.lstImagenes.clear();
+        RecetaStore.lstPuntuacion.clear();
+        RankingCrud.getAllRecetasSearch(getContext());
         RankingCrud.getAllCategorias(getContext(),() -> cargarCategorias());
         mostrarRecetas();
     }

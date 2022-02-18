@@ -121,7 +121,7 @@
                 app:singleSelection="true">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnHombre"
+                    android:id="@+id/btnLikes"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
                     android:textSize="18sp" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnMujer"
+                    android:id="@+id/btnEstrellas"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
