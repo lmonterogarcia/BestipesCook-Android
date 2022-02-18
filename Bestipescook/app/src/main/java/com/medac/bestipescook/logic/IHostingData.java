@@ -30,6 +30,10 @@ public interface IHostingData {
     // RANKING
 
     public final String sLstCategorias = "ranking/lst-categorias.php";
+
+    public final String sLstRanking = "ranking/lst-rankingFiltrado.php?txtNombreCategoria=";
+    public final String sLstRanking2 = "&?OpcionFiltrar=";
+
     // USUARIO
     public final String sGetUsuario = "usuario/get-usuario.php";
     public final String sInsertUsuario = "usuario/insert-usuario.php";
