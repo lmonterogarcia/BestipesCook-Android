@@ -12,34 +12,35 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCuenta"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="75dp"
             android:layout_marginBottom="@dimen/fargemntToBottom"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnEdit"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:rotation="90"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="50dp"
             android:text="@string/editar"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:strokeColor="#00FFFFFF" />
 
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/toggleButtonGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -62,17 +63,6 @@
                 android:textSize="18sp" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toggleButtonGroup"
-            tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
