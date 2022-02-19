@@ -20,7 +20,7 @@ public class RecetaStore {
     public static ArrayList<IngredienteReceta> lstIngredientes = new ArrayList<IngredienteReceta>();
     public static ArrayList<Paso> lstPasos = new ArrayList<Paso>();
     public static int iRecetaSeleccionada;
-    public static int iRecetaPasoSeleccionada;
+    public static boolean booMeGusta;
 
     /**
      * @param receta

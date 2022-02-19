@@ -79,7 +79,7 @@ public class frEditarPerfil extends Fragment {
                     btn_Otro.setChecked(true);
                     break;
                 case 1:
-                    MaterialButton btn_Hombre = v.findViewById(R.id.btnLikes);
+                    MaterialButton btn_Hombre = v.findViewById(R.id.btnLikesRecetaDetalle);
                     btn_Hombre.setChecked(true);
                     break;
                 case 2:
@@ -107,7 +107,7 @@ public class frEditarPerfil extends Fragment {
             startActivity(intent);
         });
 
-        v.findViewById(R.id.btnLikes).setOnClickListener(e -> {
+        v.findViewById(R.id.btnLikesRecetaDetalle).setOnClickListener(e -> {
             bGenero = 1;
         });
 

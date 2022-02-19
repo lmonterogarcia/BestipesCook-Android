@@ -121,7 +121,7 @@
                 app:singleSelection="true">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnLikes"
+                    android:id="@+id/btnLikesRecetaDetalle"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

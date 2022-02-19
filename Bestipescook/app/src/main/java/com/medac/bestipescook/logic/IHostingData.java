@@ -19,21 +19,18 @@ public interface IHostingData {
     // RECETA
     public final String sLstRecetas = "receta/lst-recetas.php";
     public final String sLstRecetasMeGusta = "receta/lst-recetas-megusta-byUser.php";
-
     public final String sLstRecetasSearch = "receta/lst-recetasSearch.php?txtNombreIngrediente=";
-
     public final String sGetRecetaImagen = "receta/get-imagenIdReceta.php?txtIdReceta=";
-
     public final String sGetStarRate = "receta/get-puntuacionestrella.php?txtIdReceta=";
-
     public final String sGetIngredientes = "receta/get-receta-ingrediente.php?txtIdReceta=";
-
     public final String sGetPasos = "receta/get-receta-paso.php?txtIdReceta=";
+    public final String sGetMeGusta = "receta/get-megusta.php?txtIdReceta=";
+    public final String sInsMeGusta = "receta/ins-megusta.php?txtIdReceta=";
+    public final String sDelMeGusta = "receta/del-megusta.php?txtIdReceta=";
+    public final String sUsuario = "&txtNombreUsuario=";
 
     // RANKING
-
     public final String sLstCategorias = "ranking/lst-categorias.php";
-
     public final String sLstRanking = "ranking/lst-rankingFiltrado.php?txtNombreCategoria=";
     public final String sLstRanking2 = "&?OpcionFiltrar=";
 

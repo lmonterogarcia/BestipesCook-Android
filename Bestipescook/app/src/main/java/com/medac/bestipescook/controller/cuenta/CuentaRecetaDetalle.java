@@ -6,12 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.cuenta.CuentaRecetaStore;
+import com.medac.bestipescook.controller.recetas.RecetaPasosAdapter;
 import com.medac.bestipescook.controller.recetas.RecetaStore;
 import com.medac.bestipescook.logic.IHostingData;
 import com.medac.bestipescook.logic.RecetaCrud;
@@ -22,6 +26,7 @@ import com.squareup.picasso.Picasso;
 public class CuentaRecetaDetalle extends Fragment implements IConstantes, IIngredienteReceta {
 
     private View v;
+    public static RecetaPasosAdapter adaptador;
 
     private ImageView imgUsuarioReceta;
     private TextView sNombreUsuario;
@@ -34,6 +39,7 @@ public class CuentaRecetaDetalle extends Fragment implements IConstantes, IIngre
     private TextView sIngredienteReceta;
     private TextView sFechaCreacionReceta;
     private Button btnEditar;
+    private RatingBar rbRecetaDetalle;
 
     public CuentaRecetaDetalle() {
         // Required empty public constructor
@@ -63,19 +69,21 @@ public class CuentaRecetaDetalle extends Fragment implements IConstantes, IIngre
         sIngredienteReceta = v.findViewById(R.id.lblIngredientesRecetas);
         sFechaCreacionReceta = v.findViewById(R.id.lblFechaCreacionReceta);
         btnEditar = v.findViewById(R.id.btnEditarReceta);
+        rbRecetaDetalle = v.findViewById(R.id.rbRecetaDetalle);
 
         Picasso.get().load(IHostingData.sHosting + IHostingData.sRutaImagenes + CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getUsuario().getImagen().getsRutaUrlImagen()).into(imgUsuarioReceta);
         sNombreUsuario.setText(CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getUsuario().getsNombreUsuraio());
         sTiempo.setText(calcularTiempoString(CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getfDuracionReceta()));
         sComensales.setText(" - " + CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getShComensalesReceta() + " comensales");
         Picasso.get().load(IHostingData.sHosting + IHostingData.sRutaImagenes + CuentaRecetaStore.lstImagenes.get(CuentaRecetaStore.iRecetaSeleccionada).getsRutaUrlImagen()).into(imgPralReceta);
+        rbRecetaDetalle.setRating(CuentaRecetaStore.lstPuntuacion.get(CuentaRecetaStore.iRecetaSeleccionada));
         // Estrellas y Me Gusta
         sCategoriaReceta.setText("Categoria: Comida " + CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getCategoria().getNombreCategoria());
         sTituloReceta.setText(CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getsTituloReceta());
         sDescripcionReceta.setText(CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getsTextoReceta());
         RecetaCrud.getIngredientes(getContext(), CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> cargarIngredientes());
         CuentaRecetaStore.lstIngredientes = RecetaStore.lstIngredientes;
-        //Pasos
+        cargarPasos();
         sFechaCreacionReceta.setText("Publicado el " + (CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getFechaCreacionReceta()).format(dateformatter));
 
         return v;
@@ -88,6 +96,26 @@ public class CuentaRecetaDetalle extends Fragment implements IConstantes, IIngre
             sIngredientes += "\n" + CuentaRecetaStore.lstIngredientes.get(i).getoIngrediente().getsNombreIngrediente() + " - " + CuentaRecetaStore.lstIngredientes.get(i).getiCantidadIngrediente() + AMEDIDASDIMINUTIVO[CuentaRecetaStore.lstIngredientes.get(i).getiMedida()];
         }
         sIngredienteReceta.setText(sIngredientes);
+    }
+
+    private void cargarPasos()  {
+
+        RecetaStore.lstPasos.clear();;
+        RecetaCrud.getAllPasos(getContext(), CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getiIdReceta());
+        mostrarRecetas();
+    }
+
+    private void mostrarRecetas() {
+
+        RecyclerView rvRecetasPasos = v.findViewById(R.id.rvRecetaPasos);
+
+        rvRecetasPasos.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        adaptador = new RecetaPasosAdapter(getContext());
+        rvRecetasPasos.setAdapter(adaptador);
+
+        adaptador.setOnClickListener(v -> {
+
+        });
     }
 
     private String calcularTiempoString(float fDuracionReceta) {

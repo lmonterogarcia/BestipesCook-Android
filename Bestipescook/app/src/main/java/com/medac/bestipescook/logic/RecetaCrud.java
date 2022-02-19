@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.medac.bestipescook.controller.cuenta.CuentaRecetaDetalle;
 import com.medac.bestipescook.controller.noticias.frNoticias;
 import com.medac.bestipescook.controller.recetas.RecetaStore;
 import com.medac.bestipescook.controller.recetas.Receta_detalle;
@@ -41,14 +42,15 @@ public class RecetaCrud implements IHostingData, IConstantes {
         // Request a string Para conseguir todas las recetas.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 s -> {
-                    if(s.equals("null")) {
-                        Toast.makeText(context, "No hay recetas disponibles en este momento",Toast.LENGTH_LONG).show();
+                    if (s.equals("null")) {
+                        Toast.makeText(context, "No hay recetas disponibles en este momento", Toast.LENGTH_LONG).show();
                     } else {
                         ObjectMapper mapper = new ObjectMapper();
                         List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
                         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
                         try {
-                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                            lstObjetos = mapper.readValue(s, new TypeReference<List<Map<String, Object>>>() {
+                            });
                         } catch (IOException e) {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
                             e.printStackTrace();
@@ -56,13 +58,13 @@ public class RecetaCrud implements IHostingData, IConstantes {
                         rellenarLstRecetas(lstObjetos);
                     }
                 }, error -> {
-            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
-            Log.d("Bestipes" , error.toString());
+            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde", Toast.LENGTH_LONG).show();
+            Log.d("Bestipes", error.toString());
         });
 
         // Add the request to the RequestQueue.
-            queue.add(stringRequest);
-            queue.start();
+        queue.add(stringRequest);
+        queue.start();
     }
 
     public static void getAllRecetasSearch(Context context) {
@@ -72,14 +74,15 @@ public class RecetaCrud implements IHostingData, IConstantes {
         // Request a string Para conseguir todas las recetas.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 s -> {
-                    if(s.equals("null")) {
-                        Toast.makeText(context, "No hay recetas disponibles en este momento",Toast.LENGTH_LONG).show();
+                    if (s.equals("null")) {
+                        Toast.makeText(context, "No hay recetas disponibles en este momento", Toast.LENGTH_LONG).show();
                     } else {
                         ObjectMapper mapper = new ObjectMapper();
                         List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
                         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
                         try {
-                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                            lstObjetos = mapper.readValue(s, new TypeReference<List<Map<String, Object>>>() {
+                            });
                         } catch (IOException e) {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
                             e.printStackTrace();
@@ -87,8 +90,8 @@ public class RecetaCrud implements IHostingData, IConstantes {
                         rellenarLstRecetas(lstObjetos);
                     }
                 }, error -> {
-            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
-            Log.d("Bestipes" , error.toString());
+            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde", Toast.LENGTH_LONG).show();
+            Log.d("Bestipes", error.toString());
         });
 
         // Add the request to the RequestQueue.
@@ -96,21 +99,22 @@ public class RecetaCrud implements IHostingData, IConstantes {
         queue.start();
     }
 
-    public static void getIngredientes(Context context, int iIdReceta, final VolleyCallBack callBack){
+    public static void getIngredientes(Context context, int iIdReceta, final VolleyCallBack callBack) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sGetIngredientes + iIdReceta;
 
         // Request a string Para conseguir todas las ingredientes.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 s -> {
-                    if(s.equals("null")) {
-                        Toast.makeText(context, "Error leer los ingredientes",Toast.LENGTH_LONG).show();
+                    if (s.equals("null")) {
+                        Toast.makeText(context, "Error leer los ingredientes", Toast.LENGTH_LONG).show();
                     } else {
                         ObjectMapper mapper = new ObjectMapper();
                         List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
                         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
                         try {
-                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                            lstObjetos = mapper.readValue(s, new TypeReference<List<Map<String, Object>>>() {
+                            });
                         } catch (IOException e) {
                             Log.d("Pruebas", "El parseo del Map no correcto en getIngredientes");
                             e.printStackTrace();
@@ -118,8 +122,8 @@ public class RecetaCrud implements IHostingData, IConstantes {
                         rellenarLstIngredientes(lstObjetos, callBack);
                     }
                 }, error -> {
-            Toast.makeText(context, "Hay error al recuperar los ingredientes. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
-            Log.d("Bestipes" , error.toString());
+            Toast.makeText(context, "Hay error al recuperar los ingredientes. Intentelo de nuevo mas tarde", Toast.LENGTH_LONG).show();
+            Log.d("Bestipes", error.toString());
         });
 
         // Add the request to the RequestQueue.
@@ -127,21 +131,22 @@ public class RecetaCrud implements IHostingData, IConstantes {
         queue.start();
     }
 
-    public static void getAllPasos(Context context, int iIdReceta){
+    public static void getAllPasos(Context context, int iIdReceta) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sGetPasos + iIdReceta;
 
         // Request a string Para conseguir todas las ingredientes.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 s -> {
-                    if(s.equals("null")) {
-                        Toast.makeText(context, "Error leer los pasos",Toast.LENGTH_LONG).show();
+                    if (s.equals("null")) {
+                        Toast.makeText(context, "Error leer los pasos", Toast.LENGTH_LONG).show();
                     } else {
                         ObjectMapper mapper = new ObjectMapper();
                         List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
                         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
                         try {
-                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                            lstObjetos = mapper.readValue(s, new TypeReference<List<Map<String, Object>>>() {
+                            });
                         } catch (IOException e) {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllPasos");
                             e.printStackTrace();
@@ -149,8 +154,81 @@ public class RecetaCrud implements IHostingData, IConstantes {
                         rellenarLstPasos(lstObjetos);
                     }
                 }, error -> {
-            Toast.makeText(context, "Hay error al recuperar los pasos. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
-            Log.d("Bestipes" , error.toString());
+            Toast.makeText(context, "Hay error al recuperar los pasos. Intentelo de nuevo mas tarde", Toast.LENGTH_LONG).show();
+            Log.d("Bestipes", error.toString());
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        queue.start();
+    }
+
+    public static void usuarioGustaReceta(Context context, String sNombreUsuario, int iIdReceta, VolleyCallBack callBack) {
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = sHosting + sAndroid + sGetMeGusta + iIdReceta + sUsuario + sNombreUsuario;
+
+        // Request a string Para conseguir todas las ingredientes.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if (s.equals("null")) {
+                        Toast.makeText(context, "Error leer si le gusta", Toast.LENGTH_LONG).show();
+                    } else {
+                        if (s.equals("true")){
+                            RecetaStore.booMeGusta = true;
+                        } else {
+                            RecetaStore.booMeGusta = false;
+                        }
+                        callBack.onSuccess();
+                    }
+                }, error -> {
+            Toast.makeText(context, "Hay error al recuperar los me gusta. Intentelo de nuevo mas tarde", Toast.LENGTH_LONG).show();
+            Log.d("Bestipes", error.toString());
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        queue.start();
+
+    }
+
+    public static void insMegusta(Context context, String sNombreUsuario, int iIdReceta, VolleyCallBack callBack) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = sHosting + sAndroid + sInsMeGusta + iIdReceta + sUsuario + sNombreUsuario;
+
+        // Request a string Para conseguir todas las ingredientes.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if (s.equals("null")) {
+                        Toast.makeText(context, "Error leer si le gusta", Toast.LENGTH_LONG).show();
+                    } else {
+                        callBack.onSuccess();
+                    }
+                }, error -> {
+            Toast.makeText(context, "Hay error al recuperar los me gusta. Intentelo de nuevo mas tarde", Toast.LENGTH_LONG).show();
+            Log.d("Bestipes", error.toString());
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        queue.start();
+    }
+
+    public static void delMegusta(Context context, String sNombreUsuario, int iIdReceta, VolleyCallBack callBack) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = sHosting + sAndroid + sDelMeGusta + iIdReceta + sUsuario + sNombreUsuario;
+
+        // Request a string Para conseguir todas las ingredientes.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if (s.equals("null")) {
+                        Toast.makeText(context, "Error leer si le gusta", Toast.LENGTH_LONG).show();
+                    } else {
+                        callBack.onSuccess();
+                    }
+                }, error -> {
+            Toast.makeText(context, "Hay error al recuperar los me gusta. Intentelo de nuevo mas tarde", Toast.LENGTH_LONG).show();
+            Log.d("Bestipes", error.toString());
         });
 
         // Add the request to the RequestQueue.
@@ -160,7 +238,7 @@ public class RecetaCrud implements IHostingData, IConstantes {
 
     private static void rellenarLstIngredientes(List<Map<String, Object>> lstObjetos, VolleyCallBack callBack) {
         RecetaStore.lstIngredientes.clear();
-        lstObjetos.forEach(i ->{
+        lstObjetos.forEach(i -> {
             RecetaStore.lstIngredientes.add(new IngredienteReceta(
                     //Receta oReceta, Ingrediente oIngrediente, int iCantidadIngrediente, int iMedida
                     new Receta(Integer.parseInt(i.get("idReceta").toString())),
@@ -174,7 +252,7 @@ public class RecetaCrud implements IHostingData, IConstantes {
 
     private static void rellenarLstPasos(List<Map<String, Object>> lstObjetos) {
         RecetaStore.lstPasos.clear();
-        lstObjetos.forEach(i ->{
+        lstObjetos.forEach(i -> {
             RecetaStore.lstPasos.add(new Paso(
                     //int iIdPaso, String sTextoPaso, byte bOrdenPaso, Receta receta, Imagen imagen
                     Integer.parseInt(i.get("idPaso").toString()),
@@ -184,32 +262,38 @@ public class RecetaCrud implements IHostingData, IConstantes {
                     new Imagen(i.get("rutaRelativaImagen").toString())
             ));
         });
-        Receta_detalle.adaptador.notifyDataSetChanged();
+        if (Receta_detalle.adaptador != null) {
+            Receta_detalle.adaptador.notifyDataSetChanged();
+        }
+        if (CuentaRecetaDetalle.adaptador != null) {
+            CuentaRecetaDetalle.adaptador.notifyDataSetChanged();
+        }
+
     }
 
     private static void rellenarLstRecetas(List<Map<String, Object>> lstObjetos) {
-        lstObjetos.forEach(n ->{
+        lstObjetos.forEach(n -> {
             aniadirReceta(n);
         });
     }
 
     private static void aniadirReceta(Map<String, Object> receta) {
 
-        RecetaStore.aniadirReceta( new Receta(
-                Integer.parseInt(receta.get("idReceta").toString()),
-                LocalDateTime.parse(receta.get("fechaCreacionReceta").toString(), IConstantes.dateTimeformatterFromDB),
-                receta.get("tituloReceta").toString(),
-                receta.get("textoReceta").toString(),
-                Boolean.parseBoolean(receta.get("enRevision").toString()),
-                new Usuario(receta.get("usuarionombreUsuario").toString(), receta.get("rutaImgUsuario").toString()),
-                new Categoria(Integer.parseInt(receta.get("idCategoria").toString()),receta.get("nombreCategoria").toString()),
-                Short.parseShort(receta.get("comensalesReceta").toString()),
-                Float.parseFloat(receta.get("duracionReceta").toString())),
+        RecetaStore.aniadirReceta(new Receta(
+                        Integer.parseInt(receta.get("idReceta").toString()),
+                        LocalDateTime.parse(receta.get("fechaCreacionReceta").toString(), IConstantes.dateTimeformatterFromDB),
+                        receta.get("tituloReceta").toString(),
+                        receta.get("textoReceta").toString(),
+                        Boolean.parseBoolean(receta.get("enRevision").toString()),
+                        new Usuario(receta.get("usuarionombreUsuario").toString(), receta.get("rutaImgUsuario").toString()),
+                        new Categoria(Integer.parseInt(receta.get("idCategoria").toString()), receta.get("nombreCategoria").toString()),
+                        Short.parseShort(receta.get("comensalesReceta").toString()),
+                        Float.parseFloat(receta.get("duracionReceta").toString())),
 
                 (new Imagen(
                         Integer.parseInt(String.valueOf(receta.get("idImagen"))),
                         LocalDateTime.parse(String.valueOf(receta.get("fechaCreacionImagen")),
-                                IConstantes.dateTimeformatterFromDB),String.valueOf(receta.get("rutaRelativaImagen")))),
+                                IConstantes.dateTimeformatterFromDB), String.valueOf(receta.get("rutaRelativaImagen")))),
 
                 Float.parseFloat(receta.get("puntuacionMedia").toString()));
     }
@@ -221,14 +305,15 @@ public class RecetaCrud implements IHostingData, IConstantes {
         // Request a string Para conseguir todas las recetas.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 s -> {
-                    if(s.equals("null")) {
-                        Toast.makeText(context, "No hay recetas disponibles en este momento",Toast.LENGTH_LONG).show();
+                    if (s.equals("null")) {
+                        Toast.makeText(context, "No hay recetas disponibles en este momento", Toast.LENGTH_LONG).show();
                     } else {
                         ObjectMapper mapper = new ObjectMapper();
                         List<Map<String, Object>> lstObjetos = new ArrayList<Map<String, Object>>();
                         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
                         try {
-                            lstObjetos = mapper.readValue(s , new TypeReference<List<Map<String, Object>>>(){});
+                            lstObjetos = mapper.readValue(s, new TypeReference<List<Map<String, Object>>>() {
+                            });
                         } catch (IOException e) {
                             Log.d("Pruebas", "El parseo del Map no correcto en getAllRecetas");
                             e.printStackTrace();
@@ -236,12 +321,14 @@ public class RecetaCrud implements IHostingData, IConstantes {
                         rellenarLstRecetas(lstObjetos);
                     }
                 }, error -> {
-            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde",Toast.LENGTH_LONG).show();
-            Log.d("Bestipes" , error.toString());
+            Toast.makeText(context, "Hay error al recuperar las recetas. Intentelo de nuevo mas tarde", Toast.LENGTH_LONG).show();
+            Log.d("Bestipes", error.toString());
         });
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
         queue.start();
     }
+
+
 }

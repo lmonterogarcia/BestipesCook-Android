@@ -11,11 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.medac.bestipescook.R;
+import com.medac.bestipescook.controller.cuenta.frLogIn;
+import com.medac.bestipescook.logic.CuentaCrud;
 import com.medac.bestipescook.logic.IHostingData;
 import com.medac.bestipescook.logic.RecetaCrud;
 import com.medac.bestipescook.logic.VolleyCallBack;
@@ -43,6 +48,7 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
     private TextView sFechaCreacionReceta;
     private Button btnEditar;
     private RatingBar rbRecetaDetalle;
+    private ToggleButton btnMeGusta;
 
     public Receta_detalle() {
         // Required empty public constructor
@@ -72,6 +78,35 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
         sFechaCreacionReceta = v.findViewById(R.id.lblFechaCreacionReceta);
         btnEditar = v.findViewById(R.id.btnEditarReceta);
         rbRecetaDetalle = v.findViewById(R.id.rbRecetaDetalle);
+        btnMeGusta = v.findViewById(R.id.btnLikesRecetaDetalle);
+
+        btnMeGusta.setOnClickListener(b ->{
+            if (btnMeGusta.isChecked()){
+                RecetaCrud.insMegusta(getContext(), CuentaCrud.preferencias.getString("usuario",""),RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> {
+                    Toast.makeText(getContext(), "Se ha añadido a tu list de favoritas",Toast.LENGTH_LONG).show();
+                });
+            } else {
+                RecetaCrud.delMegusta(getContext(), CuentaCrud.preferencias.getString("usuario",""),RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> {
+                    Toast.makeText(getContext(), "Se ha eliminado de tu lista de favoritas",Toast.LENGTH_LONG).show();
+                });
+            }
+        });
+
+        /*btnMeGusta.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    RecetaCrud.insMegusta(getContext(), CuentaCrud.preferencias.getString("usuario",""),RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> {
+                        //Toast.makeText(getContext(), "Se ha añadido a tu list de favoritas",Toast.LENGTH_LONG).show();
+                    });
+                } else {
+                    RecetaCrud.delMegusta(getContext(), CuentaCrud.preferencias.getString("usuario",""),RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> {
+                        //Toast.makeText(getContext(), "Se ha eliminado de tu lista de favoritas",Toast.LENGTH_LONG).show();
+                    });
+                }
+            }
+        });*/
 
         Picasso.get().load(IHostingData.sHosting + IHostingData.sRutaImagenes + RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getUsuario().getImagen().getsRutaUrlImagen()).into(imgUsuarioReceta);
         sNombreUsuario.setText(RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getUsuario().getsNombreUsuraio());
@@ -79,7 +114,15 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
         sComensales.setText(" - " + RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getShComensalesReceta() + " comensales");
         Picasso.get().load(IHostingData.sHosting + IHostingData.sRutaImagenes + RecetaStore.lstImagenes.get(RecetaStore.iRecetaSeleccionada).getsRutaUrlImagen()).into(imgPralReceta);
         rbRecetaDetalle.setRating(RecetaStore.lstPuntuacion.get(RecetaStore.iRecetaSeleccionada));
-        // Estrellas y Me Gusta
+
+        if(CuentaCrud.preferencias == null) {
+            btnMeGusta.setVisibility(View.GONE);
+        }else{
+            RecetaCrud.usuarioGustaReceta(getContext(), CuentaCrud.preferencias.getString("usuario",""),RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> btnMeGusta.setChecked(RecetaStore.booMeGusta));
+        }
+
+
+
         sCategoriaReceta.setText("Comida " + RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getCategoria().getNombreCategoria());
         sTituloReceta.setText(RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getsTituloReceta());
         sDescripcionReceta.setText(RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getsTextoReceta());
@@ -128,4 +171,8 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
 
         });
     }
+
+    // LISTENERS
+
+
 }

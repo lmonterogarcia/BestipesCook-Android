@@ -106,12 +106,12 @@
                 <RatingBar
                     android:id="@+id/rbRecetaDetalle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:isIndicator="false"
                     android:numStars="5"
-                    android:scaleX="0.7"
-                    android:scaleY="0.7"
+                    android:scaleX="1"
+                    android:scaleY="1"
                     android:stepSize="1"
                     android:transformPivotX="0dp"
                     android:transformPivotY="0dp"
@@ -128,14 +128,14 @@
                     android:visibility="gone" />
 
                 <ToggleButton
-                    android:id="@+id/btnLikes"
+                    android:id="@+id/btnLikesRecetaDetalle"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal|center_vertical|end"
                     android:textOff="@string/no_me_gusta"
                     android:textOn="@string/me_gusta"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/lblContadorMeGustas"

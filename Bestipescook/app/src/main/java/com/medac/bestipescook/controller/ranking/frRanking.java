@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.medac.bestipescook.R;
@@ -47,7 +46,7 @@ public class frRanking extends Fragment {
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_ranking, container, false);
        spinerCategoriaLugar = v.findViewById(R.id.spCategoria);
-       btnEstrellas = v.findViewById(R.id.btnLikes);
+       btnEstrellas = v.findViewById(R.id.btnLikesRecetaDetalle);
        btnMegusta = v.findViewById(R.id.btnEstrellas);
 
         cargarRecetas();
