@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    android:layout_margin="16dp"
-    android:paddingTop="15dp"
+    android:layout_margin="0dp"
+    android:layout_marginBottom="8dp"
+    android:paddingTop="0dp"
     tools:context=".controller.recetas.Receta_detalle">
 
     <ScrollView
@@ -26,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="5dp"
+            android:paddingTop="0dp"
             android:paddingBottom="5dp">
 
             <LinearLayout
@@ -69,26 +70,81 @@
                     android:text=" - 4 comensales" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/ivPralReceta"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="226dp"
-                android:layout_marginBottom="5dp"
-                android:scaleType="centerCrop"
-                tools:src="@tools:sample/backgrounds/scenic" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivPralReceta"
+                    android:layout_width="match_parent"
+                    android:layout_height="226dp"
+                    android:layout_marginBottom="5dp"
+                    android:scaleType="centerCrop"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <TextView
+                    android:id="@+id/lblCategoriaReceta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="end"
+                    android:text="categoriaReceta" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lyEstrellasMeGustas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="5dp">
+
+                <RatingBar
+                    android:id="@+id/rbRecetaDetalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:numStars="5"
+                    android:scaleX="0.7"
+                    android:scaleY="0.7"
+                    android:stepSize="1"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="0dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/lblContadorValoraciones"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ESTRELLAS y ME GUSTA"
+                    android:gravity="bottom|start"
+                    android:text="12"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <ToggleButton
+                    android:id="@+id/btnLikes"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:textOff="@string/no_me_gusta"
+                    android:textOn="@string/me_gusta"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/lblContadorMeGustas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="bottom|start"
+                    android:text="14"
+                    android:textSize="12sp"
                     android:visibility="gone" />
             </LinearLayout>
 
@@ -96,15 +152,9 @@
                 android:id="@+id/lyInfoReceta"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/lblCategoriaReceta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="end"
-                    android:text="categoriaReceta" />
 
                 <TextView
                     android:id="@+id/lblTituloReceta"
@@ -112,12 +162,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="tituloReceta" />
+                    android:text="tituloReceta"
+                    tools:ignore="TextContrastCheck" />
 
                 <TextView
                     android:id="@+id/lblDescripcionReceta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:singleLine="false"
                     android:text="Descripcion de la receta. pjnwefhjberfhjb erh ufb erhuofb uwerhob fowhuerb fghuowerb guobwerguob erguob egohuberob" />
 
@@ -127,9 +179,18 @@
                 android:id="@+id/lyIngredientesReceta"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="vertical"
                 android:paddingTop="15dp"
                 android:paddingEnd="15dp">
+
+                <TextView
+                    android:id="@+id/lblIngredientesTitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="INGREDIENTES:"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/lblIngredientesRecetas"
@@ -145,10 +206,19 @@
                 android:orientation="vertical"
                 android:paddingTop="15dp">
 
+                <TextView
+                    android:id="@+id/lblPasosTitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="PASOS:"
+                    android:textStyle="bold" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvRecetaPasos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:paddingStart="5dp" />
             </LinearLayout>
 
@@ -156,6 +226,9 @@
                 android:id="@+id/lyFechaEditarReceta"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <TextView

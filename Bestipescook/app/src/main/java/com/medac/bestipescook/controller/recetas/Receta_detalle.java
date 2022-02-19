@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.medac.bestipescook.R;
@@ -41,6 +42,7 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
     private TextView sIngredienteReceta;
     private TextView sFechaCreacionReceta;
     private Button btnEditar;
+    private RatingBar rbRecetaDetalle;
 
     public Receta_detalle() {
         // Required empty public constructor
@@ -69,14 +71,16 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
         sIngredienteReceta = v.findViewById(R.id.lblIngredientesRecetas);
         sFechaCreacionReceta = v.findViewById(R.id.lblFechaCreacionReceta);
         btnEditar = v.findViewById(R.id.btnEditarReceta);
+        rbRecetaDetalle = v.findViewById(R.id.rbRecetaDetalle);
 
         Picasso.get().load(IHostingData.sHosting + IHostingData.sRutaImagenes + RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getUsuario().getImagen().getsRutaUrlImagen()).into(imgUsuarioReceta);
         sNombreUsuario.setText(RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getUsuario().getsNombreUsuraio());
         sTiempo.setText(calcularTiempoString(RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getfDuracionReceta()));
         sComensales.setText(" - " + RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getShComensalesReceta() + " comensales");
         Picasso.get().load(IHostingData.sHosting + IHostingData.sRutaImagenes + RecetaStore.lstImagenes.get(RecetaStore.iRecetaSeleccionada).getsRutaUrlImagen()).into(imgPralReceta);
+        rbRecetaDetalle.setRating(RecetaStore.lstPuntuacion.get(RecetaStore.iRecetaSeleccionada));
         // Estrellas y Me Gusta
-        sCategoriaReceta.setText("Categoria: Comida " + RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getCategoria().getNombreCategoria());
+        sCategoriaReceta.setText("Comida " + RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getCategoria().getNombreCategoria());
         sTituloReceta.setText(RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getsTituloReceta());
         sDescripcionReceta.setText(RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getsTextoReceta());
         RecetaCrud.getIngredientes(getContext(), RecetaStore.lstRecetas.get(RecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> cargarIngredientes());
@@ -87,7 +91,7 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
     }
 
     private void cargarIngredientes() {
-        String sIngredientes = "Ingredientes:";
+        String sIngredientes = "";
 
         for (int i = 0; i < RecetaStore.lstIngredientes.size(); i++) {
             sIngredientes += "\n" + RecetaStore.lstIngredientes.get(i).getoIngrediente().getsNombreIngrediente() + " - " + RecetaStore.lstIngredientes.get(i).getiCantidadIngrediente() + AMEDIDASDIMINUTIVO[RecetaStore.lstIngredientes.get(i).getiMedida()];
@@ -116,7 +120,7 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
 
         RecyclerView rvRecetasPasos = v.findViewById(R.id.rvRecetaPasos);
 
-        rvRecetasPasos.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvRecetasPasos.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         adaptador = new RecetaPasosAdapter(getContext());
         rvRecetasPasos.setAdapter(adaptador);
 
