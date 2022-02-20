@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 import com.google.android.material.button.MaterialButton;
 import com.medac.bestipescook.R;
@@ -38,6 +40,8 @@ public class frCuenta extends Fragment {
     public static CuentaAdapter adaptador;
     boolean toogleMisRecetas = false;
     boolean toogleMegusta = false;
+    private static MaterialButton btnMisRecetas;
+
     public frCuenta() {
 
     }
@@ -48,15 +52,16 @@ public class frCuenta extends Fragment {
 
 
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.fragment_cuenta, container, false);
         //spinerCategoria = v.findViewById(R.id.spinner);
+        btnMisRecetas = v.findViewById(R.id.btnMyReceta);
 
-        if(CuentaCrud.preferencias == null) {
+        if (CuentaCrud.preferencias == null) {
             frLogIn nextFrag = new frLogIn();
             if (!nextFrag.isAdded()) {
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -64,11 +69,12 @@ public class frCuenta extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-        }else{
+        } else {
+            btnMisRecetas.setChecked(true);
             cargarRecetas();
         }
 
-        v.findViewById(R.id.btnEdit).setOnClickListener(e ->{
+        v.findViewById(R.id.btnEdit).setOnClickListener(e -> {
             frEditarPerfil nextFrag = new frEditarPerfil();
             if (!nextFrag.isAdded()) {
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -92,10 +98,26 @@ public class frCuenta extends Fragment {
         });
 
  */
-
-        v.findViewById(R.id.btnMyReceta).setOnClickListener(e -> {
-            cargarRecetas();
+        btnMisRecetas.addOnCheckedChangeListener(new MaterialButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(MaterialButton button, boolean isChecked) {
+                if (isChecked) {
+                    cargarRecetas();
+                }
+            }
         });
+        /*btnMisRecetas.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    cargarRecetas();
+                }
+            }
+        });*/
+
+        /*btnMisRecetas.setOnClickListener(e -> {
+            cargarRecetas();
+        });*/
 
         v.findViewById(R.id.btnFavorita).setOnClickListener(e -> {
             cargarRecetasMegusta();
@@ -114,15 +136,15 @@ public class frCuenta extends Fragment {
  */
 
     private void cargarRecetasMegusta() {
-        if(!toogleMegusta) {
+        if (!toogleMegusta) {
             CuentaRecetaStore.lstRecetas.clear();
             CuentaRecetaStore.lstImagenes.clear();
             CuentaRecetaStore.lstPuntuacion.clear();
             CuentaCrud.getAllRecetasMegusta(getContext());
             mostrarRecetas();
-            toogleMegusta=true;
-            toogleMisRecetas=false;
-        }else{
+            toogleMegusta = true;
+            toogleMisRecetas = false;
+        } else {
             CuentaRecetaStore.lstRecetas.clear();
             CuentaRecetaStore.lstImagenes.clear();
             CuentaRecetaStore.lstPuntuacion.clear();
@@ -131,16 +153,16 @@ public class frCuenta extends Fragment {
         }
     }
 
-    private void cargarRecetas()  {
-        if(!toogleMisRecetas) {
+    private void cargarRecetas() {
+        if (!toogleMisRecetas) {
             CuentaRecetaStore.lstRecetas.clear();
             CuentaRecetaStore.lstImagenes.clear();
             CuentaRecetaStore.lstPuntuacion.clear();
             CuentaCrud.getAllRecetas(getContext());
             mostrarRecetas();
-            toogleMisRecetas=true;
+            toogleMisRecetas = true;
             toogleMegusta = false;
-        }else{
+        } else {
             CuentaRecetaStore.lstRecetas.clear();
             CuentaRecetaStore.lstImagenes.clear();
             CuentaRecetaStore.lstPuntuacion.clear();
@@ -158,8 +180,8 @@ public class frCuenta extends Fragment {
 
         adaptador.setOnClickListener(v -> {
             CuentaRecetaStore.iRecetaSeleccionada = rvRecetas.getChildAdapterPosition(v);
-            CuentaRecetaDetalle nextFrag= new CuentaRecetaDetalle();
-            if (!nextFrag.isAdded()){
+            CuentaRecetaDetalle nextFrag = new CuentaRecetaDetalle();
+            if (!nextFrag.isAdded()) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_container, nextFrag, "findThisFragment")
                         .addToBackStack(null)
@@ -174,7 +196,7 @@ public class frCuenta extends Fragment {
         ArrayList<Imagen> lstImagenes = new ArrayList<Imagen>();
 
         CuentaRecetaStore.lstRecetas.forEach(receta -> {
-            if(receta.getUsuario().getsNombreUsuraio().equals(CuentaCrud.preferencias.getString("usuario",""))){
+            if (receta.getUsuario().getsNombreUsuraio().equals(CuentaCrud.preferencias.getString("usuario", ""))) {
                 lstRecetas.add(receta);
                 //QUEDA RELLENAR IMAGENES Y PUNTUACION
             }
