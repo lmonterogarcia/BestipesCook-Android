@@ -41,7 +41,6 @@ public class CuentaCrud implements IHostingData, IConstantes{
 
     public static void getUsuario(Context context, String nombreUsuario, String passwordUsuario, final VolleyCallBack callBack) {
         String url = IHostingData.sHosting + IHostingData.sAndroid + IHostingData.sGetUsuario +"?txtNombreUsuario="+ nombreUsuario+"&txtPasswordUsuario="+passwordUsuario;
-        //Toast.makeText(context, url,Toast.LENGTH_LONG).show();
         Log.d("Pruebas", url);
 
         Volley.newRequestQueue(context).add(new StringRequest(Request.Method.GET, url,
@@ -79,10 +78,10 @@ public class CuentaCrud implements IHostingData, IConstantes{
         editor.putString("mail", mailUsuario);
         editor.commit();
 
-        mostrarDatos(context);
+        //mostrarDatos();
     }
 
-    private static void mostrarDatos(Context context){
+    private static void mostrarDatos(){
         Log.d("pruebas2", preferencias.getString("usuario",""));
         Log.d("pruebas2", preferencias.getString("pass",""));
         Log.d("pruebas2", preferencias.getString("mail",""));

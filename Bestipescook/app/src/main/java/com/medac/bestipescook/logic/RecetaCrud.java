@@ -235,6 +235,27 @@ public class RecetaCrud implements IHostingData, IConstantes {
         queue.add(stringRequest);
         queue.start();
     }
+    public static void puntuarReceta(Context context, float fRating, String sNombreUsuario, int iIdReceta, VolleyCallBack callBack) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = sHosting + sAndroid + sValorarReceta + iIdReceta + sUsuario + sNombreUsuario + sPuntuacionReceta + (int)fRating;
+
+        // Request a string Para conseguir todas las ingredientes.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                s -> {
+                    if (s.equals("null")) {
+                        Toast.makeText(context, "Error al leer las pùntuaciones", Toast.LENGTH_LONG).show();
+                    } else {
+                        callBack.onSuccess();
+                    }
+                }, error -> {
+            Toast.makeText(context, "Hay error al recuperar lasm puntuaciones. Intentelo de nuevo mas tarde", Toast.LENGTH_LONG).show();
+            Log.d("Bestipes", error.toString());
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        queue.start();
+    }
 
     private static void rellenarLstIngredientes(List<Map<String, Object>> lstObjetos, VolleyCallBack callBack) {
         RecetaStore.lstIngredientes.clear();
@@ -329,6 +350,4 @@ public class RecetaCrud implements IHostingData, IConstantes {
         queue.add(stringRequest);
         queue.start();
     }
-
-
 }

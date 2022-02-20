@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.medac.bestipescook.R;
@@ -41,6 +42,8 @@ public class frRecetas extends Fragment {
 
         v.findViewById(R.id.btnBuscar).setOnClickListener(e -> {
             EditText txtquery = v.findViewById(R.id.txtquery);
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
             if (!String.valueOf(txtquery.getText()).equals("")){
                 query = null;

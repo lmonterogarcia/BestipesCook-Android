@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.medac.bestipescook.R;
@@ -30,6 +31,7 @@ public class frCrearCuenta extends Fragment {
         v = inflater.inflate(R.layout.fragment_crear_cuenta, container, false);
         v.findViewById(R.id.btnCrearCuenta).setOnClickListener(e ->{
 
+
             TextInputEditText textMail = v.findViewById(R.id.txtMail);
             TextInputEditText textUsuario = v.findViewById(R.id.txtUser);
             TextInputEditText textPass = v.findViewById(R.id.txtPass);
@@ -38,6 +40,7 @@ public class frCrearCuenta extends Fragment {
         });
 
         v.findViewById(R.id.btnLogIn).setOnClickListener(e ->{
+
             frLogIn nextFrag = new frLogIn();
             if (!nextFrag.isAdded()) {
                 getActivity().getSupportFragmentManager().beginTransaction()

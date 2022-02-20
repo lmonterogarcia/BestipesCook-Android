@@ -27,7 +27,9 @@ public interface IHostingData {
     public final String sGetMeGusta = "receta/get-megusta.php?txtIdReceta=";
     public final String sInsMeGusta = "receta/ins-megusta.php?txtIdReceta=";
     public final String sDelMeGusta = "receta/del-megusta.php?txtIdReceta=";
+    public final String sValorarReceta = "receta/val-receta.php?txtIdReceta=";
     public final String sUsuario = "&txtNombreUsuario=";
+    public final String sPuntuacionReceta = "&txtPuntuacionReceta=";
 
     // RANKING
     public final String sLstCategorias = "ranking/lst-categorias.php";
