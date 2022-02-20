@@ -48,7 +48,7 @@ public class frCuenta extends Fragment {
 
 
     }
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class frCuenta extends Fragment {
                         .commit();
             }
         }else{
-            //RankingCrud.getAllCategorias(getContext(),() -> cargarCategorias());
+            cargarRecetas();
         }
 
         v.findViewById(R.id.btnEdit).setOnClickListener(e ->{
