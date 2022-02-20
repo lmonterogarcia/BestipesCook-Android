@@ -18,7 +18,7 @@ public class RetoStore {
             int iPosicion = 0;
             boolean retoAniadida = false;
             do {
-                if (reto.getiIdReto() < lstRetos.get(iPosicion).getiIdReto()){
+                if (reto.getiIdReto() > lstRetos.get(iPosicion).getiIdReto()){
                     lstRetos.add(iPosicion, reto);
                     retoAniadida = true;
                 }
@@ -27,7 +27,7 @@ public class RetoStore {
             if (!retoAniadida){
                 lstRetos.add(reto);
             }
-        } else if (lstRetos.size() == 1 && lstRetos.get(0).getiIdReto() > reto.getiIdReto()) {
+        } else if (lstRetos.size() == 1 && lstRetos.get(0).getiIdReto() < reto.getiIdReto()) {
             lstRetos.add(0, reto);
         } else {
             lstRetos.add(reto);

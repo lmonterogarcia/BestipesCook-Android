@@ -31,7 +31,7 @@ public class RecetaStore {
             int iPosicion = 0;
             boolean recetaAniadida = false;
             do {
-                if (receta.getiIdReceta() < lstRecetas.get(iPosicion).getiIdReceta()){
+                if (receta.getiIdReceta() > lstRecetas.get(iPosicion).getiIdReceta()){
                     lstPuntuacion.add(iPosicion, starRate);
                     lstImagenes.add(iPosicion, imagen);
                     lstRecetas.add(iPosicion, receta);
@@ -44,7 +44,7 @@ public class RecetaStore {
                 lstImagenes.add(imagen);
                 lstRecetas.add(receta);
             }
-        } else if (lstRecetas.size() == 1 && lstRecetas.get(0).getiIdReceta() > receta.getiIdReceta()) {
+        } else if (lstRecetas.size() == 1 && lstRecetas.get(0).getiIdReceta() < receta.getiIdReceta()) {
             lstPuntuacion.add(0, starRate);
             lstImagenes.add(0, imagen);
             lstRecetas.add(0, receta);
