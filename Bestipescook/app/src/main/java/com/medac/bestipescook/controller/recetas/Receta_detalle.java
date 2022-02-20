@@ -30,7 +30,6 @@ import com.squareup.picasso.Picasso;
 
 import java.time.LocalDateTime;
 
-
 public class Receta_detalle extends Fragment implements IConstantes, IIngredienteReceta {
 
     private View v;
@@ -161,8 +160,5 @@ public class Receta_detalle extends Fragment implements IConstantes, IIngredient
 
         });
     }
-
-    // LISTENERS
-
 
 }

@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +19,7 @@ import com.medac.bestipescook.R;
 import com.medac.bestipescook.controller.cuenta.CuentaRecetaStore;
 import com.medac.bestipescook.controller.recetas.RecetaPasosAdapter;
 import com.medac.bestipescook.controller.recetas.RecetaStore;
+import com.medac.bestipescook.logic.CuentaCrud;
 import com.medac.bestipescook.logic.IHostingData;
 import com.medac.bestipescook.logic.RecetaCrud;
 import com.medac.bestipescook.model.IConstantes;
@@ -40,6 +43,7 @@ public class CuentaRecetaDetalle extends Fragment implements IConstantes, IIngre
     private TextView sFechaCreacionReceta;
     private Button btnEditar;
     private RatingBar rbRecetaDetalle;
+    private ToggleButton btnMeGusta;
 
     public CuentaRecetaDetalle() {
         // Required empty public constructor
@@ -65,11 +69,11 @@ public class CuentaRecetaDetalle extends Fragment implements IConstantes, IIngre
         sCategoriaReceta = v.findViewById(R.id.lblCategoriaReceta);
         sTituloReceta = v.findViewById(R.id.lblTituloReceta);
         sDescripcionReceta = v.findViewById(R.id.lblDescripcionReceta);
-
         sIngredienteReceta = v.findViewById(R.id.lblIngredientesRecetas);
         sFechaCreacionReceta = v.findViewById(R.id.lblFechaCreacionReceta);
         btnEditar = v.findViewById(R.id.btnEditarReceta);
         rbRecetaDetalle = v.findViewById(R.id.rbRecetaDetalle);
+        btnMeGusta = v.findViewById(R.id.btnLikesRecetaDetalle);
 
         Picasso.get().load(IHostingData.sHosting + IHostingData.sRutaImagenes + CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getUsuario().getImagen().getsRutaUrlImagen()).into(imgUsuarioReceta);
         sNombreUsuario.setText(CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getUsuario().getsNombreUsuraio());
@@ -77,7 +81,15 @@ public class CuentaRecetaDetalle extends Fragment implements IConstantes, IIngre
         sComensales.setText(" - " + CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getShComensalesReceta() + " comensales");
         Picasso.get().load(IHostingData.sHosting + IHostingData.sRutaImagenes + CuentaRecetaStore.lstImagenes.get(CuentaRecetaStore.iRecetaSeleccionada).getsRutaUrlImagen()).into(imgPralReceta);
         rbRecetaDetalle.setRating(CuentaRecetaStore.lstPuntuacion.get(CuentaRecetaStore.iRecetaSeleccionada));
-        // Estrellas y Me Gusta
+
+        if(CuentaCrud.preferencias == null) {
+            rbRecetaDetalle.setIsIndicator(true);
+            btnMeGusta.setVisibility(View.GONE);
+        }else{
+            rbRecetaDetalle.setIsIndicator(false);
+            RecetaCrud.usuarioGustaReceta(getContext(), CuentaCrud.preferencias.getString("usuario",""),CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> btnMeGusta.setChecked(RecetaStore.booMeGusta));
+        }
+
         sCategoriaReceta.setText("Categoria: Comida " + CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getCategoria().getNombreCategoria());
         sTituloReceta.setText(CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getsTituloReceta());
         sDescripcionReceta.setText(CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getsTextoReceta());
@@ -85,6 +97,24 @@ public class CuentaRecetaDetalle extends Fragment implements IConstantes, IIngre
         CuentaRecetaStore.lstIngredientes = RecetaStore.lstIngredientes;
         cargarPasos();
         sFechaCreacionReceta.setText("Publicado el " + (CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getFechaCreacionReceta()).format(dateformatter));
+
+        rbRecetaDetalle.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
+            RecetaCrud.puntuarReceta(getContext(), rating, CuentaCrud.preferencias.getString("usuario",""),CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> {
+                Toast.makeText(getContext(), "Puntuación registrada",Toast.LENGTH_SHORT).show();
+            });
+        });
+
+        btnMeGusta.setOnClickListener(b ->{
+            if (btnMeGusta.isChecked()){
+                RecetaCrud.insMegusta(getContext(), CuentaCrud.preferencias.getString("usuario",""),CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> {
+                    Toast.makeText(getContext(), "Se ha añadido a tu lista de favoritas",Toast.LENGTH_SHORT).show();
+                });
+            } else {
+                RecetaCrud.delMegusta(getContext(), CuentaCrud.preferencias.getString("usuario",""),CuentaRecetaStore.lstRecetas.get(CuentaRecetaStore.iRecetaSeleccionada).getiIdReceta(), () -> {
+                    Toast.makeText(getContext(), "Se ha eliminado de tu lista de favoritas",Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
 
         return v;
     }
