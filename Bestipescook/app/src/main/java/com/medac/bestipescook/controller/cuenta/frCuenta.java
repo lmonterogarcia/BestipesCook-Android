@@ -70,8 +70,8 @@ public class frCuenta extends Fragment {
                         .commit();
             }
         } else {
-            btnMisRecetas.setChecked(true);
-            cargarRecetas();
+            //btnMisRecetas.setChecked(true);
+            //cargarRecetas();
         }
 
         v.findViewById(R.id.btnEdit).setOnClickListener(e -> {

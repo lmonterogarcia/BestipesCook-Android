@@ -11,6 +11,8 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
         android:singleLine="false"
         android:text="Texto del Paso"
         app:layout_constraintStart_toStartOf="parent"
